@@ -178,19 +178,22 @@
 	
 	<xsl:template match="sequence">
 	<li>
+		<!-- list all children -->
 		<xsl:for-each select="node()">
-			<span>
-				<xsl:attribute name="class">
-					<xsl:value-of select ="local-name()"/>
-				</xsl:attribute>			
-           	 <xsl:value-of select="."/>
-            </span>
-            </xsl:for-each>
+			<!-- ignore anything that isn't a node, such as a comment -->
+			<xsl:if test="text()">
+				<span>
+					<xsl:attribute name="class">
+						<xsl:value-of select ="local-name()"/>
+					</xsl:attribute>			
+				 <xsl:value-of select="."/>
+				</span>
+				<xsl:text> </xsl:text>
+            </xsl:if>
+        </xsl:for-each>
 	</li>
 	</xsl:template>
 	
-
-	</xsl:template>	
 	
 	
 </xsl:stylesheet>
