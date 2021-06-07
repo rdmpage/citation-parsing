@@ -7,9 +7,13 @@ Exploring citation parsing using Conditional Random Fields (CRF). Heavily influe
 - [Neural-ParsCit](https://github.com/WING-NUS/Neural-ParsCit)
 
 
-## Editing test data
+## Data
 
 `editor.html` is a simple HTML editor inspired by [MarsEdit Live Source Preview](https://red-sweater.com/blog/3025/marsedit-live-source-preview) where you can edit XML and see a live preview.
+
+`data/core.xml` is the training data from AnyStyle.
+
+`dict.php` uses the dictionary that comes with ParsCit.
 
 ## CRF
 
