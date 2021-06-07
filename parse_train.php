@@ -20,7 +20,7 @@ else
 	$output_filename = basename($filename, '.xml') . '.train';	
 }
 
-touch($output_filename);
+file_put_contents($output_filename, "");
 
 // Parse XML file and extract individual tokens and their tags
 $xml = file_get_contents($filename);

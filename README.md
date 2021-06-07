@@ -11,7 +11,7 @@ Exploring citation parsing using Conditional Random Fields (CRF). Heavily influe
 
 `editor.html` is a simple HTML editor inspired by [MarsEdit Live Source Preview](https://red-sweater.com/blog/3025/marsedit-live-source-preview) where you can edit XML and see a live preview.
 
-`data/core.xml` is the training data from AnyStyle.
+`data/core.xml` is the training data from AnyStyle (1510 references).
 
 `dict.php` uses the dictionary that comes with ParsCit.
 
@@ -46,7 +46,56 @@ We need to convert this into the format expected by CRF, which is one token per 
 
 `crf_learn data/parsCit.template core.train core.model`
 
+```
+.
+.
+.
+Done!1065.81 s
+```
+
 Note the template file `data/parsCit.template` which tells CRF++ how to process the features, see [Preparing feature templates](http://taku910.github.io/crfpp/#templ).
+
+To use the model we need to take some data and convert it into the training format. `refs_to_train.php` reads a text file with one reference string per line and outputs XML with each line enclosed in a `<title>` tag. This file can then be processed as if it were training data.
+
+```
+php refs_to_train.php refs.txt
+
+php parse_train.php refs.src.xml
+```
+
+Now we use our model to process the data:
+
+```
+crf_test  -m core.model refs.src.train > out.train
+```
+
+We then convert the output (trained format) to XML, and we then can convert the XML to a “native” format (e.g., RIS for bibliographic data).
+
+```
+php parse_results_to_xml.php out.train > out.xml
+
+php parse_results_to_native.php out.xml
+```
+
+Need to think about how to post process tags, and how to handle cases like this where a date has been inserted in the title:
+
+```
+<author>Aguilar, C., K. Siu-Ting, and P. J. Venegas.</author>
+<date>2007.</date>
+<title>The rheophilous tadpole of Telmatobius atahualpai Wiens,</title>
+<date>1993</date>
+<title>(Anura: Ceratophryidae).</title>
+<journal>South American Journal of Herpetology</journal>
+<volume>2:</volume>
+<pages>165–174.</pages> 
+
+```
+
+
+
+
+
+
 
 
 
