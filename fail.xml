@@ -2,7 +2,17 @@
 <!-- list of references that didn't work and the correct markup -->
 <dataset>
 <sequence>
+<!-- splits title at gen. -->
 <author>Poll, M., B. Lanza &amp; A. Romoli Sassi.</author> <date>1972.</date> <title>Genre nouveau extraordinaire de Bagridae du fleuve Juba: Pardiglanis tarabinii gen. n. sp. n. (Pisces Siluriformes).</title> <journal>Monitore Zoologico Italiano</journal> <volume>(Supplement4 (no. 15)):</volume> <pages>327-345.</pages> 
+</sequence>
+<sequence>
+<!-- date inserted into middle of title -->
+<author>Aguilar, C., K. Siu-Ting, and P. J. Venegas.</author>
+<date>2007.</date>
+<title>The rheophilous tadpole of Telmatobius atahualpai Wiens, 1993 (Anura: Ceratophryidae).</title>
+<journal>South American Journal of Herpetology</journal>
+<volume>2:</volume>
+<pages>165–174.</pages> 
 </sequence>
 </dataset>
 
