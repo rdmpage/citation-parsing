@@ -1,0 +1,291 @@
+<html>
+
+<head>
+	<style>
+	body {
+		font-family:sans-serif;
+		padding:20px;
+	}
+	</style>
+
+
+	<script>
+	
+	// https://red-sweater.com/blog/3025/marsedit-live-source-preview	
+	function escapeHTML(theHTML) {
+	  var escapedHTML = theHTML
+	  escapedHTML.replace("&", "&amp;");
+	  escapedHTML.replace("<", "&lt;");
+	  return escapedHTML;
+	}
+
+	function updatePreview() {
+	  var source = document.getElementById("editor").innerText;
+	  document.getElementById("preview").innerText = escapeHTML(source);
+	}
+	
+	// XSLT style sheet to transform training data into HTML with coloured tags
+	var xmlString = `<?xml version="1.0"?>
+<xsl:stylesheet xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="1.0">
+	<xsl:output encoding="utf-8" indent="yes" method="html" version="1.0"/>
+	<xsl:template match="/">
+		<html>
+			<head>
+				<!-- colours from https://www.w3schools.com/colors/colors_names.asp -->
+				<style>
+					li {
+						padding:0.4em;
+					}
+					/* a */
+					
+					.author {
+						background: Gold;
+					}
+					
+					
+					/* b */
+					
+					/* c */
+					
+					.citation-number {
+						background: LightGray;
+					}	
+					
+					.collection-title {
+						background: MediumSpringGreen;
+					}
+									
+					
+					.container-title {
+						background: MediumSpringGreen;
+					}
+					
+					/* d */
+					
+					.date {
+						background: Tomato;
+					}
+
+					.director {
+						background: Tomato;
+					}
+					
+					.doi {
+						background: RoyalBlue;
+					}
+					
+					/* e */
+					
+					.edition {
+						background: GoldenRod;
+					}					
+					
+					.editor {
+						background: GoldenRod;
+					}
+					
+					/* genre */
+					.genre {
+						background: LightGray;
+					}
+					
+					/* i */
+					
+					.isbn {
+						background: RoyalBlue;
+					}
+					
+					/* j */
+					
+					.journal {
+						background: LightSkyBlue;
+					}
+					
+					/* l */
+					
+					.location {
+						background: Wheat;
+					}
+					
+					/* m */
+					
+					.medium {
+						background: Beige;
+					}
+										
+					/* n */
+					
+					.note {
+						background: Beige;
+					}					
+					
+					/* p */
+					
+					.pages {
+						background: Magenta;
+					}
+					
+					.producer {
+						background: Beige;
+					}					
+					
+					.publisher {
+						background: Yellow;
+					}
+					
+					/* s */
+					.source {
+						background: LightGray;
+					}
+					
+					/* t */
+					.title {
+						background: LimeGreen;
+					}
+					
+					.translator {
+						background: Beige;
+					}										
+					
+					/* u */
+					.url {
+						background: Silver;
+					}
+					
+					
+					/* v */
+					.volume {
+						background: Tan;
+					}
+
+					
+					
+					
+					
+					
+				</style>
+			</head>
+			<body>
+		
+		
+			<ul>
+				<xsl:apply-templates select="//sequence"/>
+			</ul>
+			
+			</body>
+		</html>
+	</xsl:template>
+	
+	<xsl:template match="sequence">
+	<li>
+		<xsl:for-each select="node()">
+			<span>
+				<xsl:attribute name="class">
+					<xsl:value-of select ="local-name()"/>
+				</xsl:attribute>			
+           	 <xsl:value-of select="."/>
+            </span>
+            </xsl:for-each>
+	</li>
+	</xsl:template>
+	
+
+	</xsl:template>	
+	
+	
+</xsl:stylesheet>
+	
+`;
+
+
+		// https://www.w3schools.com/xml/xsl_client.asp
+
+		var parser = new DOMParser();
+		var xsl = parser.parseFromString(xmlString, "text/xml"); //important to use "text/xml"
+
+		var serializer = new XMLSerializer();
+		var xmlString = serializer.serializeToString(xsl);
+
+		function displayResult() {
+		  var xml = parser.parseFromString(document.getElementById("editor").innerText, "text/xml");
+
+		  xmlString = serializer.serializeToString(xml);
+		  document.getElementById("log").value = xmlString;
+
+		  if (document.implementation && document.implementation.createDocument) {
+			xsltProcessor = new XSLTProcessor();
+			xsltProcessor.importStylesheet(xsl);
+			resultDocument = xsltProcessor.transformToFragment(xml, document);
+
+			// clear any content
+			document.getElementById("preview").innerHTML = '';
+			// add HTML view of training data
+			document.getElementById("preview").appendChild(resultDocument);
+
+		  }
+		}
+	
+	</script>
+</head>
+
+<body>
+
+	<h1>Edit training data</h1>
+
+	<h2>Preview</h2>
+	<div id="preview" style="padding:10px;height:300px;overflow-y:auto;"></div>
+
+	<h2>XML</h2>
+	<p>If some of the text above disappears, remember to balance your tags! When tagging, include any punctuation in the tag.</p>
+	<pre style="white-space:pre-wrap">
+		<div id="editor" style="color:DarkSlateGrey;padding:20px;height:300px;border:1px solid DarkGrey;overflow-y:auto;" contenteditable="true">
+		</div>
+	</pre>
+
+	<textarea id="log" rows="10" cols="40" readonly=""></textarea>
+
+	<script>
+
+		// some exmaple data
+		var demo = `<?xml version="1.0" encoding="UTF-8"?>
+		<dataset>
+		<sequence>
+		<author>Aguilar, C., K. Siu-Ting, and P. J. Venegas.</author> <date>2007.</date> <title>The rheophilous tadpole of Telmatobius atahualpai Wiens, 1993 (Anura: Ceratophryidae).</title> <journal>South American Journal of Herpetology</journal> <volume>2:</volume> <pages>165–174.</pages>
+		</sequence>
+		<sequence>
+		<author>Anstis, M.</author> <date>2002.</date> Tadpoles of South-eastern Australia: A Guide with Keys.  Sydney: Reed New Holland.
+		</sequence>
+		<sequence>
+		<author>Anstis, M., F. Parker, T. Hawkes, I. Morris, and S. J. Richards.</author> <date>2011.</date> <title>Direct development in some Australopapuan microhylid frogs of the genera Austrochaperina, Cophixalus and Oreophryne (Anura: Microhylidae) from northern Australia and Papua New Guinea.</title> <journal>Zootaxa</journal> <volume>3052:</volume> <pages>1–50.</pages>
+		</sequence>
+		  <sequence>
+			<author>Solon, G.</author>
+			<date>(1999).</date>
+			<title>Chapter 29. Intergenerational mobility in the labor market.</title>
+			<editor>In O. C. A. and D. Card (Ed.),</editor>
+			<container-title>Handbook of labor economics</container-title>
+			<volume>(Vol. 3, Part A,</volume>
+			<pages>pp. 1761–1800).</pages>
+			<location>London:</location>
+			<publisher>Elsevier.</publisher>
+			<note>Retrieved from</note>
+			<url>http://www.sciencedirect.com/science/article/pii/S1573446399030102</url>
+		  </sequence>
+		</dataset>`;
+
+		document.getElementById("editor").innerText = escapeHTML(demo);
+		//updatePreview();
+
+		displayResult();
+
+		// Listen for changes to the edited XML
+		document.getElementById("editor").addEventListener("input", function() {
+		  // document.getElementById("log").value += "input event fired\n";    
+		  //    updatePreview();
+		  displayResult();
+		}, false);
+	</script>
+
+</body>
+</html>
+
