@@ -1,7 +1,7 @@
 <?php
 
 
-// Just do a run
+// Just do a run starting from scratch where references are in refs.txt
 
 $command = 'php refs_to_train.php refs.txt';
 system($command);

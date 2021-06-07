@@ -7,7 +7,9 @@
 		<string>7ACDE69F-02F4-4A39-A30D-94A3F4CCC065</string>
 		<string>06E10EB2-2B35-49C1-BFA3-9403325EF029</string>
 		<string>7238A61C-7693-4B98-BB9C-29830F85C881</string>
-		<string>C270D62A-A577-42D1-912A-6CA1E4BAA9AB</string>
+		<string>87B30E6B-E960-4E92-8CE8-27D611687274</string>
+		<string>0CF13CE5-20C6-4454-A6B1-84E7FB399D35</string>
+		<string>00DD7581-9A4A-4B0F-8977-094371E55BA4</string>
 		<string>6C733227-D174-419A-BAB5-8B76215255C5</string>
 		<string>A16465AC-0CF1-4CA0-AFCA-1652F844016E</string>
 		<string>71BDE915-A23C-4F69-9354-C120452FA56B</string>
@@ -69,6 +71,54 @@
 			<key>UserOverrideItemName</key>
 			<true/>
 		</dict>
+		<key>00DD7581-9A4A-4B0F-8977-094371E55BA4</key>
+		<dict>
+			<key>ItemData</key>
+			<dict>
+				<key>BookmarkData</key>
+				<data>
+				Ym9va+wCAAAAAAQQMAAAABHyxMkfYafnRUVTd22O2MFm
+				XVrGJeKs5bTqeuTeBiR56AEAAAQAAAADAwAAAAgAKAUA
+				AAABAQAAVXNlcnMAAAAFAAAAAQEAAHJwYWdlAAAACwAA
+				AAEBAABEZXZlbG9wbWVudAAQAAAAAQEAAGNpdGF0aW9u
+				LXBhcnNpbmcMAAAAAQEAAGZlYXR1cmVzLnBocBQAAAAB
+				BgAAEAAAACAAAAAwAAAARAAAAFwAAAAIAAAABAMAABBn
+				AgAAAAAACAAAAAQDAACFdA0AAAAAAAgAAAAEAwAAI1gO
+				AAAAAAAIAAAABAMAAJNHCQcDAAAACAAAAAQDAAC1VAkH
+				AwAAABQAAAABBgAAjAAAAJwAAACsAAAAvAAAAMwAAAAI
+				AAAAAAQAAEHDNUJLXU+mGAAAAAECAAABAAAAAAAAAA8A
+				AAAAAAAAAAAAAAAAAAAIAAAABAMAAAMAAAAAAAAABAAA
+				AAMDAAD1AQAACAAAAAEJAABmaWxlOi8vLwwAAAABAQAA
+				TWFjaW50b3NoIEhECAAAAAQDAAAA4AQDaQAAAAgAAAAA
+				BAAAQb7dXWIAAAAkAAAAAQEAADI1RTQyODZELTcxMkMt
+				Mzg5OS1CNDNGLTVEM0Y2QThCRDEyMRgAAAABAgAAgQAA
+				AAEAAADvEwAAAQAAAAAAAAAAAAAAAQAAAAEBAAAvAAAA
+				AAAAAAEFAADMAAAA/v///wEAAAAAAAAAEAAAAAQQAABw
+				AAAAAAAAAAUQAADcAAAAAAAAABAQAAAIAQAAAAAAAEAQ
+				AAD4AAAAAAAAAAIgAADUAQAAAAAAAAUgAABEAQAAAAAA
+				ABAgAABUAQAAAAAAABEgAACIAQAAAAAAABIgAABoAQAA
+				AAAAABMgAAB4AQAAAAAAACAgAAC0AQAAAAAAADAgAADg
+				AQAAAAAAAAHAAAAoAQAAAAAAABHAAAAgAAAAAAAAABLA
+				AAA4AQAAAAAAABDQAAAEAAAAAAAAAA==
+				</data>
+				<key>FileURL</key>
+				<string>file:///Users/rpage/Development/citation-parsing/features.php</string>
+				<key>HasSecurityScope</key>
+				<true/>
+				<key>RelativePath</key>
+				<string>./features.php</string>
+				<key>TypeID</key>
+				<string>_CFileLocator</string>
+				<key>Version</key>
+				<integer>1</integer>
+			</dict>
+			<key>ItemName</key>
+			<string>features.php</string>
+			<key>ItemType</key>
+			<string>FileReference</string>
+			<key>UserOverrideItemName</key>
+			<true/>
+		</dict>
 		<key>06E10EB2-2B35-49C1-BFA3-9403325EF029</key>
 		<dict>
 			<key>ItemData</key>
@@ -112,6 +162,56 @@
 			</dict>
 			<key>ItemName</key>
 			<string>dict.php</string>
+			<key>ItemType</key>
+			<string>FileReference</string>
+			<key>UserOverrideItemName</key>
+			<true/>
+		</dict>
+		<key>0CF13CE5-20C6-4454-A6B1-84E7FB399D35</key>
+		<dict>
+			<key>ItemData</key>
+			<dict>
+				<key>BookmarkData</key>
+				<data>
+				Ym9vayQDAAAAAAQQMAAAAB2kI5KR6COT1L4hv393jNSV
+				5EuxZ5Si68be3g8TtWc8FAIAAAQAAAADAwAAAAgAKAUA
+				AAABAQAAVXNlcnMAAAAFAAAAAQEAAHJwYWdlAAAACwAA
+				AAEBAABEZXZlbG9wbWVudAAQAAAAAQEAAGNpdGF0aW9u
+				LXBhcnNpbmcIAAAAAQEAAGZhaWwueG1sFAAAAAEGAAAQ
+				AAAAIAAAADAAAABEAAAAXAAAAAgAAAAEAwAAEGcCAAAA
+				AAAIAAAABAMAAIV0DQAAAAAACAAAAAQDAAAjWA4AAAAA
+				AAgAAAAEAwAAk0cJBwMAAAAIAAAABAMAAAuxCQcDAAAA
+				FAAAAAEGAACIAAAAmAAAAKgAAAC4AAAAyAAAAAgAAAAA
+				BAAAQcM3Mh7p/hIYAAAAAQIAAAEAAAAAAAAADwAAAAAA
+				AAAAAAAAAAAAAAgAAAAEAwAAAwAAAAAAAAAEAAAAAwMA
+				APUBAAAIAAAAAQkAAGZpbGU6Ly8vDAAAAAEBAABNYWNp
+				bnRvc2ggSEQIAAAABAMAAADgBANpAAAACAAAAAAEAABB
+				vt1dYgAAACQAAAABAQAAMjVFNDI4NkQtNzEyQy0zODk5
+				LUI0M0YtNUQzRjZBOEJEMTIxGAAAAAECAACBAAAAAQAA
+				AO8TAAABAAAAAAAAAAAAAAABAAAAAQEAAC8AAAAAAAAA
+				AQUAABoAAAABAQAATlNVUkxEb2N1bWVudElkZW50aWZp
+				ZXJLZXkAAAQAAAADAwAAmaQBANgAAAD+////AQAAAAAA
+				AAARAAAABBAAAGwAAAAAAAAABRAAANgAAAAAAAAAEBAA
+				AAQBAAAAAAAAQBAAAPQAAAAAAAAAAiAAANABAAAAAAAA
+				BSAAAEABAAAAAAAAECAAAFABAAAAAAAAESAAAIQBAAAA
+				AAAAEiAAAGQBAAAAAAAAEyAAAHQBAAAAAAAAICAAALAB
+				AAAAAAAAMCAAANwBAAAAAAAAAcAAACQBAAAAAAAAEcAA
+				ACAAAAAAAAAAEsAAADQBAAAAAAAAENAAAAQAAAAAAAAA
+				5AEAgAgCAAAAAAAA
+				</data>
+				<key>FileURL</key>
+				<string>file:///Users/rpage/Development/citation-parsing/fail.xml</string>
+				<key>HasSecurityScope</key>
+				<true/>
+				<key>RelativePath</key>
+				<string>./fail.xml</string>
+				<key>TypeID</key>
+				<string>_CFileLocator</string>
+				<key>Version</key>
+				<integer>1</integer>
+			</dict>
+			<key>ItemName</key>
+			<string>fail.xml</string>
 			<key>ItemType</key>
 			<string>FileReference</string>
 			<key>UserOverrideItemName</key>
@@ -461,6 +561,56 @@
 			<key>UserOverrideItemName</key>
 			<true/>
 		</dict>
+		<key>87B30E6B-E960-4E92-8CE8-27D611687274</key>
+		<dict>
+			<key>ItemData</key>
+			<dict>
+				<key>BookmarkData</key>
+				<data>
+				Ym9vaygDAAAAAAQQMAAAAHndCb/zpwYEhB70/za3/GTi
+				U1J8DA8zywkmWJCUjUXFGAIAAAQAAAADAwAAAAgAKAUA
+				AAABAQAAVXNlcnMAAAAFAAAAAQEAAHJwYWdlAAAACwAA
+				AAEBAABEZXZlbG9wbWVudAAQAAAAAQEAAGNpdGF0aW9u
+				LXBhcnNpbmcKAAAAAQEAAGVkaXRvci54c2wAABQAAAAB
+				BgAAEAAAACAAAAAwAAAARAAAAFwAAAAIAAAABAMAABBn
+				AgAAAAAACAAAAAQDAACFdA0AAAAAAAgAAAAEAwAAI1gO
+				AAAAAAAIAAAABAMAAJNHCQcDAAAACAAAAAQDAAACtAkH
+				AwAAABQAAAABBgAAjAAAAJwAAACsAAAAvAAAAMwAAAAI
+				AAAAAAQAAEHDNzL8nxhJGAAAAAECAAABAAAAAAAAAA8A
+				AAAAAAAAAAAAAAAAAAAIAAAABAMAAAMAAAAAAAAABAAA
+				AAMDAAD1AQAACAAAAAEJAABmaWxlOi8vLwwAAAABAQAA
+				TWFjaW50b3NoIEhECAAAAAQDAAAA4AQDaQAAAAgAAAAA
+				BAAAQb7dXWIAAAAkAAAAAQEAADI1RTQyODZELTcxMkMt
+				Mzg5OS1CNDNGLTVEM0Y2QThCRDEyMRgAAAABAgAAgQAA
+				AAEAAADvEwAAAQAAAAAAAAAAAAAAAQAAAAEBAAAvAAAA
+				AAAAAAEFAAAaAAAAAQEAAE5TVVJMRG9jdW1lbnRJZGVu
+				dGlmaWVyS2V5AAAEAAAAAwMAAJukAQDYAAAA/v///wEA
+				AAAAAAAAEQAAAAQQAABwAAAAAAAAAAUQAADcAAAAAAAA
+				ABAQAAAIAQAAAAAAAEAQAAD4AAAAAAAAAAIgAADUAQAA
+				AAAAAAUgAABEAQAAAAAAABAgAABUAQAAAAAAABEgAACI
+				AQAAAAAAABIgAABoAQAAAAAAABMgAAB4AQAAAAAAACAg
+				AAC0AQAAAAAAADAgAADgAQAAAAAAAAHAAAAoAQAAAAAA
+				ABHAAAAgAAAAAAAAABLAAAA4AQAAAAAAABDQAAAEAAAA
+				AAAAAOgBAIAMAgAAAAAAAA==
+				</data>
+				<key>FileURL</key>
+				<string>file:///Users/rpage/Development/citation-parsing/editor.xsl</string>
+				<key>HasSecurityScope</key>
+				<true/>
+				<key>RelativePath</key>
+				<string>./editor.xsl</string>
+				<key>TypeID</key>
+				<string>_CFileLocator</string>
+				<key>Version</key>
+				<integer>1</integer>
+			</dict>
+			<key>ItemName</key>
+			<string>editor.xsl</string>
+			<key>ItemType</key>
+			<string>FileReference</string>
+			<key>UserOverrideItemName</key>
+			<true/>
+		</dict>
 		<key>A16465AC-0CF1-4CA0-AFCA-1652F844016E</key>
 		<dict>
 			<key>ItemData</key>
@@ -552,54 +702,6 @@
 			</dict>
 			<key>ItemName</key>
 			<string>parse_train.php</string>
-			<key>ItemType</key>
-			<string>FileReference</string>
-			<key>UserOverrideItemName</key>
-			<true/>
-		</dict>
-		<key>C270D62A-A577-42D1-912A-6CA1E4BAA9AB</key>
-		<dict>
-			<key>ItemData</key>
-			<dict>
-				<key>BookmarkData</key>
-				<data>
-				Ym9va+wCAAAAAAQQMAAAABHyxMkfYafnRUVTd22O2MFm
-				XVrGJeKs5bTqeuTeBiR56AEAAAQAAAADAwAAAAgAKAUA
-				AAABAQAAVXNlcnMAAAAFAAAAAQEAAHJwYWdlAAAACwAA
-				AAEBAABEZXZlbG9wbWVudAAQAAAAAQEAAGNpdGF0aW9u
-				LXBhcnNpbmcMAAAAAQEAAGZlYXR1cmVzLnBocBQAAAAB
-				BgAAEAAAACAAAAAwAAAARAAAAFwAAAAIAAAABAMAABBn
-				AgAAAAAACAAAAAQDAACFdA0AAAAAAAgAAAAEAwAAI1gO
-				AAAAAAAIAAAABAMAAJNHCQcDAAAACAAAAAQDAAC1VAkH
-				AwAAABQAAAABBgAAjAAAAJwAAACsAAAAvAAAAMwAAAAI
-				AAAAAAQAAEHDNUJLXU+mGAAAAAECAAABAAAAAAAAAA8A
-				AAAAAAAAAAAAAAAAAAAIAAAABAMAAAMAAAAAAAAABAAA
-				AAMDAAD1AQAACAAAAAEJAABmaWxlOi8vLwwAAAABAQAA
-				TWFjaW50b3NoIEhECAAAAAQDAAAA4AQDaQAAAAgAAAAA
-				BAAAQb7dXWIAAAAkAAAAAQEAADI1RTQyODZELTcxMkMt
-				Mzg5OS1CNDNGLTVEM0Y2QThCRDEyMRgAAAABAgAAgQAA
-				AAEAAADvEwAAAQAAAAAAAAAAAAAAAQAAAAEBAAAvAAAA
-				AAAAAAEFAADMAAAA/v///wEAAAAAAAAAEAAAAAQQAABw
-				AAAAAAAAAAUQAADcAAAAAAAAABAQAAAIAQAAAAAAAEAQ
-				AAD4AAAAAAAAAAIgAADUAQAAAAAAAAUgAABEAQAAAAAA
-				ABAgAABUAQAAAAAAABEgAACIAQAAAAAAABIgAABoAQAA
-				AAAAABMgAAB4AQAAAAAAACAgAAC0AQAAAAAAADAgAADg
-				AQAAAAAAAAHAAAAoAQAAAAAAABHAAAAgAAAAAAAAABLA
-				AAA4AQAAAAAAABDQAAAEAAAAAAAAAA==
-				</data>
-				<key>FileURL</key>
-				<string>file:///Users/rpage/Development/citation-parsing/features.php</string>
-				<key>HasSecurityScope</key>
-				<true/>
-				<key>RelativePath</key>
-				<string>./features.php</string>
-				<key>TypeID</key>
-				<string>_CFileLocator</string>
-				<key>Version</key>
-				<integer>1</integer>
-			</dict>
-			<key>ItemName</key>
-			<string>features.php</string>
 			<key>ItemType</key>
 			<string>FileReference</string>
 			<key>UserOverrideItemName</key>

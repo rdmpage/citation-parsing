@@ -77,7 +77,7 @@ php parse_results_to_xml.php out.train > out.xml
 php parse_results_to_native.php out.xml
 ```
 
-Need to think about how to post process tags, and how to handle cases like this where a date has been inserted in the title:
+Need to think about how to post process tags, and how to handle cases like this where a date has been inserted in the title so that we have two dates and titles:
 
 ```
 <author>Aguilar, C., K. Siu-Ting, and P. J. Venegas.</author>
