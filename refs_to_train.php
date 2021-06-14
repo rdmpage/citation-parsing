@@ -16,7 +16,7 @@ if ($argc < 2)
 else
 {
 	$filename = $argv[1];
-	$output_filename = basename($filename, '.txt') . '.src.xml';	
+	$output_filename = str_replace('.txt', '', $filename) . '.src.xml';	
 }
 
 $xml = '<?xml version="1.0" encoding="UTF-8"?>' . "\n";
