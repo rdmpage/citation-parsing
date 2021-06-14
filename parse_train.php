@@ -17,7 +17,9 @@ if ($argc < 2)
 else
 {
 	$filename = $argv[1];
-	$output_filename = basename($filename, '.xml') . '.train';	
+	//$output_filename = basename($filename, '.xml') . '.train';
+	$output_filename = str_replace('.xml', '', $filename) . '.train';	
+	
 }
 
 file_put_contents($output_filename, "");
@@ -36,6 +38,7 @@ foreach($xpath->query('//sequence') as $node)
 	foreach ($node->childNodes as $n) { 
 		switch ($n->nodeName)
 		{
+			case '#comment':
 			case '#text':
 				break;
 				
@@ -60,7 +63,7 @@ foreach($xpath->query('//sequence') as $node)
 	
 	$features = get_features($tokens);
 	
-	echo $features . "\n\n";
+	// echo $features . "\n\n";
 	
 	file_put_contents($output_filename, $features . "\n\n", FILE_APPEND);
 	
