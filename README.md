@@ -42,7 +42,7 @@ To train model we need some data that has been marked up. I follow AnyStyle’s 
 
 We need to convert this into the format expected by CRF, which is one token per line, with features following, and then the tag indicating what part of the sequence this token belongs to.
 
-`php parse_train.php data/core.xml` parses the training XML and outputs a `.train` file with the features and tags. Having converted the training data we now build the model using CRF++:
+`php parse_train.php data/core.xml` parses the training XML and outputs a `.train` file with the features and tags. Having converted the training data we now build the model using `crf_learn` in the CRF++ package:
 
 `crf_learn data/parsCit.template core.train core.model`
 
@@ -55,7 +55,7 @@ Done!1065.81 s
 
 Note the template file `data/parsCit.template` which tells CRF++ how to process the features, see [Preparing feature templates](http://taku910.github.io/crfpp/#templ).
 
-To use the model we need to take some data and convert it into the training format. `refs_to_train.php` reads a text file with one reference string per line and outputs XML with each line enclosed in a `<title>` tag. This file can then be processed as if it were training data.
+To use the model we need to take some data and convert it into the training format. `refs_to_train.php` reads a text file with one reference string per line and outputs XML with each line enclosed in a `<title>` tag. This file can then be processed as if it were training data. 
 
 ```
 php refs_to_train.php refs.txt
@@ -63,7 +63,7 @@ php refs_to_train.php refs.txt
 php parse_train.php refs.src.xml
 ```
 
-Now we use our model to process the data:
+Now we use our model to process the data using `crf_test`. In this case `crf_test` takes the data (each reference tagged with `<title>`) and outputs the tags based on the model. These tags are the ones we use to extracted the structured data. 
 
 ```
 crf_test  -m core.model refs.src.train > out.train
@@ -77,7 +77,7 @@ php parse_results_to_xml.php out.train > out.xml
 php parse_results_to_native.php out.xml
 ```
 
-Need to think about how to post process tags, and how to handle cases like this where a date has been inserted in the title so that we have two dates and titles:
+Need to think about how to post process tags, and how to handle cases like this where a date has been inserted in the title so that we with the initial model we end up with two dates and titles:
 
 ```
 <author>Aguilar, C., K. Siu-Ting, and P. J. Venegas.</author>
@@ -90,6 +90,38 @@ Need to think about how to post process tags, and how to handle cases like this 
 <pages>165–174.</pages> 
 
 ```
+
+
+## Generating additional data to use for testing or training
+
+Take a RIS file and output Anystyle XML format:
+
+```
+php ris_to_training.php nsp.ris > nsp.xml
+```
+
+Convert to training format:
+
+```
+php parse_train.php nsp.xml
+```
+
+
+
+## Testing
+
+Take some references marked up in XML and generate training format.
+
+php parse_train.php fail.xml
+
+Run crf_test to get tags from model
+
+crf_test  -m core.model fail.train > f.train
+
+Output from crf_test has original tags and ones from model, so compare those
+
+php parse_results_to_test.php f.train
+
 
 
 
