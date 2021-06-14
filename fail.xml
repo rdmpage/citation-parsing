@@ -14,5 +14,18 @@
 <volume>2:</volume>
 <pages>165–174.</pages> 
 </sequence>
+<!-- date inserted into middle of title -->
+<sequence>
+<!-- fails to get any journal or collation data -->
+<author>Carvalho, T. R. de, A. A. Giaretta, N. M. Maciel, D. A. Barrera, C. Aguilar-Puntriano, C. F. B. Haddad, M. N. de C. Kokubum, M. Menin, and A. Angulo.</author> <title>On the uncertain taxonomic identity of Adenomera hylaedactyla (Cope, 1868) and the composite type series of A. andreae (Müller, 1923) (Anura, Leptodactylidae).</title> <journal>Copeia</journal> <volume>2019:</volume> <pages>708–723</pages> <doi>(DOI: 10.1643/CH-19-237)</doi>.
+</sequence>
+<!-- title has date -->
+<sequence>
+<author>Lopez, A. &amp; Lopez, B.</author> <date>(1997).</date> <title>Observations sur deux araignées de la Grotte Fourgassié (Guyana Française): Paratropis papilligera Pick. Cambr., 1896 (Mygalomorphae: Paratropididae) et Ochyrocera caeruleoamethystina n. sp. (Araneomorphae: Ochyroceratidae).</title> <journal>Mémoires de Biospéologie</journal> <volume>24:</volume> <pages>33-42.</pages>
+</sequence>
+<!-- groups date with author, note the lack of parentheses for the date -->
+<sequence>
+<author>Pace, R.</author> <date>2003a.</date> <title>Homalotini del Borneo (Coleoptera, Staphylinidae).</title> <journal>Revue suisse de Zoologie,</journal> <volume>110:</volume> <pages>255–313.</pages> 
+</sequence>
 </dataset>
 
