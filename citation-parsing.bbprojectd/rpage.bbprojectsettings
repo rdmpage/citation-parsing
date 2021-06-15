@@ -53,6 +53,78 @@
 		<dict>
 			<key>BookmarkData</key>
 			<data>
+			Ym9vayQDAAAAAAQQMAAAAFpZLmM6IbEsQ7fMd53sb+rfzOgzveef
+			kIIpgaxWEfKoFAIAAAQAAAADAwAAAAgAKAUAAAABAQAAVXNlcnMA
+			AAAFAAAAAQEAAHJwYWdlAAAABQAAAAEBAABTaXRlcwAAABAAAAAB
+			AQAAY2l0YXRpb24tcGFyc2luZwkAAAABAQAAaW5kZXgucGhwAAAA
+			FAAAAAEGAAAQAAAAIAAAADAAAABAAAAAWAAAAAgAAAAEAwAAEGcC
+			AAAAAAAIAAAABAMAAIV0DQAAAAAACAAAAAQDAAAEVkwAAAAAAAgA
+			AAAEAwAAk0cJBwMAAAAIAAAABAMAADKjCwcDAAAAFAAAAAEGAACI
+			AAAAmAAAAKgAAAC4AAAAyAAAAAgAAAAABAAAQcM36YT7Cr4YAAAA
+			AQIAAAEAAAAAAAAADwAAAAAAAAAAAAAAAAAAAAgAAAAEAwAAAwAA
+			AAAAAAAEAAAAAwMAAPUBAAAIAAAAAQkAAGZpbGU6Ly8vDAAAAAEB
+			AABNYWNpbnRvc2ggSEQIAAAABAMAAADgBANpAAAACAAAAAAEAABB
+			vt1dYgAAACQAAAABAQAAMjVFNDI4NkQtNzEyQy0zODk5LUI0M0Yt
+			NUQzRjZBOEJEMTIxGAAAAAECAACBAAAAAQAAAO8TAAABAAAAAAAA
+			AAAAAAABAAAAAQEAAC8AAAAAAAAAAQUAABoAAAABAQAATlNVUkxE
+			b2N1bWVudElkZW50aWZpZXJLZXkAAAQAAAADAwAA86QBANgAAAD+
+			////AQAAAAAAAAARAAAABBAAAGwAAAAAAAAABRAAANgAAAAAAAAA
+			EBAAAAQBAAAAAAAAQBAAAPQAAAAAAAAAAiAAANABAAAAAAAABSAA
+			AEABAAAAAAAAECAAAFABAAAAAAAAESAAAIQBAAAAAAAAEiAAAGQB
+			AAAAAAAAEyAAAHQBAAAAAAAAICAAALABAAAAAAAAMCAAANwBAAAA
+			AAAAAcAAACQBAAAAAAAAEcAAACAAAAAAAAAAEsAAADQBAAAAAAAA
+			ENAAAAQAAAAAAAAA5AEAgAgCAAAAAAAA
+			</data>
+			<key>FileURL</key>
+			<string>file:///Users/rpage/Sites/citation-parsing/index.php</string>
+			<key>HasSecurityScope</key>
+			<true/>
+			<key>RelativePath</key>
+			<string>./index.php</string>
+			<key>TypeID</key>
+			<string>_CFileLocator</string>
+			<key>Version</key>
+			<integer>1</integer>
+		</dict>
+		<dict>
+			<key>BookmarkData</key>
+			<data>
+			Ym9vaywDAAAAAAQQMAAAAPlmYaNntjOcWYHI57Es5KGTulXgTnOR
+			XKaBtk3yY/H7HAIAAAQAAAADAwAAAAgAKAUAAAABAQAAVXNlcnMA
+			AAAFAAAAAQEAAHJwYWdlAAAABQAAAAEBAABTaXRlcwAAABAAAAAB
+			AQAAY2l0YXRpb24tcGFyc2luZxQAAAABAQAAdW5kZXJzdGFuZF90
+			cmFpbi5waHAUAAAAAQYAABAAAAAgAAAAMAAAAEAAAABYAAAACAAA
+			AAQDAAAQZwIAAAAAAAgAAAAEAwAAhXQNAAAAAAAIAAAABAMAAARW
+			TAAAAAAACAAAAAQDAACTRwkHAwAAAAgAAAAEAwAAJ3cMBwMAAAAU
+			AAAAAQYAAJAAAACgAAAAsAAAAMAAAADQAAAACAAAAAAEAABBwzZu
+			zE+KkBgAAAABAgAAAQAAAAAAAAAPAAAAAAAAAAAAAAAAAAAACAAA
+			AAQDAAADAAAAAAAAAAQAAAADAwAA9QEAAAgAAAABCQAAZmlsZTov
+			Ly8MAAAAAQEAAE1hY2ludG9zaCBIRAgAAAAEAwAAAOAEA2kAAAAI
+			AAAAAAQAAEG+3V1iAAAAJAAAAAEBAAAyNUU0Mjg2RC03MTJDLTM4
+			OTktQjQzRi01RDNGNkE4QkQxMjEYAAAAAQIAAIEAAAABAAAA7xMA
+			AAEAAAAAAAAAAAAAAAEAAAABAQAALwAAAAAAAAABBQAAGgAAAAEB
+			AABOU1VSTERvY3VtZW50SWRlbnRpZmllcktleQAABAAAAAMDAAD4
+			pAEA2AAAAP7///8BAAAAAAAAABEAAAAEEAAAdAAAAAAAAAAFEAAA
+			4AAAAAAAAAAQEAAADAEAAAAAAABAEAAA/AAAAAAAAAACIAAA2AEA
+			AAAAAAAFIAAASAEAAAAAAAAQIAAAWAEAAAAAAAARIAAAjAEAAAAA
+			AAASIAAAbAEAAAAAAAATIAAAfAEAAAAAAAAgIAAAuAEAAAAAAAAw
+			IAAA5AEAAAAAAAABwAAALAEAAAAAAAARwAAAIAAAAAAAAAASwAAA
+			PAEAAAAAAAAQ0AAABAAAAAAAAADsAQCAEAIAAAAAAAA=
+			</data>
+			<key>FileURL</key>
+			<string>file:///Users/rpage/Sites/citation-parsing/understand_train.php</string>
+			<key>HasSecurityScope</key>
+			<true/>
+			<key>RelativePath</key>
+			<string>./understand_train.php</string>
+			<key>TypeID</key>
+			<string>_CFileLocator</string>
+			<key>Version</key>
+			<integer>1</integer>
+		</dict>
+		<dict>
+			<key>BookmarkData</key>
+			<data>
 			Ym9vayADAAAAAAQQMAAAADhPI7hUdbnJqQuUPwZOQGwquyIqz5UT
 			nPS6PachnSx/EAIAAAQAAAADAwAAAAgAKAUAAAABAQAAVXNlcnMA
 			AAAFAAAAAQEAAHJwYWdlAAAABQAAAAEBAABTaXRlcwAAABAAAAAB
@@ -118,42 +190,6 @@
 			<true/>
 			<key>RelativePath</key>
 			<string>./parse_results_to_native.php</string>
-			<key>TypeID</key>
-			<string>_CFileLocator</string>
-			<key>Version</key>
-			<integer>1</integer>
-		</dict>
-		<dict>
-			<key>BookmarkData</key>
-			<data>
-			Ym9vayQDAAAAAAQQMAAAAFpZLmM6IbEsQ7fMd53sb+rfzOgzveef
-			kIIpgaxWEfKoFAIAAAQAAAADAwAAAAgAKAUAAAABAQAAVXNlcnMA
-			AAAFAAAAAQEAAHJwYWdlAAAABQAAAAEBAABTaXRlcwAAABAAAAAB
-			AQAAY2l0YXRpb24tcGFyc2luZwkAAAABAQAAaW5kZXgucGhwAAAA
-			FAAAAAEGAAAQAAAAIAAAADAAAABAAAAAWAAAAAgAAAAEAwAAEGcC
-			AAAAAAAIAAAABAMAAIV0DQAAAAAACAAAAAQDAAAEVkwAAAAAAAgA
-			AAAEAwAAk0cJBwMAAAAIAAAABAMAADKjCwcDAAAAFAAAAAEGAACI
-			AAAAmAAAAKgAAAC4AAAAyAAAAAgAAAAABAAAQcM36YT7Cr4YAAAA
-			AQIAAAEAAAAAAAAADwAAAAAAAAAAAAAAAAAAAAgAAAAEAwAAAwAA
-			AAAAAAAEAAAAAwMAAPUBAAAIAAAAAQkAAGZpbGU6Ly8vDAAAAAEB
-			AABNYWNpbnRvc2ggSEQIAAAABAMAAADgBANpAAAACAAAAAAEAABB
-			vt1dYgAAACQAAAABAQAAMjVFNDI4NkQtNzEyQy0zODk5LUI0M0Yt
-			NUQzRjZBOEJEMTIxGAAAAAECAACBAAAAAQAAAO8TAAABAAAAAAAA
-			AAAAAAABAAAAAQEAAC8AAAAAAAAAAQUAABoAAAABAQAATlNVUkxE
-			b2N1bWVudElkZW50aWZpZXJLZXkAAAQAAAADAwAA86QBANgAAAD+
-			////AQAAAAAAAAARAAAABBAAAGwAAAAAAAAABRAAANgAAAAAAAAA
-			EBAAAAQBAAAAAAAAQBAAAPQAAAAAAAAAAiAAANABAAAAAAAABSAA
-			AEABAAAAAAAAECAAAFABAAAAAAAAESAAAIQBAAAAAAAAEiAAAGQB
-			AAAAAAAAEyAAAHQBAAAAAAAAICAAALABAAAAAAAAMCAAANwBAAAA
-			AAAAAcAAACQBAAAAAAAAEcAAACAAAAAAAAAAEsAAADQBAAAAAAAA
-			ENAAAAQAAAAAAAAA5AEAgAgCAAAAAAAA
-			</data>
-			<key>FileURL</key>
-			<string>file:///Users/rpage/Sites/citation-parsing/index.php</string>
-			<key>HasSecurityScope</key>
-			<true/>
-			<key>RelativePath</key>
-			<string>./index.php</string>
 			<key>TypeID</key>
 			<string>_CFileLocator</string>
 			<key>Version</key>
@@ -484,49 +520,13 @@
 		<dict>
 			<key>BookmarkData</key>
 			<data>
-			Ym9vaywDAAAAAAQQMAAAAPlmYaNntjOcWYHI57Es5KGTulXgTnOR
-			XKaBtk3yY/H7HAIAAAQAAAADAwAAAAgAKAUAAAABAQAAVXNlcnMA
-			AAAFAAAAAQEAAHJwYWdlAAAABQAAAAEBAABTaXRlcwAAABAAAAAB
-			AQAAY2l0YXRpb24tcGFyc2luZxQAAAABAQAAdW5kZXJzdGFuZF90
-			cmFpbi5waHAUAAAAAQYAABAAAAAgAAAAMAAAAEAAAABYAAAACAAA
-			AAQDAAAQZwIAAAAAAAgAAAAEAwAAhXQNAAAAAAAIAAAABAMAAARW
-			TAAAAAAACAAAAAQDAACTRwkHAwAAAAgAAAAEAwAAJ3cMBwMAAAAU
-			AAAAAQYAAJAAAACgAAAAsAAAAMAAAADQAAAACAAAAAAEAABBwzZu
-			zE+KkBgAAAABAgAAAQAAAAAAAAAPAAAAAAAAAAAAAAAAAAAACAAA
-			AAQDAAADAAAAAAAAAAQAAAADAwAA9QEAAAgAAAABCQAAZmlsZTov
-			Ly8MAAAAAQEAAE1hY2ludG9zaCBIRAgAAAAEAwAAAOAEA2kAAAAI
-			AAAAAAQAAEG+3V1iAAAAJAAAAAEBAAAyNUU0Mjg2RC03MTJDLTM4
-			OTktQjQzRi01RDNGNkE4QkQxMjEYAAAAAQIAAIEAAAABAAAA7xMA
-			AAEAAAAAAAAAAAAAAAEAAAABAQAALwAAAAAAAAABBQAAGgAAAAEB
-			AABOU1VSTERvY3VtZW50SWRlbnRpZmllcktleQAABAAAAAMDAAD4
-			pAEA2AAAAP7///8BAAAAAAAAABEAAAAEEAAAdAAAAAAAAAAFEAAA
-			4AAAAAAAAAAQEAAADAEAAAAAAABAEAAA/AAAAAAAAAACIAAA2AEA
-			AAAAAAAFIAAASAEAAAAAAAAQIAAAWAEAAAAAAAARIAAAjAEAAAAA
-			AAASIAAAbAEAAAAAAAATIAAAfAEAAAAAAAAgIAAAuAEAAAAAAAAw
-			IAAA5AEAAAAAAAABwAAALAEAAAAAAAARwAAAIAAAAAAAAAASwAAA
-			PAEAAAAAAAAQ0AAABAAAAAAAAADsAQCAEAIAAAAAAAA=
-			</data>
-			<key>FileURL</key>
-			<string>file:///Users/rpage/Sites/citation-parsing/understand_train.php</string>
-			<key>HasSecurityScope</key>
-			<true/>
-			<key>RelativePath</key>
-			<string>./understand_train.php</string>
-			<key>TypeID</key>
-			<string>_CFileLocator</string>
-			<key>Version</key>
-			<integer>1</integer>
-		</dict>
-		<dict>
-			<key>BookmarkData</key>
-			<data>
-			Ym9vayQDAAAAAAQQMAAAADx81HnFK/b1n06lAsGcCx4OIM1x+oeZ
-			xlPa/FgxrB/MFAIAAAQAAAADAwAAAAgAKAUAAAABAQAAVXNlcnMA
+			Ym9vayQDAAAAAAQQMAAAACPbd/+pNyC9wi5zdz2rzmPqGUyRgfMp
+			RnKPKuqp+zFQFAIAAAQAAAADAwAAAAgAKAUAAAABAQAAVXNlcnMA
 			AAAFAAAAAQEAAHJwYWdlAAAABQAAAAEBAABTaXRlcwAAABAAAAAB
 			AQAAY2l0YXRpb24tcGFyc2luZwkAAAABAQAAUkVBRE1FLm1kAAAA
 			FAAAAAEGAAAQAAAAIAAAADAAAABAAAAAWAAAAAgAAAAEAwAAEGcC
 			AAAAAAAIAAAABAMAAIV0DQAAAAAACAAAAAQDAAAEVkwAAAAAAAgA
-			AAAEAwAAk0cJBwMAAAAIAAAABAMAAB4qFQcDAAAAFAAAAAEGAACI
+			AAAEAwAAk0cJBwMAAAAIAAAABAMAAEOuFQcDAAAAFAAAAAEGAACI
 			AAAAmAAAAKgAAAC4AAAAyAAAAAgAAAAABAAAQcM3GhWnDmAYAAAA
 			AQIAAAEAAAAAAAAADwAAAAAAAAAAAAAAAAAAAAgAAAAEAwAAAwAA
 			AAAAAAAEAAAAAwMAAPUBAAAIAAAAAQkAAGZpbGU6Ly8vDAAAAAEB
@@ -745,7 +745,7 @@
 	<array>
 		<dict>
 			<key>Date</key>
-			<date>2021-06-15T08:40:56Z</date>
+			<date>2021-06-15T11:35:28Z</date>
 			<key>Location</key>
 			<dict>
 				<key>BookmarkData</key>
@@ -788,7 +788,7 @@
 		</dict>
 		<dict>
 			<key>Date</key>
-			<date>2021-06-15T08:40:56Z</date>
+			<date>2021-06-15T11:35:28Z</date>
 			<key>Location</key>
 			<dict>
 				<key>BookmarkData</key>
@@ -830,7 +830,7 @@
 		</dict>
 		<dict>
 			<key>Date</key>
-			<date>2021-06-15T08:40:56Z</date>
+			<date>2021-06-15T11:35:28Z</date>
 			<key>Location</key>
 			<dict>
 				<key>BookmarkData</key>
@@ -873,7 +873,7 @@
 		</dict>
 		<dict>
 			<key>Date</key>
-			<date>2021-06-15T08:40:56Z</date>
+			<date>2021-06-15T11:35:28Z</date>
 			<key>Location</key>
 			<dict>
 				<key>BookmarkData</key>
@@ -916,7 +916,7 @@
 		</dict>
 		<dict>
 			<key>Date</key>
-			<date>2021-06-15T08:40:56Z</date>
+			<date>2021-06-15T11:35:28Z</date>
 			<key>Location</key>
 			<dict>
 				<key>BookmarkData</key>
@@ -959,7 +959,7 @@
 		</dict>
 		<dict>
 			<key>Date</key>
-			<date>2021-06-15T08:40:56Z</date>
+			<date>2021-06-15T11:35:28Z</date>
 			<key>Location</key>
 			<dict>
 				<key>BookmarkData</key>
@@ -1000,7 +1000,7 @@
 		</dict>
 		<dict>
 			<key>Date</key>
-			<date>2021-06-15T08:40:56Z</date>
+			<date>2021-06-15T11:35:28Z</date>
 			<key>Location</key>
 			<dict>
 				<key>BookmarkData</key>
@@ -1043,7 +1043,7 @@
 		</dict>
 		<dict>
 			<key>Date</key>
-			<date>2021-06-15T08:40:56Z</date>
+			<date>2021-06-15T11:35:28Z</date>
 			<key>Location</key>
 			<dict>
 				<key>BookmarkData</key>
@@ -1085,7 +1085,7 @@
 		</dict>
 		<dict>
 			<key>Date</key>
-			<date>2021-06-15T08:40:56Z</date>
+			<date>2021-06-15T11:35:28Z</date>
 			<key>Location</key>
 			<dict>
 				<key>BookmarkData</key>
@@ -1126,7 +1126,7 @@
 		</dict>
 		<dict>
 			<key>Date</key>
-			<date>2021-06-15T08:40:56Z</date>
+			<date>2021-06-15T11:35:28Z</date>
 			<key>Location</key>
 			<dict>
 				<key>BookmarkData</key>
@@ -1169,7 +1169,7 @@
 		</dict>
 		<dict>
 			<key>Date</key>
-			<date>2021-06-15T08:40:56Z</date>
+			<date>2021-06-15T11:35:28Z</date>
 			<key>Location</key>
 			<dict>
 				<key>BookmarkData</key>
@@ -1212,7 +1212,7 @@
 		</dict>
 		<dict>
 			<key>Date</key>
-			<date>2021-06-15T08:40:56Z</date>
+			<date>2021-06-15T11:35:28Z</date>
 			<key>Location</key>
 			<dict>
 				<key>BookmarkData</key>
@@ -1255,7 +1255,7 @@
 		</dict>
 		<dict>
 			<key>Date</key>
-			<date>2021-06-15T08:40:56Z</date>
+			<date>2021-06-15T11:35:28Z</date>
 			<key>Location</key>
 			<dict>
 				<key>BookmarkData</key>
@@ -1298,7 +1298,7 @@
 		</dict>
 		<dict>
 			<key>Date</key>
-			<date>2021-06-15T08:40:56Z</date>
+			<date>2021-06-15T11:35:28Z</date>
 			<key>Location</key>
 			<dict>
 				<key>BookmarkData</key>
@@ -1341,7 +1341,7 @@
 		</dict>
 		<dict>
 			<key>Date</key>
-			<date>2021-06-15T08:40:56Z</date>
+			<date>2021-06-15T11:35:28Z</date>
 			<key>Location</key>
 			<dict>
 				<key>BookmarkData</key>
@@ -1394,6 +1394,6 @@
 	<key>ViewSplitterPosition:rpage</key>
 	<real>0.20019723474979401</real>
 	<key>WindowFrame:rpage:displays([(0, 0), (1440, 900)]:[(-1920, 0), (1920, 1080)])</key>
-	<string>rect(142,-773,997,241)</string>
+	<string>rect(197,-970,1052,44)</string>
 </dict>
 </plist>

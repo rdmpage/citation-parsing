@@ -6,5 +6,7 @@
             "email": "rdmpage@gmail.com"
         }
     ],
-    "require": {}
+    "require": {
+    	"ext-mbstring": "*"
+    }
 }
