@@ -27,5 +27,9 @@
 <sequence>
 <author>Pace, R.</author> <date>2003a.</date> <title>Homalotini del Borneo (Coleoptera, Staphylinidae).</title> <journal>Revue suisse de Zoologie,</journal> <volume>110:</volume> <pages>255–313.</pages> 
 </sequence>
+<!-- splits title/journal on "Prof." -->
+<sequence>
+<author>Roewer, C. F.</author> <date>1959.</date> <title>Opiliones der II. Mont Nimba-Collection von Prof. M. Lamotte.</title> <journal>Bulletin du Muséum d’Histoire Naturelle, 2e série</journal> <volume>31 (3):</volume> <pages>355–358.</pages>
+</sequence>
 </dataset>
 
