@@ -5,7 +5,10 @@ junk/
 
 out*
 
-tmp/
+
+tmp/*.train
+tmp/*.txt
+tmp/*.xml
 
 
 /vendor/
