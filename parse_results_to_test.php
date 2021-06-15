@@ -179,7 +179,7 @@ while (!feof($file_handle))
 			
 			for ($i = 0; $i < $n; $i++)
 			{
-				echo '<span class="' . $predicted[$i] . '">' . $token[$i] . '</span> ';			
+				echo '<span class="' . $predicted[$i] . '">' . $token[$i] . ' </span>';			
 			}
 			
 			echo '<span>Predicted</span>';
@@ -190,7 +190,7 @@ while (!feof($file_handle))
 			
 			for ($i = 0; $i < $n; $i++)
 			{
-				echo '<span class="' . $actual[$i] . '">' . $token[$i] . '</span> ';			
+				echo '<span class="' . $actual[$i] . '">' . $token[$i] . ' </span> ';			
 			}
 			echo '<span>Ground truth</span>';
 		
