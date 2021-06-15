@@ -1,0 +1,10 @@
+{
+    "name": "rpage/citation-parsing",
+    "authors": [
+        {
+            "name": "Roderic Page",
+            "email": "rdmpage@gmail.com"
+        }
+    ],
+    "require": {}
+}

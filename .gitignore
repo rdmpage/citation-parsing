@@ -7,3 +7,5 @@ out*
 
 tmp/
 
+
+/vendor/
