@@ -1,5 +1,13 @@
 # Citation Parsing
 
+## Heroku C++
+
+Can we compile CRF++ on Heroku? See [How to run an executable on Heroku from node, works locally
+](https://stackoverflow.com/questions/39685489/how-to-run-an-executable-on-heroku-from-node-works-locally) for one approach. Other would be to use a [build pack](https://elements.heroku.com/buildpacks/felkr/heroku-buildpack-cpp).
+
+
+## Introduction
+
 Exploring citation parsing using Conditional Random Fields (CRF). Heavily influenced by [ParsCit](https://github.com/knmnyn/ParsCit) and [AnyStyle](https://anystyle.io). My main goal here is to get something simple working as a starting point for learning more about CRF. Nothing here is state of the art, for that see, e.g.:
 
 - [Synthetic vs. Real Reference Strings for Citation Parsing, and the Importance of Re-training and Out-Of-Sample Data for Meaningful Evaluations: Experiments with GROBID, GIANT and Cora](https://arxiv.org/abs/2004.10410)
@@ -105,6 +113,12 @@ Convert to training format:
 ```
 php parse_train.php nsp.xml
 ```
+
+Add the output to `core.train` and then rebuild model:
+
+`crf_learn data/parsCit.template core.train core.model`
+
+Do this with each new set of training data so that we build a better model (we hope).
 
 
 
