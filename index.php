@@ -1,5 +1,8 @@
 <?php
 
+$config['crf_path'] = '/usr/local/bin';
+
+$config['crf_path'] = '.';
 
 $citations = (isset($_GET['citations']) ? $_GET['citations'] : '');
 
@@ -15,8 +18,7 @@ if ($citations)
 	
 	$text_filename = $base_name . '.txt';
 	
-	file_put_contents($text_filename, trim($citations));
-	
+	file_put_contents($text_filename, trim($citations));	
 	
 	$command = 'php refs_to_train.php ' . $text_filename;	
 	//echo '<pre>' . $command . '</pre><br>';	
@@ -26,7 +28,7 @@ if ($citations)
 	//echo '<pre>' . $command . '</pre><br>';
 	system($command);
 	
-	$command = '/usr/local/bin/crf_test  -m core.model ' . $base_name . '.src.train > ' . $base_name . '.out.train';
+	$command = $config['crf_path'] . '/crf_test  -m core.model ' . $base_name . '.src.train > ' . $base_name . '.out.train';
 	//echo '<pre>' . $command . '</pre><br>';
 	system($command);
 	
