@@ -33,11 +33,11 @@
 </sequence>
 <!-- splits title/journal on "Prof." -->
 <sequence>
-<author>Forel, A.</author> <date>(1908b)</date> <title>Ameisen aus Sao Paulo (Brasilien), Paraguay etc. gesammelt von Prof. Herm. v. Ihering, Dr. Lutz, Dr. Fiebrig, etc.</title> <journal>Verhunlungender der Kaiserlich-Koniglichen Zoologische-Botanischen Gesellschaft in Wein,<journal> <volume>58,</volume> <pages>340–418.</pages>
+<author>Forel, A.</author> <date>(1908b)</date> <title>Ameisen aus Sao Paulo (Brasilien), Paraguay etc. gesammelt von Prof. Herm. v. Ihering, Dr. Lutz, Dr. Fiebrig, etc.</title> <journal>Verhunlungender der Kaiserlich-Koniglichen Zoologische-Botanischen Gesellschaft in Wein,</journal> <volume>58,</volume> <pages>340–418.</pages>
 </sequence>
 <!-- pages gets reated as a date -->
 <sequence>
-<author>Hendel, F.</author> <date>(1911)</date>( <title>Über von Prof. J. M. Aldrich erhaltene und einige andere amerikanische Dipteren.</title> <journal> Wiener entomologische Zeitung,</journal> <volume>30,</volume> <pages>19–46.</pages>
+<author>Hendel, F.</author> <date>(1911)</date><title>Über von Prof. J. M. Aldrich erhaltene und einige andere amerikanische Dipteren.</title> <journal> Wiener entomologische Zeitung,</journal> <volume>30,</volume> <pages>19–46.</pages>
 </sequence>
 </dataset>
 
