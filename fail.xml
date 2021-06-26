@@ -37,7 +37,27 @@
 </sequence>
 <!-- pages gets reated as a date -->
 <sequence>
-<author>Hendel, F.</author> <date>(1911)</date><title>Über von Prof. J. M. Aldrich erhaltene und einige andere amerikanische Dipteren.</title> <journal> Wiener entomologische Zeitung,</journal> <volume>30,</volume> <pages>19–46.</pages>
+<author>Hendel, F.</author> <date>(1911)</date> <title>Über von Prof. J. M. Aldrich erhaltene und einige andere amerikanische Dipteren.</title> <journal> Wiener entomologische Zeitung,</journal> <volume>30,</volume> <pages>19–46.</pages>
+</sequence>
+<!-- species year in parentheses gets treated as a date -->
+<sequence>
+<author>Sturaro, M. J. y Peloso, P. L. V.</author> <date>(2014).</date> <title>A new species of Scinax Wagler, (1830) (Anura: Hylidae) from the middle Amazon River basin, Brazil.</title> <journal>Papéis Avulsos de Zoologia,</journal> <volume>54 (2):</volume> <pages>9-23.</pages>
+</sequence>
+<!-- splits title and journal incorrectly -->
+<sequence>
+<author>Bokermann, W. C. A.</author> <date>1950.</date> <title>Rescriçao e novo nome genérico para Coelonotus fissilis Mir. Rib.,1920.</title> <journal>Papéis Avulsos de Zoologia. São Paulo</journal> <volume>9:</volume> <pages>215–222.</pages>
+</sequence>
+<!-- book that gets interpreted as a journal -->
+<sequence>
+<author>Rademacher M &amp; Mengedoht O</author> <date>(2011)</date> <title>Krabben-Fibel. Die schönsten Krabben für das Aquaterrarium.</title> <location>Dähne Verlag, Ettlingen, Germany,</location> <pages>95 pp.</pages>
+</sequence>
+<!-- chapter -->
+<sequence>
+<author>Wowor D &amp; Tan SH</author> <date>(2010)</date> <title>Description of a new species of Malayopotamon Bott, 1968 (Decapoda, Brachyura, Potamidae) from Gunung Slamet, central Java, Indonesia. Studies on Malacostraca: Lipke Bijdeley Holthuis Memorial Volume</title>. <editor>Fransen CHJM, De Grave S &amp; Ng PKL (eds.).</editor> <container-title>Crustaceana Monographs,</container-title> <volume>14:</volume> <pages>727–734.</pages>
+</sequence>
+<!-- volume treated as a date -->
+<sequence>
+<author>Nobili G</author> <date>(1900)</date> <title>Decapodi e Stomatopodi Indo-Malesi.</title> <journal>Annali del Museo Civico di Storia Naturale di Genova, Genova, Series 2,</journal><volume>20(40):</volume> <pages>473–523,</pages> <note>figs. 1–4.</note>
 </sequence>
 </dataset>
 

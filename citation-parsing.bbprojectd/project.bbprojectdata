@@ -5,6 +5,7 @@
 	<key>HierarchyData</key>
 	<array>
 		<string>7ACDE69F-02F4-4A39-A30D-94A3F4CCC065</string>
+		<string>28A67001-1CB9-4728-B8A5-483125D73922</string>
 		<string>7AA96B4D-BF79-41F8-854A-0EF334C48063</string>
 		<string>06E10EB2-2B35-49C1-BFA3-9403325EF029</string>
 		<string>7238A61C-7693-4B98-BB9C-29830F85C881</string>
@@ -319,6 +320,56 @@
 			</dict>
 			<key>ItemName</key>
 			<string>ris.php</string>
+			<key>ItemType</key>
+			<string>FileReference</string>
+			<key>UserOverrideItemName</key>
+			<true/>
+		</dict>
+		<key>28A67001-1CB9-4728-B8A5-483125D73922</key>
+		<dict>
+			<key>ItemData</key>
+			<dict>
+				<key>BookmarkData</key>
+				<data>
+				Ym9vaywDAAAAAAQQMAAAAKX7Qdfb0+1RqwdhwE3GIo9k
+				rHs6rfB/B17VFXzPDLK3HAIAAAQAAAADAwAAAAgAKAUA
+				AAABAQAAVXNlcnMAAAAFAAAAAQEAAHJwYWdlAAAABQAA
+				AAEBAABTaXRlcwAAABAAAAABAQAAY2l0YXRpb24tcGFy
+				c2luZxIAAAABAQAAYXV0aG9yLXBhcnNpbmcucGhwAAAU
+				AAAAAQYAABAAAAAgAAAAMAAAAEAAAABYAAAACAAAAAQD
+				AAAQZwIAAAAAAAgAAAAEAwAAhXQNAAAAAAAIAAAABAMA
+				AARWTAAAAAAACAAAAAQDAACTRwkHAwAAAAgAAAAEAwAA
+				AHEWBwMAAAAUAAAAAQYAAJAAAACgAAAAsAAAAMAAAADQ
+				AAAACAAAAAAEAABBwzxvKxGWVRgAAAABAgAAAQAAAAAA
+				AAAPAAAAAAAAAAAAAAAAAAAACAAAAAQDAAADAAAAAAAA
+				AAQAAAADAwAA9QEAAAgAAAABCQAAZmlsZTovLy8MAAAA
+				AQEAAE1hY2ludG9zaCBIRAgAAAAEAwAAAOAEA2kAAAAI
+				AAAAAAQAAEG+3V1iAAAAJAAAAAEBAAAyNUU0Mjg2RC03
+				MTJDLTM4OTktQjQzRi01RDNGNkE4QkQxMjEYAAAAAQIA
+				AIEAAAABAAAA7xMAAAEAAAAAAAAAAAAAAAEAAAABAQAA
+				LwAAAAAAAAABBQAAGgAAAAEBAABOU1VSTERvY3VtZW50
+				SWRlbnRpZmllcktleQAABAAAAAMDAAAepQEA2AAAAP7/
+				//8BAAAAAAAAABEAAAAEEAAAdAAAAAAAAAAFEAAA4AAA
+				AAAAAAAQEAAADAEAAAAAAABAEAAA/AAAAAAAAAACIAAA
+				2AEAAAAAAAAFIAAASAEAAAAAAAAQIAAAWAEAAAAAAAAR
+				IAAAjAEAAAAAAAASIAAAbAEAAAAAAAATIAAAfAEAAAAA
+				AAAgIAAAuAEAAAAAAAAwIAAA5AEAAAAAAAABwAAALAEA
+				AAAAAAARwAAAIAAAAAAAAAASwAAAPAEAAAAAAAAQ0AAA
+				BAAAAAAAAADsAQCAEAIAAAAAAAA=
+				</data>
+				<key>FileURL</key>
+				<string>file:///Users/rpage/Sites/citation-parsing/author-parsing.php</string>
+				<key>HasSecurityScope</key>
+				<true/>
+				<key>RelativePath</key>
+				<string>./author-parsing.php</string>
+				<key>TypeID</key>
+				<string>_CFileLocator</string>
+				<key>Version</key>
+				<integer>1</integer>
+			</dict>
+			<key>ItemName</key>
+			<string>author-parsing.php</string>
 			<key>ItemType</key>
 			<string>FileReference</string>
 			<key>UserOverrideItemName</key>

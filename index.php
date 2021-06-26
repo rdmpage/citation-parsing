@@ -2,7 +2,7 @@
 
 $config['crf_path'] = '/usr/local/bin';
 
-$config['crf_path'] = '.';
+$config['crf_path'] = dirname(__FILE__) . '/src';
 
 $citations = (isset($_GET['citations']) ? $_GET['citations'] : '');
 
@@ -39,10 +39,6 @@ if ($citations)
 	$command = 'php parse_results_to_native.php ' . $base_name . '.out.xml';
 	//echo '<pre>' . $command . '</pre><br>';
 	system($command);
-	
-	
-	
-	
 	
 }
 else

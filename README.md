@@ -2,8 +2,31 @@
 
 ## Heroku C++
 
-Can we compile CRF++ on Heroku? See [How to run an executable on Heroku from node, works locally
-](https://stackoverflow.com/questions/39685489/how-to-run-an-executable-on-heroku-from-node-works-locally) for one approach. Other would be to use a [build pack](https://elements.heroku.com/buildpacks/felkr/heroku-buildpack-cpp).
+To get CRF++ to work on Heroku we need to compile the executable. For background on this see [How to run an executable on Heroku from node, works locally](https://stackoverflow.com/questions/39685489/how-to-run-an-executable-on-heroku-from-node-works-locally) and [C++ buildpack](https://elements.heroku.com/buildpacks/felkr/heroku-buildpack-cpp).
+
+I forked [felkr/heroku-buildpack-cpp](https://github.com/felkr/heroku-buildpack-cpp) and added it as a buildpack to my Heroku app (under the `Settings` tab). I put the source code for CRF++ into the root folder of the app (which makes things messy) then when the app is deployed CRF++ is compiled. Note that I tried simply logging in to the Heroku app:
+
+`heroku run bash -a citation-parser`
+
+and compiling the code. This failed with g++ errors:
+
+```
+configure: error: Your compiler is not powerful enough to compile CRF++.
+```
+
+Turns out that g++ is [only available at build time](https://devcenter.heroku.com/articles/stack-packages), hence to use g++ I need a buildpack.
+
+The buildpack compiled the code, but when I logged into the shell the executable wouldn’t run:
+
+```
+heroku run bash -a citation-parser
+./crf_learn
+/app/.libs/crf_learn: error while loading shared libraries: libcrfpp.so.0: cannot open shared object file: No such file or directory
+```
+
+For whatever reason the executable is looking for a shared library which doesn’t exist. To fix this I edited the buildpack  [compile](https://github.com/rdmpage/heroku-buildpack-cpp/blob/master/bin/compile) script to set the `"LDFLAGS=--static" --disable-shared` flags for `configure`. This then compiled an executable that worked.
+
+
 
 
 ## Introduction
@@ -137,6 +160,11 @@ Output from crf_test has original tags and ones from model, so compare those
 php parse_results_to_test.php f.train
 
 
+## Examples 
+
+```
+Hogg, H.R. (1896). Araneidae. In B. Spencer (ed.) Report of the Horn Expedition to Central Australia. Pt. 2. Zoology. pp. 309-356. Melville, Mullen and Slade, Melbourne.
+```
 
 
 

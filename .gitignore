@@ -5,6 +5,10 @@ junk/
 
 out*
 
+src/.libs/*
+src/*.la
+src/*.lo
+src/*.o
 
 tmp/*.train
 tmp/*.txt

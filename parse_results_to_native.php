@@ -97,10 +97,27 @@ foreach($xpath->query('//sequence') as $node)
 	if (isset($obj->pages))
 	{
 		$obj->pages[0] = preg_replace('/\./', '', $obj->pages[0]);
+		$obj->pages[0] = preg_replace('/pp\s*/i', '', $obj->pages[0]);
+		$obj->pages[0] = preg_replace('/–/u', '-', $obj->pages[0]);
+	}
+
+	if (isset($obj->publisher))
+	{
+		$obj->publisher[0] = preg_replace('/\,$/', '', $obj->publisher[0]);
 	}
 	
+	if (isset($obj->location))
+	{
+		$obj->location[0] = preg_replace('/\,$/', '', $obj->location[0]);
+	}
 	
-	
+	if (isset($obj->url))
+	{
+		if (preg_match('/https?:\/\/doi.org\/(?<doi>.*)/', $obj->url[0], $m))
+		{
+			$obj->DOI[0] = $m['doi'];
+		}
+	}
 	
 	echo '<pre>';
 	print_r($obj);
