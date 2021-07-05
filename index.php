@@ -8,8 +8,16 @@ $citations = (isset($_GET['citations']) ? $_GET['citations'] : '');
 
 if ($citations) 
 {
+	// clean up to improve parsing
+	
+	// space between colon and following alphanumeic token token
+	$citations = preg_replace('/:([A-Za-z0-9])/', ": $1", $citations);
+	
+	// trim letters form dates
+	$citations = preg_replace('/([0-9]{4})[a-z]/', "$1", $citations);
+
 	// 
-	print_r($citations);
+	//print_r($citations);
 	
 	$tmpdir = dirname(__FILE__) . '/tmp';
 	$timestamp = time();
