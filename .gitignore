@@ -10,6 +10,9 @@ src/*.la
 src/*.lo
 src/*.o
 
+src/crf_learn
+src/crf_test
+
 tmp/*.train
 tmp/*.txt
 tmp/*.xml
