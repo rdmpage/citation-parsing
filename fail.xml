@@ -59,5 +59,22 @@
 <sequence>
 <author>Nobili G</author> <date>(1900)</date> <title>Decapodi e Stomatopodi Indo-Malesi.</title> <journal>Annali del Museo Civico di Storia Naturale di Genova, Genova, Series 2,</journal><volume>20(40):</volume> <pages>473–523,</pages> <note>figs. 1–4.</note>
 </sequence>
+<!-- book treated as a journal -->
+<sequence>
+<author>Vari, L., D.M. Kroon &amp; M. Krüger</author> <date>2002.</date> <title>Classification and Checklist of the species of Lepidoptera recorded in Southern Africa. -</title> <publisher>Simple Solutions,</publisher> <location>Chatswood,</location> <pages>xxi + 385 pp.</pages>
+</sequence>
+<!-- -->
+<sequence>
+<author>Diakonoff, A.</author> 1986. <title>Glyphipterigidae auctorum sensu lato (Glyphipterygidae sensu Meyrick, 1913).</title> <editor>In: H. G. Amsel, F. Gregor, H. Reisser &amp; T.-U. Roesler (eds),</editor> <container-title>Microlepidoptera Palaearctica. Volume 7. -</container-title> <publisher>G. Braun,</publisher> <location>Karlsruhe.</location> <note>Text vol.:</note> <pages>XX + 436 pp.; Plates vol.: 175 pls.</pages>
+</sequence>
+<sequence>
+<author>Fennah R. G.</author> <date>1956 -</date> <title>Fulgoroidea from southern China.</title> <journal>Proceedings of the California Academy of Sciences. San Francisco</journal> <volume>28(4):</volume> <pages>441-527</pages> <note>[446].</note>
+</sequence>
+<sequence>
+<author>Amiet, J.-L., and F. Dowsett-Lemaire.</author> <date>2000.</date> <title>Un nouveau Leptodactylodon de la Dorsale camerounaise (Amphibia, Anura).</title> <journal>Alytes.</journal> <location>Paris</location> <volume>18:</volume> <pages>1–14.</pages>
+</sequence>
+<sequence>
+<author>Ardila-Robayo, M. C., M. Osorno-Muñoz, and R. A. Maldonado-Silva.</author> <date>2004.</date> <title> Sapito arlequín negro. Atelopus “ebenoides” marinkellei.</title>  <editor>Rueda-Almonacid, J. V., J. D. Lynch, and A. Amézquita eds.,</editor> Libro Rojo de los Anfibios de Colombia: <pages>112–116.</pages> <location>Bogota,</location> <publisher>Panamericana Formas e Impresos, S.A..</publisher>
+</sequence>
 </dataset>
 
