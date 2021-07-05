@@ -26,6 +26,9 @@ heroku run bash -a citation-parser
 
 For whatever reason the executable is looking for a shared library which doesn’t exist. To fix this I edited the buildpack  [compile](https://github.com/rdmpage/heroku-buildpack-cpp/blob/master/bin/compile) script to set the `"LDFLAGS=--static" --disable-shared` flags for `configure`. This then compiled an executable that worked.
 
+### Update
+
+I’ve now updated the [buildpack](https://github.com/rdmpage/heroku-buildpack-cpp) to use the `src` folder so that this repo is much tidier.
 
 
 
