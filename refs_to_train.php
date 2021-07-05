@@ -32,6 +32,7 @@ while (!feof($file_handle))
 	if ($line != '')
 	{
 		$line = strip_tags($line);	
+		$line = trim($line);	
 	
 		$xml .=  '<sequence>' . "\n";
 		$xml .=  '<title>' . htmlspecialchars($line, ENT_XML1 | ENT_COMPAT, 'UTF-8') . '</title>' . "\n";
