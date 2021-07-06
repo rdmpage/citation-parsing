@@ -126,6 +126,8 @@ foreach($xpath->query('//sequence') as $node)
 		$obj->volume[0] = preg_replace('/No\.\s+/', '', $obj->volume[0]);
 		// :
 		$obj->volume[0] = preg_replace('/:$/', '', $obj->volume[0]);
+		
+		
 
 	}
 	
@@ -134,6 +136,14 @@ foreach($xpath->query('//sequence') as $node)
 		$obj->pages[0] = preg_replace('/\./', '', $obj->pages[0]);
 		$obj->pages[0] = preg_replace('/pp\s*/i', '', $obj->pages[0]);
 		$obj->pages[0] = preg_replace('/–/u', '-', $obj->pages[0]);
+		
+		// should train this out
+		// , 8 pls
+		$obj->pages[0] = preg_replace('/,\s+\d+\s+pls$/i', '', $obj->pages[0]);
+		// , pls 1-3
+		$obj->pages[0] = preg_replace('/,?\s+pls(.*)$/i', '', $obj->pages[0]);
+		
+		
 	}
 
 	//------------------------------------------------------------------------------------
