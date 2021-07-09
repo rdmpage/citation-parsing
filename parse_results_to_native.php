@@ -58,6 +58,8 @@ foreach($xpath->query('//sequence') as $node)
 		}
 	} 
 	
+	//print_r($obj);
+	
 	// post process
 	
 	if (isset($obj->title))
@@ -65,6 +67,8 @@ foreach($xpath->query('//sequence') as $node)
 		$obj->title[0] = preg_replace('/\.$/', '', $obj->title[0]);
 		$obj->title[0] = preg_replace('/\. —$/u', '', $obj->title[0]);
 		$obj->title[0] = preg_replace('/^[—|-]\s+/u', '', $obj->title[0]);
+		$obj->title[0] = preg_replace('/\. —$/u', '', $obj->title[0]);
+		$obj->title[0] = preg_replace('/([\p{L}])-\s+/iu', '$1', $obj->title[0]);
 	}
 
 	if (isset($obj->date))
@@ -165,6 +169,31 @@ foreach($xpath->query('//sequence') as $node)
 			$obj->DOI[0] = $m['doi'];
 		}
 	}
+	
+	//------------------------------------------------------------------------------------
+	if (isset($obj->doi))
+	{
+		if (preg_match('/^(?<doi>10\..*)/', $obj->doi[0], $m))
+		{
+			$doi = $m['doi'];
+			$obj->DOI[0] = $m['doi'];
+		}
+		
+		if (preg_match('/https?:\/\/doi.org\/(?<doi>.*)/', $obj->doi[0], $m))
+		{
+			$doi = $m['doi'];
+			$obj->DOI[0] = $m['doi'];
+		}
+		
+		// doi: 10.1371/journal.pone.0040627.
+		if (preg_match('/doi:\s*(?<doi>10\..*)/', $obj->doi[0], $m))
+		{
+			$doi = $m['doi'];
+			$doi = preg_replace('/\.$/', '', $doi);
+			$obj->DOI[0] = $doi;
+		}
+		
+	}	
 	
 	//------------------------------------------------------------------------------------
 	// authors
