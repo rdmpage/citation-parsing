@@ -6,6 +6,8 @@ error_reporting(E_ALL);
 function clean_family($str)
 {
 	$str = mb_convert_case($str, MB_CASE_TITLE);
+	
+	$str = str_replace(' Von ', ' von ', $str);
 	return $str;
 }
 
@@ -33,7 +35,7 @@ function parse_author_string($str)
 
 	// patterns
 	
-	$FAMILY = '(?<family>((da|de)\s+)?[\p{Lu}]\p{L}+(-[\p{Lu}]\p{L}+)?)';
+	$FAMILY = '(?<family>((da|de|von)\s+)?[\p{Lu}]\p{L}+((-|\s+von\s+)[\p{Lu}]\p{L}+)?)';
 	$GIVEN = '(?<given>(((da|de)\s+)?[\p{Lu}]\.[\s*|-]?)+)';
 	
 	$FAMILY_ALLCAPS = '(?<family>\p{Lu}{2,})';
