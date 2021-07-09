@@ -2,26 +2,46 @@
 
 error_reporting(E_ALL);
 
+//----------------------------------------------------------------------------------------
+function clean_family($str)
+{
+	$str = mb_convert_case($str, MB_CASE_TITLE);
+	return $str;
+}
+
+//----------------------------------------------------------------------------------------
+function clean_given($str)
+{
+	$str = preg_replace('/(\p{Lu})\./u', '$1. ', $str);
+	$str = preg_replace('/\s\s+/u', ' ', $str);
+	
+	return $str;
+}
+
+//----------------------------------------------------------------------------------------
 function parse_author_string($str)
 {
 	$debug = false;
+	//$debug = true;
 	
 	$obj = new stdclass;
 	$obj->string = $str;
 	$obj->score = 0;
 	$obj->author = array();
+	$obj->patterns = array();
 
 
 	// patterns
 	
 	$FAMILY = '(?<family>((da|de)\s+)?[\p{Lu}]\p{L}+(-[\p{Lu}]\p{L}+)?)';
 	$GIVEN = '(?<given>(((da|de)\s+)?[\p{Lu}]\.[\s*|-]?)+)';
+	
+	$FAMILY_ALLCAPS = '(?<family>\p{Lu}{2,})';
 
 	$GIVEN_FULL = '(?<given>([\p{Lu}]\p{L}+(-[\p{Lu}]?\p{L}+)?)((\s[\p{Lu}]\.[\s*|-]?)+)?)';
 
 	$patterns = array(
 		'FIRST_FAMILY_COMMA_GIVEN' =>'^(?<name>' . $FAMILY . ',\s+' . $GIVEN . ')',
-	
 	
 		'SEPARATOR_GIVEN_FAMILY' => '((?<sep>(,|,?\s*and|\s*&))\s*(?<name>' . $GIVEN . $FAMILY . '))',
 	
@@ -29,8 +49,22 @@ function parse_author_string($str)
 	
 		'FIRST_FAMILY_COMMA_GIVEN_FULL' =>'^(?<name>' . $FAMILY . ',\s+' . $GIVEN_FULL . ')',
 		'SEPARATOR_GIVEN_FULL_FAMILY' => '((?<sep>(,|,?\s*and|\s*&))\s*(?<name>' . $GIVEN_FULL . '\s+' . $FAMILY . '))',
+		
+		'FIRST_FAMILY_ALLCAPS' => '^(?<name>' . $FAMILY_ALLCAPS . ',?\s+' . $GIVEN . ')',
+		'SEPARATOR_GIVEN_FAMILY_ALLCAPS' => '((?<sep>(,|,?\s*and|\s*&))\s*(?<name>' . $GIVEN . $FAMILY_ALLCAPS . '))',
 	
+
 	);
+	
+	if ($debug)
+	{
+		foreach ($patterns as $k => $v)
+		{
+			echo $k . ' = ' . $v . "\n";
+		}
+	}
+	
+	
 
 	if ($debug)
 	{
@@ -43,6 +77,7 @@ function parse_author_string($str)
 	// parsed authors
 	$best_authors = array();
 	$best_score = 0;
+	$best_patterns = array();
 	
 	$input_length = mb_strlen($str);
 	$matched_length = 0;
@@ -59,7 +94,10 @@ function parse_author_string($str)
 		
 		$a = new stdclass;
 		$a->family = $m['family'];
+		$a->family = clean_family($a->family);
+		
 		$a->given = trim($m['given']);
+		$a->given = clean_given($a->given);
 		
 		$authors[] = $a;
 		
@@ -69,6 +107,10 @@ function parse_author_string($str)
 		{
 			$best_authors = $authors;
 			$best_score = $score;
+			
+			$best_patterns = array();
+			$best_patterns[] ='FIRST_FAMILY_COMMA_GIVEN_FULL';
+			
 		}
 		
 		
@@ -88,7 +130,10 @@ function parse_author_string($str)
 				
 					$a = new stdclass;
 					$a->family = $v['family'][0];
+					$a->family = clean_family($a->family);
+					
 					$a->given = trim($v['given'][0]);
+					$a->given = clean_given($a->given);
 		
 					$authors[] = $a;
 				}
@@ -99,6 +144,11 @@ function parse_author_string($str)
 				{
 					$best_authors = $authors;
 					$best_score = $score;
+
+					$best_patterns = array();
+					$best_patterns[] ='FIRST_FAMILY_COMMA_GIVEN_FULL';
+					$best_patterns[] =$try_pat;
+
 				}
 			}
 		
@@ -114,7 +164,10 @@ function parse_author_string($str)
 		
 		$a = new stdclass;
 		$a->family = $m['family'];
+		$a->family = clean_family($a->family);
+		
 		$a->given = trim($m['given']);
+		$a->given = clean_given($a->given);
 		
 		$authors[] = $a;
 		
@@ -124,8 +177,10 @@ function parse_author_string($str)
 		{
 			$best_authors = $authors;
 			$best_score = $score;
-		}
+			$best_patterns = array();
+			$best_patterns[] ='FIRST_FAMILY_COMMA_GIVEN';
 
+		}
 		
 		$pat = array('SEPARATOR_GIVEN_FAMILY', 'SEPARATOR_FAMILY_GIVEN');
 				
@@ -143,7 +198,10 @@ function parse_author_string($str)
 				
 					$a = new stdclass;
 					$a->family = $v['family'][0];
+					$a->family = clean_family($a->family);
+					
 					$a->given = trim($v['given'][0]);
+					$a->given = clean_given($a->given);
 		
 					$authors[] = $a;
 				}
@@ -154,14 +212,88 @@ function parse_author_string($str)
 				{
 					$best_authors = $authors;
 					$best_score = $score;
+					
+					$best_patterns = array();
+					$best_patterns[] ='FIRST_FAMILY_COMMA_GIVEN';
+					$best_patterns[] = $try_pat;
+					
 				}
 			}
 		
 		}
 	}	
 	
+	if (preg_match('/' . $patterns['FIRST_FAMILY_ALLCAPS'] . '/u', $str, $m))
+	{
+		$authors = array();
+		
+		$first_matched_length = mb_strlen($m['name']);
+		$offset = $first_matched_length;
+		
+		$a = new stdclass;
+		$a->family = $m['family'];
+		$a->family = clean_family($a->family);
+		
+		$a->given = trim($m['given']);
+		$a->given = clean_given($a->given);
+		
+		$authors[] = $a;
+		
+		$score = $first_matched_length / $input_length * 100;
+		
+		if ($score > $best_score)
+		{
+			$best_authors = $authors;
+			$best_score = $score;
+			
+			$best_patterns = array();
+			$best_patterns[] ='FIRST_FAMILY_ALLCAPS';
+		}
+
+		
+		$pat = array('SEPARATOR_GIVEN_FAMILY_ALLCAPS');
+				
+		foreach ($pat as $try_pat)
+		{
+			$matched_length = $first_matched_length;		
+		
+			if (preg_match_all('/' . $patterns[$try_pat] . '/u', $str, $m, PREG_SET_ORDER | PREG_OFFSET_CAPTURE, $offset))
+			{
+				//print_r($m);
+				
+				foreach ($m as $k => $v)
+				{
+					$matched_length += mb_strlen($v['name'][0]);
+				
+					$a = new stdclass;
+					$a->family = $v['family'][0];
+					$a->family = clean_family($a->family);
+					
+					$a->given = trim($v['given'][0]);
+					$a->given = clean_given($a->given);
+		
+					$authors[] = $a;
+				}
+				
+				$score = $matched_length / $input_length * 100;
+				
+				if ($score > $best_score)
+				{
+					$best_authors = $authors;
+					$best_score = $score;
+					
+					$best_patterns = array();
+					$best_patterns[] ='FIRST_FAMILY_ALLCAPS';
+					$best_patterns[] = $try_pat;
+				}
+			}
+		
+		}
+	}		
+	
 	$obj->score = $best_score;
 	$obj->author = $best_authors;
+	$obj->patterns = $best_patterns;
 
 
 
@@ -211,6 +343,13 @@ if (0)
 	"Furusaka, Shino, Chinatsu Kozakai, Yui Nemoto, Yoshihiro Umemura, Tomoko Naganuma, Koji Yamazaki & Shinsuke Koike. ",
 	"Yao, Junli, Cornelis V. Achterberg, Michael J. Sharkey & Jia-hua Chen",
 	);
+
+	// ALL CAPS
+	$strings = array(
+		'ALLEN G.R. & R.H. KUITER',
+	
+	);
+	
 
 	foreach ($strings as $str)
 	{
