@@ -76,5 +76,20 @@
 <sequence>
 <author>Ardila-Robayo, M. C., M. Osorno-Muñoz, and R. A. Maldonado-Silva.</author> <date>2004.</date> <title> Sapito arlequín negro. Atelopus “ebenoides” marinkellei.</title>  <editor>Rueda-Almonacid, J. V., J. D. Lynch, and A. Amézquita eds.,</editor> Libro Rojo de los Anfibios de Colombia: <pages>112–116.</pages> <location>Bogota,</location> <publisher>Panamericana Formas e Impresos, S.A..</publisher>
 </sequence>
+<sequence>
+<author>Boulenger, G. A.</author> <date>1920.</date> <title>Descriptions of two new frogs from Brazil.</title> <journal>Annals and Magazine of Natural History, Series 9,</journal> <volume>5:</volume> <pages>122–124.</pages>
+</sequence>
+<sequence>
+<author>Ferreira, J. B.</author> <date>1920.</date> <title>Anfibios de Africa Oriental Portuguesa. Sobre uma espécie nova ou pouca conhecida (Chiromantis umbelluzianus n. sp.).</title> <journal>Jornal de Sciências, Mathemáticas, Physicas e Naturaes. Lisboa. Série 3,</journal> <volume>2:</volume> <pages>205–208.</pages>
+</sequence>
+<sequence>
+<author>Barrio-Amorós, C. L., and J. C. Santos.</author> <date>2010.</date> <title>Amphibia, Anura, Dendrobatidae, Allobates femoralis (Boulenger, 1884): First confirmed country records, Venezuela.</title> <journal>Check List. A Journal of Species Lists and Distribution</journal> <volume> 6:</volume>  <pages>208–209.</pages>
+</sequence>
+<sequence>
+<author>DeWaard JR, Ivanova NV, Hajibabaei M, Hebert PDN</author> <date>(2008)</date> <title>Assembling DNA Barcodes: Analytical Protocols</title> <editor>In: Martin CC (Ed.)</editor> <container-title>Methods in Molecular Biology: Environmental Genomics.</container-title> <publisher>Humana Press Inc.,</publisher> <location>Totowa,</location> <pages>364 pp.</pages> <doi>https://doi.org/10.1007/978-1-59745-548-0_15</doi>
+</sequence>
+<sequence>
+<author>Sneath, P.H.A. &amp; Sokal, R.R.</author> <date>(1973)</date> <title>Numerical Taxonomy.</title> <publisher>W.H. Freeman,</publisher> <location>San Francisco,</location> <pages>573 pp.</pages>
+</sequence>
 </dataset>
 
