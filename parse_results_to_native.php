@@ -81,8 +81,9 @@ foreach($xpath->query('//sequence') as $node)
 	//------------------------------------------------------------------------------------
 	if (isset($obj->journal))
 	{
-		$obj->journal[0] = preg_replace('/\,$/', '', $obj->journal[0]);
+		$obj->journal[0] = preg_replace('/[\,|\.]$/', '', $obj->journal[0]);
 		$obj->journal[0] = preg_replace('/^[—|-]\s+/u', '', $obj->journal[0]);
+		$obj->journal[0] = preg_replace('/([\p{L}])-\s+/iu', '$1', $obj->journal[0]);
 	}
 
 	if (isset($obj->volume))
@@ -119,6 +120,14 @@ foreach($xpath->query('//sequence') as $node)
 			$obj->volume[0] = $m['volume'];
 		}
 		
+		// (9), 12
+		if (preg_match('/^\((?<series>[^\)]+)\),\s*(?<volume>\d+)/', $obj->volume[0], $m))
+		{
+			$matched = true;
+			$obj->{'collection-title'}[0] = $m['series'];
+			$obj->volume[0] = $m['volume'];
+		}
+		
 		// 51():
 		if (preg_match('/^(?<volume>\d+)\s*\(\):/', $obj->volume[0], $m))
 		{
@@ -126,12 +135,17 @@ foreach($xpath->query('//sequence') as $node)
 			$obj->volume[0] = $m['volume'];
 		}
 		
+		// t. XII,
+		$obj->volume[0] = preg_replace('/t\.\s+/', '', $obj->volume[0]);
+		
 		// No. 	
 		$obj->volume[0] = preg_replace('/No\.\s+/', '', $obj->volume[0]);
 		// :
 		$obj->volume[0] = preg_replace('/:$/', '', $obj->volume[0]);
 		
 		
+		
+		$obj->volume[0] = preg_replace('/[,|\.]$/', '', $obj->volume[0]);
 
 	}
 	
@@ -140,6 +154,10 @@ foreach($xpath->query('//sequence') as $node)
 		$obj->pages[0] = preg_replace('/\./', '', $obj->pages[0]);
 		$obj->pages[0] = preg_replace('/pp\s*/i', '', $obj->pages[0]);
 		$obj->pages[0] = preg_replace('/–/u', '-', $obj->pages[0]);
+		$obj->pages[0] = preg_replace('/-\s+/', '-', $obj->pages[0]);
+		
+		$obj->pages[0] = preg_replace('/págs\s*/u', '', $obj->pages[0]);
+		 
 		
 		// should train this out
 		// , 8 pls
@@ -147,6 +165,11 @@ foreach($xpath->query('//sequence') as $node)
 		// , pls 1-3
 		$obj->pages[0] = preg_replace('/,?\s+pls(.*)$/i', '', $obj->pages[0]);
 		
+		// empty
+		if ($obj->pages[0] == "")
+		{
+			unset($obj->pages);
+		}
 		
 	}
 
@@ -213,8 +236,7 @@ foreach($xpath->query('//sequence') as $node)
 	if (isset($obj->editor))
 	{
 		$editor_string = $obj->editor[0];
-		
-		
+				
 		$editor_string = preg_replace('/^In:\s+/i', '', $editor_string);
 		$editor_string = preg_replace('/\s+\(Ed[s]?[\.]?\),?/i', '', $editor_string);
 		
