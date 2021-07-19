@@ -91,5 +91,9 @@
 <sequence>
 <author>Sneath, P.H.A. &amp; Sokal, R.R.</author> <date>(1973)</date> <title>Numerical Taxonomy.</title> <publisher>W.H. Freeman,</publisher> <location>San Francisco,</location> <pages>573 pp.</pages>
 </sequence>
+<!--  "Series 2" should be with the journal -->
+<sequence>
+<author>Benson WH</author> <date>(1851)</date> <title>Geographical notices and characters of fourteen new species of Cyclostoma from the East Indies.</title> <journal> Annals and Magazine of Natural History, Series 2</journal> <volume>Volume 8:</volume> <pages>184–197.</pages> 
+</sequence>
 </dataset>
 
