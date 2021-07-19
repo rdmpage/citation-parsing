@@ -73,4 +73,3 @@ foreach($xpath->query('//sequence') as $node)
 
 
 ?>
-

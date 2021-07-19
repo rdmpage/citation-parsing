@@ -45,6 +45,3 @@ $xml .=  '</dataset>'. "\n";
 file_put_contents($output_filename, $xml);
 
 ?>
-
-
-

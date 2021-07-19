@@ -67,7 +67,7 @@ foreach($xpath->query('//sequence') as $node)
 		$obj->title[0] = preg_replace('/\.$/', '', $obj->title[0]);
 		$obj->title[0] = preg_replace('/\. —$/u', '', $obj->title[0]);
 		$obj->title[0] = preg_replace('/^[—|-]\s+/u', '', $obj->title[0]);
-		$obj->title[0] = preg_replace('/\. —$/u', '', $obj->title[0]);
+		$obj->title[0] = preg_replace('/\.?\s+[—|-]$/u', '', $obj->title[0]);
 		$obj->title[0] = preg_replace('/([\p{L}])-\s+/iu', '$1', $obj->title[0]);
 	}
 
@@ -155,6 +155,7 @@ foreach($xpath->query('//sequence') as $node)
 		$obj->pages[0] = preg_replace('/pp\s*/i', '', $obj->pages[0]);
 		$obj->pages[0] = preg_replace('/–/u', '-', $obj->pages[0]);
 		$obj->pages[0] = preg_replace('/-\s+/', '-', $obj->pages[0]);
+		$obj->pages[0] = preg_replace('/\s+-/', '-', $obj->pages[0]);
 		
 		$obj->pages[0] = preg_replace('/págs\s*/u', '', $obj->pages[0]);
 		 
@@ -162,8 +163,12 @@ foreach($xpath->query('//sequence') as $node)
 		// should train this out
 		// , 8 pls
 		$obj->pages[0] = preg_replace('/,\s+\d+\s+pls$/i', '', $obj->pages[0]);
+
 		// , pls 1-3
 		$obj->pages[0] = preg_replace('/,?\s+pls(.*)$/i', '', $obj->pages[0]);
+
+		// , 2 figures
+		$obj->pages[0] = preg_replace('/,?\s+\d+\s+figures$/i', '', $obj->pages[0]);
 		
 		// empty
 		if ($obj->pages[0] == "")
@@ -289,6 +294,7 @@ foreach($xpath->query('//sequence') as $node)
 	{
 		$csl->{'container-title'} = $obj->journal[0];
 	}
+	
 	if (isset($obj->{'container-title'}))
 	{
 		$csl->{'container-title'} = $obj->{'container-title'}[0];
@@ -323,6 +329,16 @@ foreach($xpath->query('//sequence') as $node)
 		$csl->issued->{'date-parts'}[0][] = (Integer)$obj->date[0];
 	}
 	
+	if (isset($obj->publisher))
+	{
+		$csl->publisher = $obj->publisher[0];
+	}
+
+	if (isset($obj->location))
+	{
+		$csl->{'publisher-place'} = $obj->location[0];
+	}
+	
 	if (isset($obj->DOI))
 	{
 		$csl->DOI = $obj->DOI[0];
@@ -350,9 +366,7 @@ foreach($xpath->query('//sequence') as $node)
 
 }
 
-echo '<pre>';
 echo json_encode($csl_citations, JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE);
-echo '</pre>';
 
 
 
