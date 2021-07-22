@@ -55,11 +55,9 @@ Naggs F (1997) William Benson and the early study of land snails in British Indi
    <button onclick="parse()">Parse</button>
 </div>
 
-<h3>API</h3>
-
-<p><a id="api" href=".">API call</a></p>
 
 <h2>Output</h2>
+<p><a id="api" href=".">API call for result below</a></p>
 <div id="output" style="font-family:monospace;white-space:pre-wrap;background-color:rgb(50,50,50);color:#8EFA00;"></div>
 
 <!--
