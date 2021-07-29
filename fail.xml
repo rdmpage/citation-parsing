@@ -98,5 +98,13 @@
 <sequence>
 <author>BOSSER J.</author>  <date>1984. —</date> <title>Contribution à l’étude des Orchidaceae de Madagascar et des Mascareignes. XXI. Sur l’identité du genre Perrierella Schltr.,</title> <journal>Bull.Mus. Natl. Hist. Nat., B, Adansonia</journal> <volume>6 :</volume> <pages>369-372.</pages>
 </sequence>
+<!-- journal with no volume gets treated as publisher -->
+<sequence>
+<author>Anisyutkin, L.N.</author> <date>(2012)</date> <title>Additional data on the genus Macrophyllodromia Saussure &amp; Zehntner, 1893 (Dictyoptera: Blattina: Ectobiidae).</title> <journal>Cockroach Studies,</journal > <pages>14–21.</pages>
+</sequence>
+<!-- journal with no volume gets treated as publisher -->
+<sequence>
+<author>Gutiérrez, E.</author> <date>(2012)</date> <title>Especie nueva del género de cucarachas Compsodes (Dictyoptera, Blattaria, Corydiidae) para la República Dominicana.</title> <journal>Solenodon,</journal > <pages>52–62.</pages>	
+</sequence>
 </dataset>
 
