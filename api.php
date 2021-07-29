@@ -9,6 +9,8 @@ require_once('vendor/autoload.php');
 use Seboettg\CiteProc\StyleSheet;
 use Seboettg\CiteProc\CiteProc;
 
+require_once('csl_utils.php');
+
 //----------------------------------------------------------------------------------------
 function default_display()
 {
@@ -64,7 +66,6 @@ function display_parse($citations, $format= 'json', $callback = '')
 	
 	$command = 'php parse_results_to_native.php ' . $base_name . '.out.xml';
 	//echo '<pre>' . $command . '</pre><br>';
-
 	
 	
 	$output = array();	
@@ -83,11 +84,37 @@ function display_parse($citations, $format= 'json', $callback = '')
 			$style_sheet = StyleSheet::loadStyleSheet($style);
 			$citeProc = new CiteProc($style_sheet);
 			$response = $citeProc->render($csl, "bibliography");
-			break;		
+			break;	
+			
+		case 'ris':
+			$csl = json_decode($json);
+			
+			$ris = '';
+			foreach ($csl as $bib)
+			{
+				$ris .= csl_to_ris($bib);
+				$ris .= "\n";
+			}
+			
+			$response = $ris;
+			break;	
 	
+		case 'openurl':
+			$csl = json_decode($json);
+			$n = count($csl);
+			for ($i = 0; $i < $n; $i++)
+			{
+				$csl[$i]->openurl = csl_to_openurl($csl[$i]);
+			}
+			
+			$json = json_encode($csl, JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE);
+
+			$response = $json;
+			$response_mimetype = "application/json";
+			break;	
 	
 		case 'json':
-			default:			
+			default:		
 			$response = $json;
 			$response_mimetype = "application/json";
 			break;
