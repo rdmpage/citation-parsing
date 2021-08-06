@@ -106,5 +106,12 @@
 <sequence>
 <author>Gutiérrez, E.</author> <date>(2012)</date> <title>Especie nueva del género de cucarachas Compsodes (Dictyoptera, Blattaria, Corydiidae) para la República Dominicana.</title> <journal>Solenodon,</journal > <pages>52–62.</pages>	
 </sequence>
+<!-- plates as note -->
+<sequence>
+<author>Rehn, J.A.G.</author> <date>(1928)</date> <title>New or little known Neotropical Blattidae (Orthoptera). Number one.</title> <journal >Transactions of the American Entomological Society</journal > <volume>54,</volume> <pages>125–194,</pages> <note>pl XVIII-XXI.</note>
+</sequence>
+<sequence>
+<author>Saussure, H.de</author> <date>(1863)</date> <title>Mélanges orthoptéreologiquues, Premiere Fascicule. Blattides.</title> <journal>Mém. Soc. Phys. hist. Nat. Génève</journal> <volume>17,</volume> <pages>129–170</pages> <note>1pl.</note>	
+</sequence>
 </dataset>
 
