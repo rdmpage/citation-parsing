@@ -69,6 +69,10 @@ foreach($xpath->query('//sequence') as $node)
 		$obj->title[0] = preg_replace('/^[—|-]\s+/u', '', $obj->title[0]);
 		$obj->title[0] = preg_replace('/\.?\s+[—|-]$/u', '', $obj->title[0]);
 		$obj->title[0] = preg_replace('/([\p{L}])-\s+/iu', '$1', $obj->title[0]);
+		
+		// hyphen breaks in ABBYY
+		$obj->title[0] = preg_replace('/¬\s+/u', '', $obj->title[0]);
+		 
 	}
 
 	if (isset($obj->date))
@@ -84,6 +88,10 @@ foreach($xpath->query('//sequence') as $node)
 		$obj->journal[0] = preg_replace('/[\,|\.]$/', '', $obj->journal[0]);
 		$obj->journal[0] = preg_replace('/^[—|-]\s+/u', '', $obj->journal[0]);
 		$obj->journal[0] = preg_replace('/([\p{L}])-\s+/iu', '$1', $obj->journal[0]);
+		
+		// hyphen breaks in ABBYY
+		$obj->journal[0] = preg_replace('/¬\s+/u', '', $obj->journal[0]);
+		
 	}
 
 	if (isset($obj->volume))
