@@ -30,10 +30,10 @@ function display_parse($citations, $format= 'json', $callback = '')
 	
 	$citations = preg_replace('/\x18/', "", $citations);
 	
-	// space between colon and following alphanumeic token token
-	$citations = preg_replace('/:([A-Za-z0-9])/', ": $1", $citations);
-	
-	// trim letters form dates
+	// space between punctuation and following alphanumeic token token
+	$citations = preg_replace('/([:|,|\.])([A-Za-z0-9])/', "$1 $2", $citations);
+		
+	// trim letters from dates
 	$citations = preg_replace('/([0-9]{4})[a-z]/', "$1", $citations);
 
 	// 
@@ -112,6 +112,20 @@ function display_parse($citations, $format= 'json', $callback = '')
 			$response = $json;
 			$response_mimetype = "application/json";
 			break;	
+			
+		case 'tsv':
+			$csl = json_decode($json);
+			
+			$rows = array();
+			
+			foreach ($csl as $bib)
+			{
+				$rows[] = csl_to_tsv($bib);
+			}
+			
+			$response = join("\n", $rows);
+			break;	
+			
 	
 		case 'json':
 			default:		
@@ -194,4 +208,3 @@ main();
 
 
 ?>
-
