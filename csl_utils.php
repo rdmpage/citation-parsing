@@ -150,7 +150,6 @@ function csl_to_ris($csl)
 
 //----------------------------------------------------------------------------------------
 // Convert a simple CSL object to OpenURL query
-
 function csl_to_openurl($csl)
 {
 	$parameters = array();
@@ -298,6 +297,136 @@ function csl_to_openurl($csl)
 }
 
 //----------------------------------------------------------------------------------------
+// Convert a simple CSL object to OpenURL query
+function csl_to_tsv($csl)
+{
+	$parameters = array();
+	
+	$csl_tsv_map  = array(
+		'id'				=> 'guid',
+	
+		'type'				=> 'type',
+	
+		'title' 			=> 'title',
+		
+		'author' 			=> 'authors',
+				
+		'container-title' 	=> 'container-title',
+		
+		'ISSN' 				=> 'issn',
+		
+		'collection-title'	=> 'series',
+		
+		'volume' 			=> 'volume',
+		'issue' 			=> 'issue',
+		
+		'spage' 			=> 'spage',
+		'epage' 			=> 'epage',
+		
+		'issued' 			=> 'date',
+				
+		'URL'				=> 'url',
+		'DOI'				=> 'doi',
+
+		'publisher'			=> 'publisher',
+		'publisher-place'	=> 'publisher-place',
+		);
+		
+	$tsv_keys = array_values($csl_tsv_map);
+	
+	$tsv = array();
+	
+	foreach ($csl as $k => $v)
+	{
+		switch ($k)
+		{
+			case 'id':
+			case 'type':
+			case 'title':
+			case 'container-title':
+			case 'collection-title':
+			case 'volume':
+			case 'issue':
+			case 'URL':
+			case 'DOI':
+				$tsv[$csl_tsv_map[$k]] = trim($v);
+				break;
+				
+			case 'page':
+				if (preg_match('/(.*)-(.*)/', $v, $m))
+				{
+					$tsv['spage'] = $m[1];
+					$tsv['epage'] = $m[2];						
+				}
+				else
+				{
+					$tsv['spage'] = $v;
+				}
+				break;
+				
+			case 'issued':
+				$tsv[$csl_tsv_map[$k]] = $v->{'date-parts'}[0][0];
+				break;
+								
+			case 'author':
+				foreach ($v as $author)
+				{
+					$authors = array();
+				
+					if (isset($author->literal))
+					{
+						$authors[] = $author->literal;
+					}
+					else
+					{
+						$name_parts = array();
+						if (isset($author->given))
+						{
+							$name_parts[] = $author->given;
+						}
+						if (isset($author->family))
+						{
+							$name_parts[] = $author->family;
+						}
+						$name = trim(join(' ', $name_parts));
+						if ($name != '')
+						{
+							$authors[] = $name;
+						}
+					}
+				}
+				
+				$tsv[$csl_tsv_map[$k]] = join(';', $authors);
+				break;
+				
+			default:
+				break;
+		}
+
+	
+	}
+	
+	
+	$row = array();
+	foreach ($tsv_keys as $k)
+	{
+		if (isset($tsv[$k]))
+		{
+			$row[] = $tsv[$k];
+		}
+		else
+		{
+			$row[] = "";
+		}
+	}
+	
+	$tsv_string = join("\t", $row);
+
+	return $tsv_string;
+
+}
+
+//----------------------------------------------------------------------------------------
 // test
 if (0)
 {
@@ -324,13 +453,19 @@ if (0)
     
     $obj = json_decode($json);
     
+    print_r($obj);
+    
     $ris = csl_to_ris($obj);
     
-    echo $ris;
+    //echo $ris;
     
     $openurl = csl_to_openurl($obj);
     
-    echo $openurl . "\n";
+    //echo $openurl . "\n";
+    
+ 	$tsv = csl_to_tsv($obj);
+    
+    echo $tsv . "\n";    
 
 
 
