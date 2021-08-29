@@ -7,6 +7,11 @@ function clean_family($str)
 {
 	$str = mb_convert_case($str, MB_CASE_TITLE);
 	
+	if (preg_match('/^O\'(.){1}(.*)/', $str, $m))
+	{
+		$str = "O'" . strtoupper($m[1]) . $m[2];
+	}
+	
 	$str = str_replace(' Von ', ' von ', $str);
 	return $str;
 }
@@ -46,7 +51,7 @@ function parse_author_string($str)
 
 	// patterns
 	
-	$FAMILY = '(?<family>((da|de|von)\s+)?[\p{Lu}]\p{L}+((-|\s+von\s+)[\p{Lu}]\p{L}+)?)';
+	$FAMILY = '(?<family>((da|de|von)\s+)?[\p{Lu}][\']?\p{L}+((-|\s+von\s+)[\p{Lu}]\p{L}+)?)';
 
 	$GIVEN = '(?<given>(((da|de)\s+)?[\p{Lu}]\.[\s*|-]?)+)';
 	
@@ -547,6 +552,13 @@ if (0)
 	'Kirby W',
 	);
 	
+	
+	// bad
+	$strings =  array(
+	'Saussure, H. de',
+	'Robert Francis Scharff', // full names
+	'O\'Kane, S. L., K. D. Heil, and G. L. Nesom',
+	);
 	
 
 	foreach ($strings as $str)
