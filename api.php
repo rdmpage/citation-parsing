@@ -30,9 +30,42 @@ function display_parse($citations, $format= 'json', $callback = '')
 	
 	$citations = preg_replace('/\x18/', "", $citations);
 	
-	// space between punctuation and following alphanumeic token token
-	$citations = preg_replace('/([:|,|\.])([A-Za-z0-9])/', "$1 $2", $citations);
+	
+	$doi_hack = false;
+	
+	if ($doi_hack)
+	{
+		// Try to protect DOIs from being broken up by inserting spaces between punctuation
+		// Regular expression from https://www.wikidata.org/wiki/Property:P356
+	
+		preg_match_all('/((DOI:\s*|doi:\s*|https?:\/\/(dx\.)?doi.org\/)10\.[0-9]{4,}(?:\.[0-9]+)*(?:\/|%2F)(?:(?![\"&\'])\S)+)/', $citations, $m);
+		foreach ($m[0] as $doi)
+		{
+			$doi_string = $doi;
 		
+			// replace periods in DOIs by •
+			$doi_string = str_replace('.', '•', $doi_string);
+		
+			$citations = str_replace($doi, $doi_string, $citations);
+		}
+	
+		// space between punctuation and following alphanumeric token token
+		$citations = preg_replace('/([:|,|\.])([A-Za-z0-9])/', "$1 $2", $citations);	
+	
+		// restore periods in DOis
+		$citations = preg_replace('/•/u', ".", $citations);
+	
+		// restore DOI prefix
+		$citations = preg_replace('/(DOI:)\s+/i', "$1", $citations);	
+	}
+	else
+	{
+		// space between punctuation and following alphanumeric token token
+		// note that we ignore ".", if we don't then we need hack to handle "."
+		// within DOIs and URLs.
+		$citations = preg_replace('/([:|,])([A-Za-z0-9])/', "$1 $2", $citations);	
+	}
+					
 	// trim letters from dates
 	$citations = preg_replace('/([0-9]{4})[a-z]/', "$1", $citations);
 
