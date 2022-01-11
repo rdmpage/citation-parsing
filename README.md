@@ -146,6 +146,19 @@ Add the output to `core.train` and then rebuild model:
 
 Do this with each new set of training data so that we build a better model (we hope).
 
+## Adding "fails” to training data
+
+As above we can add items that we know have failed to our training set. Just follow the steps:
+
+```
+php parse_train.php fail.xml
+```
+
+Add the output to `core.train` and then rebuild model:
+
+`crf_learn data/parsCit.template core.train core.model`
+
+It is a good idea to then rename the `fail.xml` as it is now in the model, and start a new, empty `fail.xml` to collect new failures. If we keep doing this iteratively the model should improve.
 
 
 ## Testing
