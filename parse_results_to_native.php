@@ -88,7 +88,7 @@ foreach($xpath->query('//sequence') as $node)
 		$obj->journal[0] = preg_replace('/[\,|\.]$/', '', $obj->journal[0]);
 		$obj->journal[0] = preg_replace('/^[—|-]\s+/u', '', $obj->journal[0]);
 		$obj->journal[0] = preg_replace('/([\p{L}])-\s+/iu', '$1', $obj->journal[0]);
-		
+				
 		// hyphen breaks in ABBYY
 		$obj->journal[0] = preg_replace('/¬\s+/u', '', $obj->journal[0]);
 		
@@ -151,6 +151,8 @@ foreach($xpath->query('//sequence') as $node)
 		// :
 		$obj->volume[0] = preg_replace('/:$/', '', $obj->volume[0]);
 		
+		// Vol. 
+		$obj->volume[0] = preg_replace('/^Vol.\s+/i', '', $obj->volume[0]);
 		
 		
 		$obj->volume[0] = preg_replace('/[,|\.]$/', '', $obj->volume[0]);
@@ -160,14 +162,15 @@ foreach($xpath->query('//sequence') as $node)
 	if (isset($obj->pages))
 	{
 		$obj->pages[0] = preg_replace('/\./', '', $obj->pages[0]);
-		$obj->pages[0] = preg_replace('/pp\s*/i', '', $obj->pages[0]);
+		$obj->pages[0] = preg_replace('/^pp?\s*/i', '', $obj->pages[0]);
 		$obj->pages[0] = preg_replace('/–/u', '-', $obj->pages[0]);
 		$obj->pages[0] = preg_replace('/-\s+/', '-', $obj->pages[0]);
 		$obj->pages[0] = preg_replace('/\s+-/', '-', $obj->pages[0]);
 		
 		$obj->pages[0] = preg_replace('/págs\s*/u', '', $obj->pages[0]);
-		 
-		
+
+		$obj->pages[0] = preg_replace('/\s+p\.?$/u', '', $obj->pages[0]);
+		 		
 		// should train this out
 		// , 8 pls
 		$obj->pages[0] = preg_replace('/,\s+\d+\s+pls$/i', '', $obj->pages[0]);
@@ -189,12 +192,12 @@ foreach($xpath->query('//sequence') as $node)
 	//------------------------------------------------------------------------------------
 	if (isset($obj->publisher))
 	{
-		$obj->publisher[0] = preg_replace('/\,$/', '', $obj->publisher[0]);
+		$obj->publisher[0] = preg_replace('/[\,|:|\.]$/', '', $obj->publisher[0]);
 	}
 	
 	if (isset($obj->location))
 	{
-		$obj->location[0] = preg_replace('/\,$/', '', $obj->location[0]);
+		$obj->location[0] = preg_replace('/[\,|:|\.]$/', '', $obj->location[0]);
 	}
 	
 	//------------------------------------------------------------------------------------
@@ -351,6 +354,12 @@ foreach($xpath->query('//sequence') as $node)
 	{
 		$csl->DOI = $obj->DOI[0];
 	}
+	
+	if (isset($obj->url))
+	{
+		$csl->URL = $obj->url[0];
+	}
+	
 	
 	$csl_citations[] = $csl;
 	
