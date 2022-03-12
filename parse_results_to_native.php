@@ -212,24 +212,30 @@ foreach($xpath->query('//sequence') as $node)
 	//------------------------------------------------------------------------------------
 	if (isset($obj->doi))
 	{
-		if (preg_match('/^(?<doi>10\..*)/', $obj->doi[0], $m))
+		// if has prefix "DOI:" then we may have two fields that are flagged as DOI,
+		// prefix and DOI itself, so need to look at all fields flagged "doi"
+	
+		foreach ($obj->doi as $doi_string)
 		{
-			$doi = $m['doi'];
-			$obj->DOI[0] = $m['doi'];
-		}
+			if (preg_match('/^(?<doi>10\..*)/', $doi_string, $m))
+			{
+				$doi = $m['doi'];
+				$obj->DOI[0] = strtolower($m['doi']);
+			}
 		
-		if (preg_match('/https?:\/\/doi.org\/(?<doi>.*)/', $obj->doi[0], $m))
-		{
-			$doi = $m['doi'];
-			$obj->DOI[0] = $m['doi'];
-		}
+			if (preg_match('/https?:\/\/(dx\.)?doi.org\/(?<doi>.*)/', $doi_string, $m))
+			{
+				$doi = $m['doi'];
+				$obj->DOI[0] = strtolower($m['doi']);
+			}
 		
-		// doi: 10.1371/journal.pone.0040627.
-		if (preg_match('/doi:\s*(?<doi>10\..*)/', $obj->doi[0], $m))
-		{
-			$doi = $m['doi'];
-			$doi = preg_replace('/\.$/', '', $doi);
-			$obj->DOI[0] = $doi;
+			// doi: 10.1371/journal.pone.0040627.
+			if (preg_match('/doi:\s*(?<doi>10\..*)/i', $doi_string, $m))
+			{
+				$doi = strtolower($m['doi']);
+				$doi = preg_replace('/\.$/', '', $doi);
+				$obj->DOI[0] = $doi;
+			}
 		}
 		
 	}	
