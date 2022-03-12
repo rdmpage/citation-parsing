@@ -89,9 +89,16 @@ function csl_to_ris($csl)
 				break;
 				
 			case 'ISSN':
-				$ris_values[$csl_ris_map[$k]][] = $v[0];	
+				if (is_array($v))
+				{
+					$ris_values[$csl_ris_map[$k]][] = $v[0];	
+				}
+				else
+				{
+					$ris_values[$csl_ris_map[$k]][] = $v;
+				}
 				break;
-				
+								
 			case 'author':
 				foreach ($v as $author)
 				{
