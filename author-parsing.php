@@ -77,6 +77,9 @@ function parse_author_string($str)
 		'FIRST_FAMILY_GIVEN_NO_DOTS' => '^(?<name>' . $FAMILY . ',?\s+' . $GIVEN_NO_DOTS . ')',
 		'SEPARATOR_FAMILY_GIVEN_NO_DOTS' => '(?<sep>(,|,?\s*and|\s*&))\s*(?<name>' . $FAMILY . '\s+' . $GIVEN_NO_DOTS . ')',
 
+		'FIRST_FAMILY_PARENTHESES_GIVEN' =>'^(?<name>' . $FAMILY . '\s+\(' . $GIVEN . '\))',
+		'SEPARATOR_FAMILY_PARENTHESES_GIVEN' => '(?<sep>(,|,?\s*and|\s*&))\s*(?<name>' . $FAMILY . '\s+\(' . $GIVEN . '\))',
+
 	);
 	
 	if ($debug)
@@ -111,6 +114,11 @@ function parse_author_string($str)
 		'FIRST_FAMILY_GIVEN_NO_DOTS' => array(
 			'SEPARATOR_FAMILY_GIVEN_NO_DOTS'
 		),
+		
+		'FIRST_FAMILY_PARENTHESES_GIVEN' => array(
+			'SEPARATOR_FAMILY_PARENTHESES_GIVEN'
+		),
+		
 	
 	);
 	
@@ -558,6 +566,12 @@ if (0)
 	'Saussure, H. de',
 	'Robert Francis Scharff', // full names
 	'O\'Kane, S. L., K. D. Heil, and G. L. Nesom',
+	'Santamaria-A, D., N. Zamora V., y R. Aguilar F.',
+	);
+
+	// https://www.persee.fr/doc/bsef_0037-928x_1991_num_96_5_17755
+	$strings =  array(
+	'Bock (I. R.) & Wheeler (M. R.)',
 	);
 	
 
