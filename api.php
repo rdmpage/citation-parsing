@@ -65,6 +65,8 @@ function display_parse($citations, $format= 'json', $callback = '')
 		// within DOIs and URLs.
 		$citations = preg_replace('/([:|,])([A-Za-z0-9])/', "$1 $2", $citations);	
 	}
+	
+	$citations = preg_replace('/\s+\/\/\s+/', ". ", $citations);	
 					
 	// trim letters from dates
 	$citations = preg_replace('/([0-9]{4})[a-z]/', "$1", $citations);
