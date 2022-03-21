@@ -143,6 +143,14 @@ foreach($xpath->query('//sequence') as $node)
 			$obj->volume[0] = $m['volume'];
 		}
 		
+		// 91, no. 19
+		if (preg_match('/(?<volume>\d+),\s*no\.?\s*(?<issue>\d+)/', $obj->volume[0], $m))
+		{
+			$matched = true;
+			$obj->volume[0] = $m['volume'];
+			$obj->issue[0] = $m['issue'];
+		}
+		
 		// t. XII,
 		$obj->volume[0] = preg_replace('/t\.\s+/', '', $obj->volume[0]);
 		
