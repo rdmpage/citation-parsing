@@ -70,6 +70,8 @@ foreach($xpath->query('//sequence') as $node)
 		$obj->title[0] = preg_replace('/\.?\s+[—|-]$/u', '', $obj->title[0]);
 		$obj->title[0] = preg_replace('/([\p{L}])-\s+/iu', '$1', $obj->title[0]);
 		
+		$obj->title[0] = preg_replace('/\s+$/u', '', $obj->title[0]);
+		
 		// hyphen breaks in ABBYY
 		$obj->title[0] = preg_replace('/¬\s+/u', '', $obj->title[0]);
 		 
