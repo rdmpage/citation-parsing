@@ -60,25 +60,34 @@ function parse_author_string($str)
 	$FAMILY_ALLCAPS = '(?<family>\p{Lu}{2,})';
 
 	$GIVEN_FULL = '(?<given>([\p{Lu}]\p{L}+(-[\p{Lu}]?\p{L}+)?)((\s[\p{Lu}]\.[\s*|-]?)+)?)';
+	
+	$SEPARATOR = '(?<sep>(,|,?\s*and|\s*&|;|\|))';
 
 	$patterns = array(
 		'FIRST_FAMILY_COMMA_GIVEN' =>'^(?<name>' . $FAMILY . ',\s+' . $GIVEN . ')',
 	
-		'SEPARATOR_GIVEN_FAMILY' => '((?<sep>(,|,?\s*and|\s*&))\s*(?<name>' . $GIVEN . $FAMILY . '))',
+		'SEPARATOR_GIVEN_FAMILY' => '(' . $SEPARATOR . '\s*(?<name>' . $GIVEN . $FAMILY . '))',
 	
-		'SEPARATOR_FAMILY_GIVEN' => '(?<sep>(,|,?\s*and|\s*&))\s*(?<name>' . $FAMILY . ',\s+' . $GIVEN . ')',
+		'SEPARATOR_FAMILY_GIVEN' => $SEPARATOR . '\s*(?<name>' . $FAMILY . ',\s+' . $GIVEN . ')',
+
+		'SEPARATOR_FAMILY_GIVEN_FULL' => $SEPARATOR . '\s*(?<name>' . $FAMILY . ',\s+' . $GIVEN_FULL . ')',
 	
 		'FIRST_FAMILY_COMMA_GIVEN_FULL' =>'^(?<name>' . $FAMILY . ',\s+' . $GIVEN_FULL . ')',
-		'SEPARATOR_GIVEN_FULL_FAMILY' => '((?<sep>(,|,?\s*and|\s*&))\s*(?<name>' . $GIVEN_FULL . '\s+' . $FAMILY . '))',
+		'SEPARATOR_GIVEN_FULL_FAMILY' => '(' . $SEPARATOR . '\s*(?<name>' . $GIVEN_FULL . '\s+' . $FAMILY . '))',
 		
 		'FIRST_FAMILY_ALLCAPS' => '^(?<name>' . $FAMILY_ALLCAPS . ',?\s+' . $GIVEN . ')',
-		'SEPARATOR_GIVEN_FAMILY_ALLCAPS' => '((?<sep>(,|,?\s*and|\s*&))\s*(?<name>' . $GIVEN . $FAMILY_ALLCAPS . '))',
+		'SEPARATOR_GIVEN_FAMILY_ALLCAPS' => '(' . $SEPARATOR . '\s*(?<name>' . $GIVEN . $FAMILY_ALLCAPS . '))',
 	
 		'FIRST_FAMILY_GIVEN_NO_DOTS' => '^(?<name>' . $FAMILY . ',?\s+' . $GIVEN_NO_DOTS . ')',
-		'SEPARATOR_FAMILY_GIVEN_NO_DOTS' => '(?<sep>(,|,?\s*and|\s*&))\s*(?<name>' . $FAMILY . '\s+' . $GIVEN_NO_DOTS . ')',
+		'SEPARATOR_FAMILY_GIVEN_NO_DOTS' => $SEPARATOR . '\s*(?<name>' . $FAMILY . '\s+' . $GIVEN_NO_DOTS . ')',
 
 		'FIRST_FAMILY_PARENTHESES_GIVEN' =>'^(?<name>' . $FAMILY . '\s+\(' . $GIVEN . '\))',
-		'SEPARATOR_FAMILY_PARENTHESES_GIVEN' => '(?<sep>(,|,?\s*and|\s*&))\s*(?<name>' . $FAMILY . '\s+\(' . $GIVEN . '\))',
+		'SEPARATOR_FAMILY_PARENTHESES_GIVEN' => $SEPARATOR . '\s*(?<name>' . $FAMILY . '\s+\(' . $GIVEN . '\))',
+
+		'FIRST_GIVEN_FULL_FAMILY' =>'^(?<name>' . $GIVEN_FULL . '\s+' . $FAMILY . ')',
+		
+		'FIRST_GIVEN_FAMILY' =>'^(?<name>' . $GIVEN . '\s+' . $FAMILY . ')',
+
 
 	);
 	
@@ -99,7 +108,8 @@ function parse_author_string($str)
 	
 	$pattern_tree = array(
 		'FIRST_FAMILY_COMMA_GIVEN_FULL' => array(
-			'SEPARATOR_GIVEN_FULL_FAMILY'
+			'SEPARATOR_GIVEN_FULL_FAMILY',
+			'SEPARATOR_FAMILY_GIVEN_FULL'
 		),
 		
 		'FIRST_FAMILY_COMMA_GIVEN' => array(
@@ -119,10 +129,15 @@ function parse_author_string($str)
 			'SEPARATOR_FAMILY_PARENTHESES_GIVEN'
 		),
 		
+		'FIRST_GIVEN_FULL_FAMILY' => array(
+			'SEPARATOR_GIVEN_FULL_FAMILY'
+		),
+		
+		'FIRST_GIVEN_FAMILY' => array(
+			'SEPARATOR_GIVEN_FAMILY'
+		),
 	
 	);
-	
-	
 	
 	
 	// clean up common problems
@@ -197,299 +212,14 @@ function parse_author_string($str)
 						$best_score = $score;
 
 						$best_patterns = array();
-						$best_patterns[] ='FIRST_FAMILY_COMMA_GIVEN_FULL';
-						$best_patterns[] =$try_pat;
+						$best_patterns[] = $first_pattern;
+						$best_patterns[] = $try_pat;
 
 					}
 				}		
 			}						
 		}		
 	}
-	
-	if (0)
-	{
-	// First author full name
-	if (preg_match('/' . $patterns['FIRST_FAMILY_COMMA_GIVEN_FULL'] . '/u', $str, $m))
-	{
-		$authors = array();
-		
-		$first_matched_length = mb_strlen($m['name']);
-		
-		$offset = $first_matched_length;
-		
-		$a = new stdclass;
-		$a->family = $m['family'];
-		$a->family = clean_family($a->family);
-		
-		$a->given = trim($m['given']);
-		$a->given = clean_given($a->given);
-		
-		$authors[] = $a;
-		
-		$score = $first_matched_length / $input_length * 100;
-		
-		if ($score > $best_score)
-		{
-			$best_authors = $authors;
-			$best_score = $score;
-			
-			$best_patterns = array();
-			$best_patterns[] ='FIRST_FAMILY_COMMA_GIVEN_FULL';
-			
-		}
-		
-		
-		$pat = array('SEPARATOR_GIVEN_FULL_FAMILY');
-				
-		foreach ($pat as $try_pat)
-		{
-			$matched_length = $first_matched_length;		
-		
-			if (preg_match_all('/' . $patterns[$try_pat] . '/u', $str, $m, PREG_SET_ORDER | PREG_OFFSET_CAPTURE, $offset))
-			{
-				//print_r($m);
-				
-				foreach ($m as $k => $v)
-				{
-					$matched_length += mb_strlen($v['name'][0]);
-				
-					$a = new stdclass;
-					$a->family = $v['family'][0];
-					$a->family = clean_family($a->family);
-					
-					$a->given = trim($v['given'][0]);
-					$a->given = clean_given($a->given);
-		
-					$authors[] = $a;
-				}
-				
-				$score = $matched_length / $input_length * 100;
-				
-				if ($score > $best_score)
-				{
-					$best_authors = $authors;
-					$best_score = $score;
-
-					$best_patterns = array();
-					$best_patterns[] ='FIRST_FAMILY_COMMA_GIVEN_FULL';
-					$best_patterns[] =$try_pat;
-
-				}
-			}
-		
-		}
-	}		
-
-		
-	// First author full name
-	if (preg_match('/' . $patterns['FIRST_FAMILY_COMMA_GIVEN_FULL'] . '/u', $str, $m))
-	{
-		$authors = array();
-		
-		$first_matched_length = mb_strlen($m['name']);
-		
-		$offset = $first_matched_length;
-		
-		$a = new stdclass;
-		$a->family = $m['family'];
-		$a->family = clean_family($a->family);
-		
-		$a->given = trim($m['given']);
-		$a->given = clean_given($a->given);
-		
-		$authors[] = $a;
-		
-		$score = $first_matched_length / $input_length * 100;
-		
-		if ($score > $best_score)
-		{
-			$best_authors = $authors;
-			$best_score = $score;
-			
-			$best_patterns = array();
-			$best_patterns[] ='FIRST_FAMILY_COMMA_GIVEN_FULL';
-			
-		}
-		
-		
-		$pat = array('SEPARATOR_GIVEN_FULL_FAMILY');
-				
-		foreach ($pat as $try_pat)
-		{
-			$matched_length = $first_matched_length;		
-		
-			if (preg_match_all('/' . $patterns[$try_pat] . '/u', $str, $m, PREG_SET_ORDER | PREG_OFFSET_CAPTURE, $offset))
-			{
-				//print_r($m);
-				
-				foreach ($m as $k => $v)
-				{
-					$matched_length += mb_strlen($v['name'][0]);
-				
-					$a = new stdclass;
-					$a->family = $v['family'][0];
-					$a->family = clean_family($a->family);
-					
-					$a->given = trim($v['given'][0]);
-					$a->given = clean_given($a->given);
-		
-					$authors[] = $a;
-				}
-				
-				$score = $matched_length / $input_length * 100;
-				
-				if ($score > $best_score)
-				{
-					$best_authors = $authors;
-					$best_score = $score;
-
-					$best_patterns = array();
-					$best_patterns[] ='FIRST_FAMILY_COMMA_GIVEN_FULL';
-					$best_patterns[] =$try_pat;
-
-				}
-			}
-		
-		}
-	}
-	
-	if (preg_match('/' . $patterns['FIRST_FAMILY_COMMA_GIVEN'] . '/u', $str, $m))
-	{
-		$authors = array();
-		
-		$first_matched_length = mb_strlen($m['name']);
-		$offset = $first_matched_length;
-		
-		$a = new stdclass;
-		$a->family = $m['family'];
-		$a->family = clean_family($a->family);
-		
-		$a->given = trim($m['given']);
-		$a->given = clean_given($a->given);
-		
-		$authors[] = $a;
-		
-		$score = $first_matched_length / $input_length * 100;
-		
-		if ($score > $best_score)
-		{
-			$best_authors = $authors;
-			$best_score = $score;
-			$best_patterns = array();
-			$best_patterns[] ='FIRST_FAMILY_COMMA_GIVEN';
-
-		}
-		
-		$pat = array('SEPARATOR_GIVEN_FAMILY', 'SEPARATOR_FAMILY_GIVEN');
-				
-		foreach ($pat as $try_pat)
-		{
-			$matched_length = $first_matched_length;		
-		
-			if (preg_match_all('/' . $patterns[$try_pat] . '/u', $str, $m, PREG_SET_ORDER | PREG_OFFSET_CAPTURE, $offset))
-			{
-				//print_r($m);
-				
-				foreach ($m as $k => $v)
-				{
-					$matched_length += mb_strlen($v['name'][0]);
-				
-					$a = new stdclass;
-					$a->family = $v['family'][0];
-					$a->family = clean_family($a->family);
-					
-					$a->given = trim($v['given'][0]);
-					$a->given = clean_given($a->given);
-		
-					$authors[] = $a;
-				}
-				
-				$score = $matched_length / $input_length * 100;
-				
-				if ($score > $best_score)
-				{
-					$best_authors = $authors;
-					$best_score = $score;
-					
-					$best_patterns = array();
-					$best_patterns[] ='FIRST_FAMILY_COMMA_GIVEN';
-					$best_patterns[] = $try_pat;
-					
-				}
-			}
-		
-		}
-	}	
-	
-	if (preg_match('/' . $patterns['FIRST_FAMILY_ALLCAPS'] . '/u', $str, $m))
-	{
-		$authors = array();
-		
-		$first_matched_length = mb_strlen($m['name']);
-		$offset = $first_matched_length;
-		
-		$a = new stdclass;
-		$a->family = $m['family'];
-		$a->family = clean_family($a->family);
-		
-		$a->given = trim($m['given']);
-		$a->given = clean_given($a->given);
-		
-		$authors[] = $a;
-		
-		$score = $first_matched_length / $input_length * 100;
-		
-		if ($score > $best_score)
-		{
-			$best_authors = $authors;
-			$best_score = $score;
-			
-			$best_patterns = array();
-			$best_patterns[] ='FIRST_FAMILY_ALLCAPS';
-		}
-
-		
-		$pat = array('SEPARATOR_GIVEN_FAMILY_ALLCAPS');
-				
-		foreach ($pat as $try_pat)
-		{
-			$matched_length = $first_matched_length;		
-		
-			if (preg_match_all('/' . $patterns[$try_pat] . '/u', $str, $m, PREG_SET_ORDER | PREG_OFFSET_CAPTURE, $offset))
-			{
-				//print_r($m);
-				
-				foreach ($m as $k => $v)
-				{
-					$matched_length += mb_strlen($v['name'][0]);
-				
-					$a = new stdclass;
-					$a->family = $v['family'][0];
-					$a->family = clean_family($a->family);
-					
-					$a->given = trim($v['given'][0]);
-					$a->given = clean_given($a->given);
-		
-					$authors[] = $a;
-				}
-				
-				$score = $matched_length / $input_length * 100;
-				
-				if ($score > $best_score)
-				{
-					$best_authors = $authors;
-					$best_score = $score;
-					
-					$best_patterns = array();
-					$best_patterns[] ='SEPARATOR_GIVEN_FAMILY_ALLCAPS';
-					$best_patterns[] = $try_pat;
-				}
-			}
-		
-		}
-	}
-	
-	}		
 	
 	$obj->score = $best_score;
 	$obj->author = $best_authors;
@@ -552,28 +282,48 @@ if (0)
 	);
 	*/
 	
-	
+	/*
 	// initials no space, no separator family-given
 	$strings = array(
 	'DeWaard JR, Ivanova NV, Hajibabaei M, Hebert PDN',
 	'Boyer de Fonscolombe LJH',
 	'Kirby W',
 	);
+	*/
+
+	/*
+	// https://www.persee.fr/doc/bsef_0037-928x_1991_num_96_5_17755
+	$strings =  array(
+	'Bock (I. R.) & Wheeler (M. R.)',
+	);
+	*/
 	
-	
+	/*
 	// bad
 	$strings =  array(
+	'Boyer de Fonscolombe LJH',
 	'Saussure, H. de',
 	'Robert Francis Scharff', // full names
 	'O\'Kane, S. L., K. D. Heil, and G. L. Nesom',
 	'Santamaria-A, D., N. Zamora V., y R. Aguilar F.',
 	);
-
-	// https://www.persee.fr/doc/bsef_0037-928x_1991_num_96_5_17755
+	*/
+	
 	$strings =  array(
-	'Bock (I. R.) & Wheeler (M. R.)',
+	//'James, S.A.',
+	//'Moonlight, Peter Watson; Daza, Aniceto',
+	//'Dora E. Mora-Retana|Carlos Quirós',
+	//'E. L. Taylor, M. F. F. da Silva, J. Oliviero, C. S. Rosário, J. B. Silva & M. R. Santos',
+	//'Anstis, M., F. Parker, T. Hawkes, I. Morris, and S. J. Richards.',
+	//'G. Pereira-Silva',
+	//'R. M. Harley, G. Bromley, A. M. Carvalho, J. L. Hage & H. S. Brito' // http://localhost/~rpage/plazi-tester/?uri=03943308-FFF9-FFE5-F6EE-6D37FD68FE60
+	'Poulsen, Axel Dalberg; Bau, Billy; Akoitai, Thomas; Akai, Saxon'
 	);
 	
+	$strings=array(
+	'Ralf Britz, Ariane Standing, Biju Kumar, Manoj Kripakaran, Unmesh Katwate, Remya L. Sundar and Rajeev Raghavan',
+	'Silva-Albuquerque, Lídia C. and Oscar A. Shibatta',
+	);
 
 	foreach ($strings as $str)
 	{
@@ -584,4 +334,3 @@ if (0)
 
 }
 ?>
-
