@@ -1,6 +1,27 @@
 # Citation Parsing
 
-## Heroku C++
+## Introduction
+
+Exploring citation parsing using Conditional Random Fields (CRF). Heavily influenced by [ParsCit](https://github.com/knmnyn/ParsCit) and [AnyStyle](https://anystyle.io). My main goal here is to get something simple working as a starting point for learning more about CRF. Nothing here is state of the art, for that see, e.g.:
+
+- [Synthetic vs. Real Reference Strings for Citation Parsing, and the Importance of Re-training and Out-Of-Sample Data for Meaningful Evaluations: Experiments with GROBID, GIANT and Cora](https://arxiv.org/abs/2004.10410)
+- [GIANT: The 1-Billion Annotated Synthetic Bibliographic-Reference-String Dataset for Deep Citation Parsing](http://ceur-ws.org/Vol-2563/aics_25.pdf)
+- [Neural-ParsCit](https://github.com/WING-NUS/Neural-ParsCit)
+
+
+## Data
+
+`editor.html` is a simple HTML editor inspired by [MarsEdit Live Source Preview](https://red-sweater.com/blog/3025/marsedit-live-source-preview) where you can edit XML and see a live preview.
+
+`data/core.xml` is the training data from AnyStyle (1510 references).
+
+`dict.php` uses the dictionary that comes with ParsCit.
+
+## CRF
+
+For background see [Conditional random fields](https://en.wikipedia.org/wiki/Conditional_random_field). I use [CRF++: Yet Another CRF toolkit](http://taku910.github.io/crfpp/), which is also used in ParsCit.
+
+### Heroku C++
 
 To get CRF++ to work on Heroku we need to compile the executable. For background on this see [How to run an executable on Heroku from node, works locally](https://stackoverflow.com/questions/39685489/how-to-run-an-executable-on-heroku-from-node-works-locally) and [C++ buildpack](https://elements.heroku.com/buildpacks/felkr/heroku-buildpack-cpp).
 
@@ -26,32 +47,14 @@ heroku run bash -a citation-parser
 
 For whatever reason the executable is looking for a shared library which doesn’t exist. To fix this I edited the buildpack  [compile](https://github.com/rdmpage/heroku-buildpack-cpp/blob/master/bin/compile) script to set the `"LDFLAGS=--static" --disable-shared` flags for `configure`. This then compiled an executable that worked.
 
-### Update
+#### Update
 
 I’ve now updated the [buildpack](https://github.com/rdmpage/heroku-buildpack-cpp) to use the `src` folder so that this repo is much tidier.
 
+### Apple Silicon
 
+CRF++ didn’t want to build using autotools, but it is available on Homebrew so we can just `brew install crf++` to get a working version which is installed in `/opt/homebrew/bin`.
 
-## Introduction
-
-Exploring citation parsing using Conditional Random Fields (CRF). Heavily influenced by [ParsCit](https://github.com/knmnyn/ParsCit) and [AnyStyle](https://anystyle.io). My main goal here is to get something simple working as a starting point for learning more about CRF. Nothing here is state of the art, for that see, e.g.:
-
-- [Synthetic vs. Real Reference Strings for Citation Parsing, and the Importance of Re-training and Out-Of-Sample Data for Meaningful Evaluations: Experiments with GROBID, GIANT and Cora](https://arxiv.org/abs/2004.10410)
-- [GIANT: The 1-Billion Annotated Synthetic Bibliographic-Reference-String Dataset for Deep Citation Parsing](http://ceur-ws.org/Vol-2563/aics_25.pdf)
-- [Neural-ParsCit](https://github.com/WING-NUS/Neural-ParsCit)
-
-
-## Data
-
-`editor.html` is a simple HTML editor inspired by [MarsEdit Live Source Preview](https://red-sweater.com/blog/3025/marsedit-live-source-preview) where you can edit XML and see a live preview.
-
-`data/core.xml` is the training data from AnyStyle (1510 references).
-
-`dict.php` uses the dictionary that comes with ParsCit.
-
-## CRF
-
-For background see [Conditional random fields](https://en.wikipedia.org/wiki/Conditional_random_field). I use [CRF++: Yet Another CRF toolkit](http://taku910.github.io/crfpp/), which is also used in ParsCit.
 
 ## Use
 
@@ -78,7 +81,7 @@ We need to convert this into the format expected by CRF, which is one token per 
 
 `php parse_train.php data/core.xml` parses the training XML and outputs a `.train` file with the features and tags. Having converted the training data we now build the model using `crf_learn` in the CRF++ package:
 
-`crf_learn data/parsCit.template core.train core.model`
+`crf_learn data/parsCit.template data/core.train core.model`
 
 ```
 .

@@ -19,3 +19,4 @@ tmp/*.xml
 
 
 /vendor/
+src/config.log

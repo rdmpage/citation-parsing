@@ -20,10 +20,15 @@ function default_display()
 //----------------------------------------------------------------------------------------
 function display_parse($citations, $format= 'json', $callback = '')
 {
-
+	// Globaly installed CRF++
 	$config['crf_path'] = '/usr/local/bin';
-	$config['crf_path'] = dirname(__FILE__) . '/src';
 
+	// Local to this site (e.g., when running on Heroku)
+	$config['crf_path'] = dirname(__FILE__) . '/src';
+	
+	// Mac M1 installed via Homebrew
+	//$config['crf_path'] = '/opt/homebrew/bin';
+	
 	// clean up to improve parsing
 	
 	// remove bad characters

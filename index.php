@@ -37,6 +37,7 @@ Convert citation strings into structured JSON.
 
 <p>
 Enter citation strings, one per line, then click <strong>Parse</strong>.
+To create training data use the <a href="editor.html" target="_new">editor</a>.
 </p>
 
 <div>

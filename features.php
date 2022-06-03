@@ -66,9 +66,10 @@ if (!function_exists('mb_str_split'))
 // Take tokens and generate features
 function get_features ($tokens)
 {
+	global $dict;
+
 	$result = array();
 	
-
 	// Feature based on whole line
 	$words = array();
 	
@@ -216,12 +217,12 @@ function get_features ($tokens)
 		}
 		$isInDict = $dictStatus;
 		
-      	if ($dictStatus >= 32) { $dictStatus -= 32; $publisherName = "publisherName"; } else { $publisherName = "no"; }
-     	if ($dictStatus >= 16) { $dictStatus -= 16; $placeName = "placeName"; } else { $placeName = "no"; }
-      	if ($dictStatus >= 8) { $dictStatus -= 8; $monthName = "monthName"; } else { $monthName = "no"; }
-      	if ($dictStatus >= 4) { $dictStatus -= 4; $lastName = "lastName"; } else { $lastName = "no"; }
-      	if ($dictStatus >= 2) { $dictStatus -= 2; $femaleName = "femaleName"; } else { $femaleName = "no"; }
-      	if ($dictStatus >= 1) { $dictStatus -= 1; $maleName = "maleName"; } else { $maleName = "no"; }
+      	if ($dictStatus & 32) { $dictStatus ^ 32; $publisherName = "publisherName"; } else { $publisherName = "no"; }
+    	if ($dictStatus & 16) { $dictStatus ^ 16; $placeName = "placeName"; } else { $placeName = "no"; }
+      	if ($dictStatus & 8) { $dictStatus ^ 8; $monthName = "monthName"; } else { $monthName = "no"; }
+      	if ($dictStatus & 4) { $dictStatus ^ 4; $lastName = "lastName"; } else { $lastName = "no"; }
+      	if ($dictStatus & 2) { $dictStatus ^ 2; $femaleName = "femaleName"; } else { $femaleName = "no"; }
+      	if ($dictStatus & 1) { $dictStatus ^ 1; $maleName = "maleName"; } else { $maleName = "no"; }
 	
 		$features[13] = $isInDict;  		# 13 = name status
 		$features[14] = $maleName; 			# 14 = male name
