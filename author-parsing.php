@@ -7,7 +7,7 @@ function clean_family($str)
 {
 	$str = mb_convert_case($str, MB_CASE_TITLE);
 	
-	if (preg_match('/^O\'(.){1}(.*)/', $str, $m))
+	if (preg_match('/^O[\'|’](.){1}(.*)/u', $str, $m))
 	{
 		$str = "O'" . strtoupper($m[1]) . $m[2];
 	}
@@ -51,7 +51,7 @@ function parse_author_string($str)
 
 	// patterns
 	
-	$FAMILY = '(?<family>((da|de|von)\s+)?[\p{Lu}][\']?\p{L}+((-|\s+von\s+)[\p{Lu}]\p{L}+)?)';
+	$FAMILY = '(?<family>((da|de|von)\s+)?[\p{Lu}][\'|\’]?\p{L}+((-|\s+von\s+)[\p{Lu}]\p{L}+)?)';
 
 	$GIVEN = '(?<given>(((da|de)\s+)?[\p{Lu}]\.[\s*|-]?)+)';
 	
@@ -230,6 +230,103 @@ function parse_author_string($str)
 	return $obj;
 }
 
+$testdata = '';
+
+
+if (0)
+{
+	// generate some test cases
+	$testcases = array();
+
+	$strings = array(
+		'Anstis, M., F. Parker, T. Hawkes, I. Morris, and S. J. Richards.',
+		"Chen, Chao-Chun, Sergei I. Golovatch & Hsueh-Wen Chang.",
+		'O\'Kane, S. L., K. D. Heil, and G. L. Nesom',
+		'DeWaard JR, Ivanova NV, Hajibabaei M, Hebert PDN',
+		'Bock (I. R.) & Wheeler (M. R.)',
+		'Yao, Junli, Cornelis V. Achterberg, Michael J. Sharkey & Jia-hua Chen',
+			"Furusaka, Shino, Chinatsu Kozakai, Yui Nemoto, Yoshihiro Umemura, Tomoko Naganuma, Koji Yamazaki & Shinsuke Koike",
+	);
+	
+	// generate test results
+	foreach ($strings as $str)
+	{
+		$result = parse_author_string($str);
+
+		$test = new stdclass;
+		$test->string = $str;
+		$test->parsed = $result->author;
+		
+		$testcases[] = $test;
+	}
+	
+	$testdata = json_encode($testcases);
+	
+	print_r($testcases);
+		
+	echo json_encode($testcases,  JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE);
+
+	
+	
+}
+
+
+if (0)
+{
+	$testdata = '[{"string":"Anstis, M., F. Parker, T. Hawkes, I. Morris, and S. J. Richards.","parsed":[{"family":"Anstis","given":"M."},{"family":"Parker","given":"F."},{"family":"Hawkes","given":"T."},{"family":"Morris","given":"I."},{"family":"Richards","given":"S. J."}]},{"string":"Chen, Chao-Chun, Sergei I. Golovatch & Hsueh-Wen Chang.","parsed":[{"family":"Chen","given":"Chao-Chun"},{"family":"Golovatch","given":"Sergei I."},{"family":"Chang","given":"Hsueh-Wen"}]},{"string":"O\'Kane, S. L., K. D. Heil, and G. L. Nesom","parsed":[{"family":"O\'Kane","given":"S. L."},{"family":"Heil","given":"K. D."},{"family":"Nesom","given":"G. L."}]},{"string":"DeWaard JR, Ivanova NV, Hajibabaei M, Hebert PDN","parsed":[{"family":"Dewaard","given":"J. R."},{"family":"Ivanova","given":"N. V."},{"family":"Hajibabaei","given":"M."},{"family":"Hebert","given":"P. D. N."}]},{"string":"Bock (I. R.) & Wheeler (M. R.)","parsed":[{"family":"Bock","given":"I. R."},{"family":"Wheeler","given":"M. R."}]},{"string":"Yao, Junli, Cornelis V. Achterberg, Michael J. Sharkey & Jia-hua Chen","parsed":[{"family":"Yao","given":"Junli"},{"family":"Achterberg","given":"Cornelis V."},{"family":"Sharkey","given":"Michael J."},{"family":"Chen","given":"Jia-hua"}]},{"string":"Furusaka, Shino, Chinatsu Kozakai, Yui Nemoto, Yoshihiro Umemura, Tomoko Naganuma, Koji Yamazaki & Shinsuke Koike","parsed":[{"family":"Furusaka","given":"Shino"},{"family":"Kozakai","given":"Chinatsu"},{"family":"Nemoto","given":"Yui"},{"family":"Umemura","given":"Yoshihiro"},{"family":"Naganuma","given":"Tomoko"},{"family":"Yamazaki","given":"Koji"},{"family":"Koike","given":"Shinsuke"}]},
+	
+{
+"string":"Clark, M.R., Rowden, A.A., Schlacher, T.A., Guinotte, J., Dunstan, P.K., Williams, A., O’Hara, T.D., Watling, L., Niklitschek, E. & Tsuchida, S.",
+"parsed": [{"family":"Clark","given":"M. R."},{"family":"Rowden","given":"A. A."},{"family":"Schlacher","given":"T. A."},{"family":"Guinotte","given":"J."},{"family":"Dunstan","given":"P. K."},{"family":"Williams","given":"A."},{"family":"O\'Hara","given":"T. D."},{"family":"Watling","given":"L."},{"family":"Niklitschek","given":"E."},{"family":"Tsuchida","given":"S."}]
+}	
+	
+	
+]';
+
+
+
+	$testcases = json_decode($testdata);
+
+	//print_r($testcases);
+
+	// do the tests
+	echo "Testing\n\n";
+	
+	$fail = array();
+	
+	foreach ($testcases as $test)
+	{
+		echo " Input: " . $test->string . "\n";
+		echo "  Test: ";
+		
+		$expected = json_encode($test->parsed, JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE);
+		
+		$result = parse_author_string($test->string);
+		
+		if (strcmp($expected, json_encode($result->author)) == 0)
+		{
+			//echo $expected . "\n";
+			echo "ok\n";
+		}
+		else
+		{
+			echo "failed\n";
+			echo "Expected:\n" . $expected . "\n";
+			echo "Got:\n" . json_encode($result->author) . "\n";
+		}
+		
+		echo "\n";
+	
+	
+	}
+
+
+
+
+}
+
+
+
 // test
 if (0)
 {
@@ -317,20 +414,54 @@ if (0)
 	//'Anstis, M., F. Parker, T. Hawkes, I. Morris, and S. J. Richards.',
 	//'G. Pereira-Silva',
 	//'R. M. Harley, G. Bromley, A. M. Carvalho, J. L. Hage & H. S. Brito' // http://localhost/~rpage/plazi-tester/?uri=03943308-FFF9-FFE5-F6EE-6D37FD68FE60
-	'Poulsen, Axel Dalberg; Bau, Billy; Akoitai, Thomas; Akai, Saxon'
+	'Poulsen, Axel Dalberg; Bau, Billy; Akoitai, Thomas; Akai, Saxon',
+	
+	'O\'Kane, S. L., K. D. Heil, and G. L. Nesom',
+	'DeWaard JR, Ivanova NV, Hajibabaei M, Hebert PDN',
+	"GRISMER, L. LEE; MONTRI SUMONTHA, MICHAEL COTA, JESSE L. GRISMER, PERRY L. WOOD, JR., OLIVIER S. G. PAUWELS & KIRATI KUNYA",
 	);
 	
+	/*
 	$strings=array(
 	'Ralf Britz, Ariane Standing, Biju Kumar, Manoj Kripakaran, Unmesh Katwate, Remya L. Sundar and Rajeev Raghavan',
 	'Silva-Albuquerque, Lídia C. and Oscar A. Shibatta',
+	
 	);
+	*/
+}
+
+// need to fix these
+if (0)
+{
+	
+	// fail
+	$strings=array(
+
+	"GRISMER, L. LEE; MONTRI SUMONTHA, MICHAEL COTA, JESSE L. GRISMER, PERRY L. WOOD, JR., OLIVIER S. G. PAUWELS & KIRATI KUNYA",
+	'Poulsen, Axel Dalberg; Bau, Billy; Akoitai, Thomas; Akai, Saxon',
+
+"Zaldívar-Riverón, Alejandro, J. J. Martinez, Sergey A. Belokobylskij, Carlos Pedraza-Lara, Scott R. Shaw, Paul Hanson & Fernando Varela",
+
+"Yao, Junli, Cornelis V. Achterberg, Michael J. Sharkey & Jia-hua Chen",
+
+	);
+	
+	$strings=array('Clark, M.R., Rowden, A.A., Schlacher, T.A., Guinotte, J., Dunstan, P.K., Williams, A., O’Hara, T.D., Watling, L., Niklitschek, E. & Tsuchida, S.');
+	
+		
 
 	foreach ($strings as $str)
 	{
 		$result = parse_author_string($str);
 		
 		print_r($result);
+		
+		echo json_encode($result->author) . "\n";
+		
+		
 	}
 
 }
+
+
 ?>

@@ -7,9 +7,22 @@
 		padding:20px;
 	}
 	</style>
-
-
+	
+	<script src="js/jquery.js" type="text/javascript"></script>
+	
 	<script>
+	
+	//--------------------------------------------------------------------------------
+	//http://stackoverflow.com/a/25359264
+	$.urlParam = function(name){
+		var results = new RegExp('[\?&]' + name + '=([^&#]*)').exec(window.location.href);
+		if (results==null){
+		   return null;
+		}
+		else{
+		   return results[1] || 0;
+		}
+	}	
 	
 	// https://red-sweater.com/blog/3025/marsedit-live-source-preview	
 	function escapeHTML(theHTML) {
@@ -157,11 +170,6 @@
 					.volume {
 						background: Tan;
 					}
-
-					
-					
-					
-					
 					
 				</style>
 			</head>
@@ -213,7 +221,8 @@
 		  var xml = parser.parseFromString(document.getElementById("editor").innerText, "text/xml");
 
 		  xmlString = serializer.serializeToString(xml);
-		  document.getElementById("log").value = xmlString;
+		  
+		  // document.getElementById("log").value = xmlString;
 
 		  if (document.implementation && document.implementation.createDocument) {
 			xsltProcessor = new XSLTProcessor();
@@ -238,56 +247,106 @@
 	<h2>Preview</h2>
 	<div id="preview" style="padding:10px;height:300px;overflow-y:auto;"></div>
 
-	<h2>XML</h2>
-	<p>If some of the text above disappears, remember to balance your tags! When tagging, include any punctuation in the tag.</p>
+	<h2>XML Editor</h2>
+	
+	<p>To create training data you add tags to the XML below.
+	
+	If some of the text above disappears, remember to balance your tags! When tagging, 
+	please include any punctuation in the tagged text (such as parentheses, commas, semicolons, etc.) 
+	as this can help the parser understand the citation. 
+	Hence  <code>&lt;date&gt;(2000)&lt;/date&gt;</code> <b>not</b> <code>(&lt;date&gt;2000&lt;/date&gt;)</code>.
+	Note that the <code>&lt;volume&gt;</code> tag should include the issue, if any. 
+	When tagging editors please include abbreviations, such as "ed." 
+	within the corresponding <code>&lt;editor&gt;</code> tag.</p>
+	
+	<p>
+	<span class="author">author</span>
+	<span class="date">date</span>
+	<span class="title">title</span>
+	<span class="journal">journal</span>
+	<span class="volume">volume</span>
+	<span class="pages">pages</span>
+	<span class="editor">editor</span>
+	<span class="container-title">container-title</span>
+	<span class="publisher">publisher</span>
+	<span class="location">location</span>
+	<span class="note">note</span>
+	<span class="edition">edition</span>
+	<span class="isbn">isbn</span>
+	<span class="url">url</span>
+	<span class="doi">doi</span>	
+	</p>
+
+
 	<pre style="white-space:pre-wrap">
 		<div id="editor" style="color:DarkSlateGrey;padding:20px;height:300px;border:1px solid DarkGrey;overflow-y:auto;" contenteditable="true">
 		</div>
 	</pre>
 
-	<textarea id="log" rows="10" cols="40" readonly=""></textarea>
+	<!-- <textarea id="log" rows="10" cols="40" readonly=""></textarea> -->
 
 	<script>
+		/* If we have a URL parameter called 'text' then we have some XML to display,
+		   otherwise create some demo data. 
+		*/
 
-		// some exmaple data
-		var demo = `<?xml version="1.0" encoding="UTF-8"?>
-		<dataset>
-		<sequence>
-		<author>Aguilar, C., K. Siu-Ting, and P. J. Venegas.</author> <date>2007.</date> <title>The rheophilous tadpole of Telmatobius atahualpai Wiens, 1993 (Anura: Ceratophryidae).</title> <journal>South American Journal of Herpetology</journal> <volume>2:</volume> <pages>165–174.</pages>
-		</sequence>
-		<sequence>
-		<author>Anstis, M.</author> <date>2002.</date> Tadpoles of South-eastern Australia: A Guide with Keys.  Sydney: Reed New Holland.
-		</sequence>
-		<sequence>
-		<author>Anstis, M., F. Parker, T. Hawkes, I. Morris, and S. J. Richards.</author> <date>2011.</date> <title>Direct development in some Australopapuan microhylid frogs of the genera Austrochaperina, Cophixalus and Oreophryne (Anura: Microhylidae) from northern Australia and Papua New Guinea.</title> <journal>Zootaxa</journal> <volume>3052:</volume> <pages>1–50.</pages>
-		</sequence>
-		  <sequence>
-			<author>Solon, G.</author>
-			<date>(1999).</date>
-			<title>Chapter 29. Intergenerational mobility in the labor market.</title>
-			<editor>In O. C. A. and D. Card (Ed.),</editor>
-			<container-title>Handbook of labor economics</container-title>
-			<volume>(Vol. 3, Part A,</volume>
-			<pages>pp. 1761–1800).</pages>
-			<location>London:</location>
-			<publisher>Elsevier.</publisher>
-			<note>Retrieved from</note>
-			<url>http://www.sciencedirect.com/science/article/pii/S1573446399030102</url>
-		  </sequence>
-		</dataset>`;
+		// do we have a URL parameter?
+		var text = $.urlParam('text');
+		if (text) {
+			text = decodeURIComponent(text);
+		
+		   $.get('api.php?text=' + encodeURIComponent(text) + '&format=xml',
+			function(data){ 
+				var serializer = new XMLSerializer();
+				var xml = serializer.serializeToString(data);
+				document.getElementById("editor").innerText = xml;
+				displayResult();
+			});
+		   
+		} else {
+		
+			// some exmaple data
+			var demo = `<?xml version="1.0" encoding="UTF-8"?>
+			<dataset>
+			<sequence>
+			<author>Aguilar, C., K. Siu-Ting, and P. J. Venegas.</author> <date>2007.</date> <title>The rheophilous tadpole of Telmatobius atahualpai Wiens, 1993 (Anura: Ceratophryidae).</title> <journal>South American Journal of Herpetology</journal> <volume>2:</volume> <pages>165–174.</pages>
+			</sequence>
+			<sequence>
+			<author>Anstis, M.</author> <date>2002.</date> Tadpoles of South-eastern Australia: A Guide with Keys.  Sydney: Reed New Holland.
+			</sequence>
+			<sequence>
+			<author>Anstis, M., F. Parker, T. Hawkes, I. Morris, and S. J. Richards.</author> <date>2011.</date> <title>Direct development in some Australopapuan microhylid frogs of the genera Austrochaperina, Cophixalus and Oreophryne (Anura: Microhylidae) from northern Australia and Papua New Guinea.</title> <journal>Zootaxa</journal> <volume>3052:</volume> <pages>1–50.</pages>
+			</sequence>
+			  <sequence>
+				<author>Solon, G.</author>
+				<date>(1999).</date>
+				<title>Chapter 29. Intergenerational mobility in the labor market.</title>
+				<editor>In O. C. A. and D. Card (Ed.),</editor>
+				<container-title>Handbook of labor economics</container-title>
+				<volume>(Vol. 3, Part A,</volume>
+				<pages>pp. 1761–1800).</pages>
+				<location>London:</location>
+				<publisher>Elsevier.</publisher>
+				<note>Retrieved from</note>
+				<url>http://www.sciencedirect.com/science/article/pii/S1573446399030102</url>
+			  </sequence>
+			</dataset>`;
 
-		document.getElementById("editor").innerText = escapeHTML(demo);
-		//updatePreview();
+			document.getElementById("editor").innerText = escapeHTML(demo);
+			//updatePreview();
 
-		displayResult();
-
+			displayResult();		
+		}		
+		
 		// Listen for changes to the edited XML
 		document.getElementById("editor").addEventListener("input", function() {
 		  // document.getElementById("log").value += "input event fired\n";    
 		  //    updatePreview();
 		  displayResult();
 		}, false);
+		
 	</script>
+	
 
 </body>
 </html>

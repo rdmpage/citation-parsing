@@ -27,7 +27,7 @@ function display_parse($citations, $format= 'json', $callback = '')
 	$config['crf_path'] = dirname(__FILE__) . '/src';
 	
 	// Mac M1 installed via Homebrew
-	//$config['crf_path'] = '/opt/homebrew/bin';
+	$config['crf_path'] = '/opt/homebrew/bin';
 	
 	// clean up to improve parsing
 	
@@ -166,6 +166,11 @@ function display_parse($citations, $format= 'json', $callback = '')
 			$response = join("\n", $rows);
 			break;	
 			
+		case 'xml':
+			$filename = $base_name . '.out.xml';
+			$response = file_get_contents($filename);
+			$response_mimetype = "application/xml";
+			break;										
 	
 		case 'json':
 			default:		
