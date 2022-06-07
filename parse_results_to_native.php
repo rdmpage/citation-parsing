@@ -77,6 +77,7 @@ foreach($xpath->query('//sequence') as $node)
 		 
 	}
 
+	//------------------------------------------------------------------------------------
 	if (isset($obj->date))
 	{
 		$obj->date[0] = preg_replace('/\(/', '', $obj->date[0]);
@@ -87,15 +88,24 @@ foreach($xpath->query('//sequence') as $node)
 	//------------------------------------------------------------------------------------
 	if (isset($obj->journal))
 	{
-		$obj->journal[0] = preg_replace('/[\,|\.]$/', '', $obj->journal[0]);
+		$obj->journal[0] = preg_replace('/\,$/', '', $obj->journal[0]);
 		$obj->journal[0] = preg_replace('/^[—|-]\s+/u', '', $obj->journal[0]);
 		$obj->journal[0] = preg_replace('/([\p{L}])-\s+/iu', '$1', $obj->journal[0]);
 				
 		// hyphen breaks in ABBYY
-		$obj->journal[0] = preg_replace('/¬\s+/u', '', $obj->journal[0]);
-		
+		$obj->journal[0] = preg_replace('/¬\s+/u', '', $obj->journal[0]);		
 	}
 
+	//------------------------------------------------------------------------------------
+	if (isset($obj->{'container-title'}))
+	{
+		$obj->{'container-title'}[0] = preg_replace('/\,$/', '', $obj->{'container-title'}[0]);
+				
+		// hyphen breaks in ABBYY
+		$obj->{'container-title'}[0] = preg_replace('/¬\s+/u', '', $obj->{'container-title'}[0]);		
+	}
+
+	//------------------------------------------------------------------------------------
 	if (isset($obj->volume))
 	{
 		$matched = false;
@@ -153,6 +163,22 @@ foreach($xpath->query('//sequence') as $node)
 			$obj->issue[0] = $m['issue'];
 		}
 		
+		// ser. 2, vol. 4
+		if (preg_match('/ser\.\s+(?<series>\d+),\s*vol\.?\s*(?<volume>\d+)/', $obj->volume[0], $m))
+		{
+			$matched = true;
+			$obj->{'collection-title'}[0] = $m['series'];
+			$obj->volume[0] = $m['volume'];
+		}
+
+		// vol. 12, pt. 1
+		if (preg_match('/vol\.\s+(?<volume>\d+),\s*pt\.\s+(?<issue>\d+)/', $obj->volume[0], $m))
+		{
+			$matched = true;
+			$obj->volume[0] = $m['volume'];
+			$obj->issue[0] = $m['issue'];
+		}
+		
 		// t. XII,
 		$obj->volume[0] = preg_replace('/t\.\s+/', '', $obj->volume[0]);
 		
@@ -169,6 +195,7 @@ foreach($xpath->query('//sequence') as $node)
 
 	}
 	
+	//------------------------------------------------------------------------------------
 	if (isset($obj->pages))
 	{
 		$obj->pages[0] = preg_replace('/\./', '', $obj->pages[0]);
