@@ -66,7 +66,7 @@ foreach($xpath->query('//sequence') as $node)
 	{
 		$obj->title[0] = preg_replace('/\.$/', '', $obj->title[0]);
 		$obj->title[0] = preg_replace('/\. —$/u', '', $obj->title[0]);
-		$obj->title[0] = preg_replace('/^[—|-]\s+/u', '', $obj->title[0]);
+		$obj->title[0] = preg_replace('/^[—|-|–]\s+/u', '', $obj->title[0]);
 		$obj->title[0] = preg_replace('/\.?\s+[—|-]$/u', '', $obj->title[0]);
 		$obj->title[0] = preg_replace('/([\p{L}])-\s+/iu', '$1', $obj->title[0]);
 		
@@ -110,87 +110,158 @@ foreach($xpath->query('//sequence') as $node)
 	{
 		$matched = false;
 		
-		if (preg_match('/^(?<volume>\d+)[:|,]$/', $obj->volume[0], $m))
-		{
-			$matched = true;
-			$obj->volume[0] = $m['volume'];
+		if (!$matched)
+		{		
+			if (preg_match('/^(?<volume>\d+)[:|,]$/', $obj->volume[0], $m))
+			{
+				$matched = true;
+				$obj->volume[0] = $m['volume'];
+			}
 		}
 
-		if (preg_match('/^(?<volume>\d+)\s*\((?<issue>[^\)]+)\)/', $obj->volume[0], $m))
-		{
-			$matched = true;
-			$obj->volume[0] = $m['volume'];
-			$obj->issue[0] = $m['issue'];
+		if (!$matched)
+		{		
+			if (preg_match('/^(?<volume>\d+)\s*\((?<issue>[^\)]+)\)/', $obj->volume[0], $m))
+			{
+				$matched = true;
+				$obj->volume[0] = $m['volume'];
+				$obj->issue[0] = $m['issue'];
+			}
 		}
+
+		if (!$matched)
+		{		
 				
-		// (10) 14(82):
-		if (preg_match('/^\((?<series>[^\)]+)\)\s*(?<volume>\d+)\s*\((?<issue>[^\)]+)\)/', $obj->volume[0], $m))
-		{
-			$matched = true;
-			$obj->{'collection-title'}[0] = $m['series'];
-			$obj->volume[0] = $m['volume'];
-			$obj->issue[0] = $m['issue'];
-		}
-		
-		// (6) 10():
-		if (preg_match('/^\((?<series>[^\)]+)\)\s*(?<volume>\d+)\s*\(\)/', $obj->volume[0], $m))
-		{
-			$matched = true;
-			$obj->{'collection-title'}[0] = $m['series'];
-			$obj->volume[0] = $m['volume'];
-		}
-		
-		// (9), 12
-		if (preg_match('/^\((?<series>[^\)]+)\),\s*(?<volume>\d+)/', $obj->volume[0], $m))
-		{
-			$matched = true;
-			$obj->{'collection-title'}[0] = $m['series'];
-			$obj->volume[0] = $m['volume'];
-		}
-		
-		// 51():
-		if (preg_match('/^(?<volume>\d+)\s*\(\):/', $obj->volume[0], $m))
-		{
-			$matched = true;
-			$obj->volume[0] = $m['volume'];
-		}
-		
-		// 91, no. 19
-		if (preg_match('/(?<volume>\d+),\s*no\.?\s*(?<issue>\d+)/', $obj->volume[0], $m))
-		{
-			$matched = true;
-			$obj->volume[0] = $m['volume'];
-			$obj->issue[0] = $m['issue'];
-		}
-		
-		// ser. 2, vol. 4
-		if (preg_match('/ser\.\s+(?<series>\d+),\s*vol\.?\s*(?<volume>\d+)/', $obj->volume[0], $m))
-		{
-			$matched = true;
-			$obj->{'collection-title'}[0] = $m['series'];
-			$obj->volume[0] = $m['volume'];
+			// (10) 14(82):
+			if (preg_match('/^\((?<series>[^\)]+)\)\s*(?<volume>\d+)\s*\((?<issue>[^\)]+)\)/', $obj->volume[0], $m))
+			{
+				$matched = true;
+				$obj->{'collection-title'}[0] = $m['series'];
+				$obj->volume[0] = $m['volume'];
+				$obj->issue[0] = $m['issue'];
+			}
 		}
 
-		// vol. 12, pt. 1
-		if (preg_match('/vol\.\s+(?<volume>\d+),\s*pt\.\s+(?<issue>\d+)/', $obj->volume[0], $m))
-		{
-			$matched = true;
-			$obj->volume[0] = $m['volume'];
-			$obj->issue[0] = $m['issue'];
-		}
+		if (!$matched)
+		{		
 		
+			// (6) 10():
+			if (preg_match('/^\((?<series>[^\)]+)\)\s*(?<volume>\d+)\s*\(\)/', $obj->volume[0], $m))
+			{
+				$matched = true;
+				$obj->{'collection-title'}[0] = $m['series'];
+				$obj->volume[0] = $m['volume'];
+			}
+		}
+
+		if (!$matched)
+		{		
+		
+			// (9), 12
+			if (preg_match('/^\((?<series>[^\)]+)\),\s*(?<volume>\d+)/', $obj->volume[0], $m))
+			{
+				$matched = true;
+				$obj->{'collection-title'}[0] = $m['series'];
+				$obj->volume[0] = $m['volume'];
+			}
+		}
+
+		if (!$matched)
+		{		
+		
+			// 51():
+			if (preg_match('/^(?<volume>\d+)\s*\(\):/', $obj->volume[0], $m))
+			{
+				$matched = true;
+				$obj->volume[0] = $m['volume'];
+			}
+		}
+
+		if (!$matched)
+		{		
+		
+			// 91, no. 19
+			if (preg_match('/(?<volume>\d+),\s*no\.?\s*(?<issue>\d+)/', $obj->volume[0], $m))
+			{
+				$matched = true;
+				$obj->volume[0] = $m['volume'];
+				$obj->issue[0] = $m['issue'];
+			}
+		}
+
+		if (!$matched)
+		{		
+		
+			// ser. 2, vol. 4
+			if (preg_match('/ser\.\s+(?<series>\d+),\s*vol\.?\s*(?<volume>\d+)/', $obj->volume[0], $m))
+			{
+				$matched = true;
+				$obj->{'collection-title'}[0] = $m['series'];
+				$obj->volume[0] = $m['volume'];
+			}
+		}
+
+		if (!$matched)
+		{		
+
+			// vol. 12, pt. 1
+			if (preg_match('/vol\.\s+(?<volume>\d+),\s*pt\.\s+(?<issue>\d+)/', $obj->volume[0], $m))
+			{
+				$matched = true;
+				$obj->volume[0] = $m['volume'];
+				$obj->issue[0] = $m['issue'];
+			}
+		}
+
+
+		if (!$matched)
+		{		
+
+			// vol. 12, pt. 1
+			if (preg_match('/vol\.\s+(?<volume>\d+),\s*pt\.\s+(?<issue>\d+)/', $obj->volume[0], $m))
+			{
+				$matched = true;
+				$obj->volume[0] = $m['volume'];
+				$obj->issue[0] = $m['issue'];
+			}
+		}
+
+		if (!$matched)
+		{		
+			//Vol.3. No.4
+			if (preg_match('/Vol\.\s*(?<volume>\d+)\.\s*No\.\s*(?<issue>\d+)/', $obj->volume[0], $m))
+			{
+				$matched = true;
+				$obj->volume[0] = $m['volume'];
+				$obj->issue[0] = $m['issue'];
+			}
+		}
+
+		if (!$matched)
+		{		
+		
+			// 13, n. 1
+			if (preg_match('/(?<volume>\d+),\s*n\.\s+(?<issue>\d+)/', $obj->volume[0], $m))
+			{
+				$matched = true;
+				$obj->volume[0] = $m['volume'];
+				$obj->issue[0] = $m['issue'];
+			}
+		}
+
+		// cleaning		
 		// t. XII,
 		$obj->volume[0] = preg_replace('/t\.\s+/', '', $obj->volume[0]);
-		
+	
 		// No. 	
 		$obj->volume[0] = preg_replace('/No\.\s+/', '', $obj->volume[0]);
 		// :
 		$obj->volume[0] = preg_replace('/:$/', '', $obj->volume[0]);
-		
+	
 		// Vol. 
-		$obj->volume[0] = preg_replace('/^Vol.\s+/i', '', $obj->volume[0]);
-		
-		
+		$obj->volume[0] = preg_replace('/^Vol.\s*/i', '', $obj->volume[0]);
+	
+	
 		$obj->volume[0] = preg_replace('/[,|\.]$/', '', $obj->volume[0]);
 
 	}
@@ -200,6 +271,7 @@ foreach($xpath->query('//sequence') as $node)
 	{
 		$obj->pages[0] = preg_replace('/\./', '', $obj->pages[0]);
 		$obj->pages[0] = preg_replace('/^pp?\s*/i', '', $obj->pages[0]);
+		$obj->pages[0] = preg_replace('/^S/', '', $obj->pages[0]);
 		$obj->pages[0] = preg_replace('/–/u', '-', $obj->pages[0]);
 		$obj->pages[0] = preg_replace('/-\s+/', '-', $obj->pages[0]);
 		$obj->pages[0] = preg_replace('/\s+-/', '-', $obj->pages[0]);
