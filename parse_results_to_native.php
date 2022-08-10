@@ -94,20 +94,23 @@ foreach($xpath->query('//sequence') as $node)
 				
 		// hyphen breaks in ABBYY
 		$obj->journal[0] = preg_replace('/¬\s+/u', '', $obj->journal[0]);		
-	}
 
+		$obj->journal[0] = preg_replace('/^-\.\s*/u', '', $obj->journal[0]);		
+	}
 	//------------------------------------------------------------------------------------
 	if (isset($obj->{'container-title'}))
-	{
+	{	
 		$obj->{'container-title'}[0] = preg_replace('/\,$/', '', $obj->{'container-title'}[0]);
 				
 		// hyphen breaks in ABBYY
 		$obj->{'container-title'}[0] = preg_replace('/¬\s+/u', '', $obj->{'container-title'}[0]);		
+
+		$obj->{'container-title'}[0] = preg_replace('/^-\.\s*/u', '', $obj->{'container-title'}[0]);		
 	}
 
 	//------------------------------------------------------------------------------------
 	if (isset($obj->volume))
-	{
+	{	
 		$matched = false;
 		
 		if (!$matched)
@@ -264,6 +267,9 @@ foreach($xpath->query('//sequence') as $node)
 	
 		$obj->volume[0] = preg_replace('/[,|\.]$/', '', $obj->volume[0]);
 
+		$obj->volume[0] = preg_replace('/^\[/', '', $obj->volume[0]);
+		$obj->volume[0] = preg_replace('/\]$/', '', $obj->volume[0]);
+
 	}
 	
 	//------------------------------------------------------------------------------------
@@ -302,11 +308,17 @@ foreach($xpath->query('//sequence') as $node)
 	if (isset($obj->publisher))
 	{
 		$obj->publisher[0] = preg_replace('/[\,|:|\.]$/', '', $obj->publisher[0]);
+
+		$obj->publisher[0] = preg_replace('/\(/', '', $obj->publisher[0]);
+		$obj->publisher[0] = preg_replace('/\)$/', '', $obj->publisher[0]);
 	}
 	
 	if (isset($obj->location))
 	{
 		$obj->location[0] = preg_replace('/[\,|:|\.]$/', '', $obj->location[0]);
+
+		$obj->location[0] = preg_replace('/\(/', '', $obj->location[0]);
+		$obj->location[0] = preg_replace('/\)$/', '', $obj->location[0]);
 	}
 	
 	//------------------------------------------------------------------------------------

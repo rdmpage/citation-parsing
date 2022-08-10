@@ -35,6 +35,8 @@ function display_parse($citations, $format= 'json', $callback = '')
 	
 	$citations = preg_replace('/\x18/', "", $citations);
 	
+	// clean obvious issues
+	$citations = preg_replace('/(doi\s+\.org)/', 'doi.org', $citations);
 	
 	$doi_hack = false;
 	
@@ -57,7 +59,7 @@ function display_parse($citations, $format= 'json', $callback = '')
 		// space between punctuation and following alphanumeric token token
 		$citations = preg_replace('/([:|,|\.])([A-Za-z0-9])/', "$1 $2", $citations);	
 	
-		// restore periods in DOis
+		// restore periods in DOIs
 		$citations = preg_replace('/•/u', ".", $citations);
 	
 		// restore DOI prefix

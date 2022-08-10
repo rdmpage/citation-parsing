@@ -55,7 +55,6 @@ I’ve now updated the [buildpack](https://github.com/rdmpage/heroku-buildpack-c
 
 CRF++ didn’t want to build using autotools, but it is available on Homebrew so we can just `brew install crf++` to get a working version which is installed in `/opt/homebrew/bin`.
 
-
 ## Use
 
 To train model we need some data that has been marked up. I follow AnyStyle’s XML, e.g.:
@@ -127,7 +126,6 @@ Need to think about how to post process tags, and how to handle cases like this 
 <pages>165–174.</pages> 
 
 ```
-
 
 ## Generating additional data to use for testing or training
 

@@ -51,7 +51,7 @@ function parse_author_string($str)
 
 	// patterns
 	
-	$FAMILY = '(?<family>((da|de|von)\s+)?[\p{Lu}][\'|\’]?\p{L}+((-|\s+von\s+)[\p{Lu}]\p{L}+)?)';
+	$FAMILY = '(?<family>((da|de|von|De|Le)\s+)?[\p{Lu}][\'|\’]?\p{L}+((-|\s+von\s+)[\p{Lu}]\p{L}+)?)';
 
 	$GIVEN = '(?<given>(((da|de)\s+)?[\p{Lu}]\.[\s*|-]?)+)';
 	
