@@ -30,8 +30,16 @@ function clean_given($str)
 	}
 	
 	$str = preg_replace('/\s\s+/u', ' ', $str);
-	$str = preg_replace('/\s-/u', '-', $str);
-	$str = preg_replace('/\s$/u', '', $str);
+	
+	// Need this, but not sure why this would be null
+	if ($str)
+	{
+		$str = preg_replace('/\s-/u', '-', $str);
+	}
+	if ($str)
+	{
+		$str = preg_replace('/\s$/u', '', $str);
+	}
 		
 	return $str;
 }
@@ -141,7 +149,7 @@ function parse_author_string($str)
 	
 	
 	// clean up common problems
-	$str = preg_replace('/,([^\s])/', ', $1', $str);
+	$str = preg_replace('/,([^\s])/u', ', $1', $str);
 	
 	// parsed authors
 	$best_authors = array();
@@ -155,6 +163,9 @@ function parse_author_string($str)
 	{
 		if (preg_match('/' . $patterns[$first_pattern] . '/u', $str, $m))
 		{
+			//echo "First pattern $first_pattern\n";
+			//print_r($m);
+		
 			$authors = array();
 		
 			$first_matched_length = mb_strlen($m['name']);
@@ -178,15 +189,20 @@ function parse_author_string($str)
 				$best_score = $score;
 			
 				$best_patterns = array();
-				$best_patterns[] = $first_pattern;
-			
+				$best_patterns[] = $first_pattern;			
 			}
 			
 			foreach ($rest_pattern as $try_pat)
 			{
-				$matched_length = $first_matched_length;		
+				$matched_length = $first_matched_length;
+				
+				$rest_str = mb_substr($str, $matched_length);
+				
+				//echo "Offset=$offset\n"	;
+				//echo $rest_str . "\n";	
+				//echo "Second pattern $try_pat\n";
 		
-				if (preg_match_all('/' . $patterns[$try_pat] . '/u', $str, $m, PREG_SET_ORDER | PREG_OFFSET_CAPTURE, $offset))
+				if (preg_match_all('/' . $patterns[$try_pat] . '/u', $rest_str, $m, PREG_SET_ORDER | PREG_OFFSET_CAPTURE))
 				{
 					//print_r($m);
 				
@@ -449,6 +465,12 @@ if (0)
 	$strings=array('Clark, M.R., Rowden, A.A., Schlacher, T.A., Guinotte, J., Dunstan, P.K., Williams, A., O’Hara, T.D., Watling, L., Niklitschek, E. & Tsuchida, S.');
 	
 		
+$strings=array('Vidlička, Ľ., Vrsansky, P. & Shcherbakov, D.E.');
+$strings=array('Vidlicka, Ľ., Vrsansky, P. & Shcherbakov, D.E.');
+$strings=array('Vidlička, Ľ., Vrsansky, P. & Shcherbakov, D.E.');
+//$strings=array('Vidlička, L., Vrsansky, P. & Shcherbakov, D.E.');
+
+$strings = array('Vidlička, Ľ.');
 
 	foreach ($strings as $str)
 	{
