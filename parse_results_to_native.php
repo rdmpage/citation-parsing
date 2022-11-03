@@ -95,7 +95,9 @@ foreach($xpath->query('//sequence') as $node)
 		// hyphen breaks in ABBYY
 		$obj->journal[0] = preg_replace('/¬\s+/u', '', $obj->journal[0]);		
 
-		$obj->journal[0] = preg_replace('/^-\.\s*/u', '', $obj->journal[0]);		
+		$obj->journal[0] = preg_replace('/^-\.\s*/u', '', $obj->journal[0]);	
+		
+		$obj->journal[0] = preg_replace('/\.$/', '', $obj->journal[0]);	
 	}
 	//------------------------------------------------------------------------------------
 	if (isset($obj->{'container-title'}))
