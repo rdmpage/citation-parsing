@@ -5,6 +5,8 @@
 error_reporting(E_ALL);
 
 require_once('vendor/autoload.php');
+require_once('config.inc.php');
+
 
 use Seboettg\CiteProc\StyleSheet;
 use Seboettg\CiteProc\CiteProc;
@@ -20,14 +22,7 @@ function default_display()
 //----------------------------------------------------------------------------------------
 function display_parse($citations, $format= 'json', $callback = '')
 {
-	// Globaly installed CRF++
-	$config['crf_path'] = '/usr/local/bin';
-
-	// Local to this site (e.g., when running on Heroku)
-	$config['crf_path'] = dirname(__FILE__) . '/src';
-	
-	// Mac M1 installed via Homebrew
-	$config['crf_path'] = '/opt/homebrew/bin';
+	global $config;
 	
 	// clean up to improve parsing
 	
