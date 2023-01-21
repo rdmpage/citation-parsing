@@ -61,6 +61,7 @@ Parsed citations will appear below.
 
 <div id="output" style="display:none;">
 <p><a id="apixml" href="." target="_new">API call for result in XML</a></p>
+<p><a id="apiris" href="." target="_new">API call for result in RIS</a></p>
 <p><a id="api" href="." target="_new">API call for result below</a></p>
 <p><a id="edit" href="." target="_new">Open results in editor</a></p>
 <div id="result" style="padding:1em;font-family:monospace;font-size:0.8em;white-space:pre-wrap;background-color:rgb(50,50,50);color:#8EFA00;"></div>
@@ -87,12 +88,15 @@ function parse() {
 		
 	var xmlurl = 'api.php?text=' + encodeURIComponent(text) + '&format=xml';
 
+	var risurl = 'api.php?text=' + encodeURIComponent(text) + '&format=ris';
+
 	var editurl = 'editor.html?text=' + encodeURIComponent(text);
 
 	 $.getJSON(url + '&callback=?', function(data) {
 		if (data) {
 			document.getElementById("api").setAttribute('href', url);
 			document.getElementById("apixml").setAttribute('href', xmlurl);
+			document.getElementById("apiris").setAttribute('href', risurl);
 			document.getElementById("edit").setAttribute('href', editurl);
 			document.getElementById("result").innerHTML = JSON.stringify(data, null, 2);
 		} else {

@@ -257,12 +257,12 @@ function	parse_name($fullname) {
 					continue;
 					}
 
-				if(!$out['first']) {
+				if(!isset($out['first'])) {
 					$out['first']	=	$curr;
 					continue;
 					}
 
-				if($out['middle']) {
+				if(isset($out['middle'])) {
 					$out['middle']		.=	" $curr";
 					}
 				else {

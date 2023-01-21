@@ -298,6 +298,10 @@ foreach($xpath->query('//sequence') as $node)
 		// , 2 figures
 		$obj->pages[0] = preg_replace('/,?\s+\d+\s+figures$/i', '', $obj->pages[0]);
 		
+		// plates
+		$obj->pages[0] = preg_replace('/,\s+p[i|l]s\s*\d+(-\d+)/u', '', $obj->pages[0]);
+		$obj->pages[0] = preg_replace('/,\s+\d+\s+p[i|l]s\.?/u', '', $obj->pages[0]);
+		
 		// empty
 		if ($obj->pages[0] == "")
 		{
