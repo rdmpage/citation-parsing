@@ -2,4 +2,109 @@
 <!-- list of references that didn't work and the correct markup -->
 <dataset>
 
+<sequence>
+<author>Shreve, B.</author> <date>(1934)</date> <title>NOTES ON ECUADORIAN SNAKES.</title> <journal>Occ. Pap.Boston Soc. Nat. Hist.</journal> <volume>8:</volume> <pages>125- 131</pages> 
+</sequence>
+
+<sequence>
+<author>Ribeiro-Júnior, Marco A. &amp; Silvana Amaral</author> <date>(2017)</date> <title>Catalogue of distribution of lizards (Reptilia: Squamata) from the Brazilian Amazonia. IV. Alopoglossidae, Gymnophthalmidae.</title> <journal>Zootaxa</journal> <volume>4269 (2):</volume> <pages>151-196</pages> 
+</sequence>
+
+<sequence>
+<author>Ribeiro-Júnior, Marco A.</author> <date>(2015).</date> <title>Catalogue of distribution of lizards (Reptilia: Squamata) from the Brazilian Amazonia. I. Dactyloidae, Hoplocercidae, Iguanidae, Leiosauridae, Polychrotidae, Tropiduridae.</title> <journal>Zootaxa</journal> <volume>3983 (1):</volume> <pages>001–110</pages> 
+</sequence>
+
+<sequence>
+<author>Brown, Rafe M., Jimmy A. Mcguire, John W. Ferner and Angel C. Alcala</author> <date>(1999)</date> <title>New species of diminutive scincid lizard (Squamata: Lygosominae: Sphenomorphus) from Luzon Island, Republic of the Philippines.</title> <journal>Copeia</journal> <volume>1999 (2):</volume> <pages>362-370</pages> 
+</sequence>
+
+<sequence>
+<author>Koneshoshov S.A., Koneshova E.Y., Radyushkina T.A.</author> <date>2000.</date> <title>Toxicologic evaluation of mustard gas destruction for tailless amphibians in ecologically unfavourable regions.</title> <journal>Current Studies in Herpetology,</journal> <volume>1:</volume> <pages>20–22.</pages> 
+</sequence>
+
+<sequence>
+<author>Lada G.A., Sokolov A.S., Ushakov M.V.</author> <date>2005.</date> <title>In memory of Sergei Mikhaylovich Klimov(1953–2004).</title> <journal>Current Studies in Herpetology,</journal> <volume>3/4:</volume> <pages>124–128.</pages> 
+</sequence>
+
+<sequence>
+<author>Borkin L.J.</author> <date>2007.</date> <title>Mongolian Biodiversity Databank Workshop for Reptiles and Amphibians (Ulaanbaatar, September 11–15, 2006).</title> <journal>Current Studies in Herpetology,</journal> <volume>7(1/2):</volume> <pages>136–140.</pages> 
+</sequence>
+
+<sequence>
+<author>Tleuberdina P.A., Danilov I.G.</author> <date>2007.</date> <title>In commemoration of Valentin V. Kuznetsov (1923–2006).</title> <journal>Current Studies in Herpetology,</journal> <volume>7(1/2):</volume> <pages>141–143.</pages> 
+</sequence>
+
+<sequence>
+<author>Rustamov E.A.</author> <date>2009.</date> <title>In commemoration of Chara A. Atayev (6 October, 1936 – 14 April, 2008).</title> <journal>Current Studies in Herpetology,</journal> <volume>9(3/4):</volume> <pages>164–165.</pages> 
+</sequence>
+
+<sequence>
+<author>Zavialov E.V., Tabachishin V.G.</author> <date>2008.</date> <title>A review on the Reptiles section in the Volgograd Regional Red Book. Vol. 1. Animals.</title> <journal>Current Studies in Herpetology,</journal> <volume>8(2):</volume> <pages>187–191.</pages> 
+</sequence>
+
+<sequence>
+<author>Завьялов Е.В., Табачишин В.Г.</author> <date>2008.</date> <title>Рецензия на раздел «Пресмыкающиеся» в Красной книге Волгоградской области. Т. 1. Животные.</title> <journal>Современная герпетология,</journal> <volume>8(2):</volume> <pages>187–191.</pages> 
+</sequence>
+
+<sequence>
+<author>Nemyko E.A., Vyatkin Y.A., Kidov A.A.</author> <date>2019.</date> <title>Growing of larvae of the Caucasian smooth newt, Lissotriton lantzi (Wolterstorff, 1914) (Amphibia, Caudata) at various temperatures.</title> <journal>Current Studies in Herpetology,</journal> <volume>19(3/4):</volume> <pages>125–131.</pages> <doi>https://doi.org/10.18500/1814-6090-2019-19-3-4-125-131</doi> 
+</sequence>
+
+<sequence>
+<author>Hanitsch, R.</author> <date>(1933)</date> <title>The blattid fauna of Celebes, based chiefly on the collection made by P. and F. Sarasin.</title> <journal>Verh. Naturforsch. Ges. Basel,</journal> <volume>44,</volume> <pages>119–150.</pages> 
+</sequence>
+
+<sequence>
+<author>Hanitsch, R.</author> <date>(1938)</date> <title>Blattids.</title> <container-title>In Exploration du Parc National Albert, mission G. F. de Witte (1933-35):</container-title> <volume>Vol. Fascicule 18.</volume> <location>Bruxelles.</location> <pages>3–26 pp.</pages> 
+</sequence>
+
+<sequence>
+<author>Bey-Bienko, G.Y.</author> <date>(1950)</date> <title>Cockroaches.</title> <journal>Fauna SSSR (N. S.),</journal> <volume>40,</volume> <pages>342 pp.</pages> 
+</sequence>
+
+<sequence>
+<author>Rehn, J.A.G.</author> <date>(1906)</date> <title>The Orthoptera of the Bahamas. Article V.</title> <journal>Bull. Amer. Mus. Nat. Hist.,</journal> <volume>22,</volume> <pages>107–118.</pages> 
+</sequence>
+
+<sequence>
+<author>Shelford, R.W.C.</author> <date>(1911)</date> <title>The Blattidae collected in the Aru and Kei Islands by Dr. H. Merton.</title> <journal>Abh. Senckenb. Naturf. Gesell.,</journal> <volume>33(4),</volume> <pages>381–384.</pages> 
+</sequence>
+
+<sequence>
+<author>Beier, M.</author> <date>(1964)</date> <title>Blattariae: Subordo Blaberoidea: Fam.: Panchloridae, Gynopeltididae, Derocalymmidae, Perisphaeriidae, Pycnoscelididae.</title> <container-title>In Orthopterorum Catalogus. W. Junk, s'Gravenhage.</container-title> <volume>Issue 6,</volume> <pages>174–281 pp.</pages> 
+</sequence>
+
+<sequence>
+<author>Thunberg, C.P.</author> <date>(1810)</date> <title>Nagra. Nya species af Blattae.</title> <journal>Vetenskapsakad. Nya handl.,</journal> <volume>31,</volume> <pages>158–198.</pages> 
+</sequence>
+
+<sequence>
+<author>Rocha e Silva, I. &amp;amp; Lopes, S.M.</author> <date>(1977)</date> <title>Blattaria (Dictyoptera) do alto da Mosela, Petrópolis, R. J.</title> <journal>Rev. brasil. Biol.,</journal> <volume>37(3),</volume> <pages>499–520.</pages> 
+</sequence>
+
+<sequence>
+<author>Princis, K.</author> <date>(1955)</date> <title>Contributions à l'étude de la faune entomologique du Ruanda-Urundi. XLIX. Blattariae.</title> <journal>Ann. Mus. Congo Tervuren, in-8°, Zool.,</journal> <volume>40,</volume> <pages>15–42.</pages> 
+</sequence>
+
+<sequence>
+<author>Princis, K.</author> <date>(1969)</date> <title>Contributions à la connaissance de la faune entomologique de la Côte-d'Ivoire (J. Decelle, 1961-1964). XXX. - Blattariae.</title> <journal>Ann. Mus. Royal Afr. Centrale Ser.,</journal> <volume>175,</volume> <pages>3–45.</pages> 
+</sequence>
+
+<sequence>
+<author>Kirby, W.F.</author> <date>(1903)</date> <title>Notes on Blattidae &amp;c., with descriptions of new genera and species in the collection of the British Museum, South Kensington. No. I.</title> <journal>Annals and Magazine of Natural History,</journal> <volume>11,</volume> <pages>404–415.</pages> 
+</sequence>
+
+<sequence>
+<author>Sjöstedt, Y.</author> <date>(1910)</date> <title>Blattodea.</title> <container-title>In Wissenschaftliche Ergebnisse der Schwedischen Zoologischen Expedition nach dem umgebenden Masaisteppen Deutsch-Ostafrika, 1905-1906, unter Lei-tungen von. Y. Sjöstedt.</container-title> <volume>3 (17. Orthoptera).</volume> <location>Stockholm.</location> <pages>13–48 pp.</pages> 
+</sequence>
+
+<sequence>
+<author>Shelford, R.W.C.</author> <date>(1906)</date> <title>Studies of the Blattidae. III. Some new Blattidae from Sarawak, Borneo, in the Hope Department, Oxford University Museum.</title> <journal>Trans. Ent. Soc. Lond.,</journal> <volume>2,</volume> <pages>265–275.</pages> 
+</sequence>
+
+<sequence>
+<author>Tytler, H.</author> <date>1940</date> <title>Notes on some new and interesting butterflies, chiefly from Burma (2).</title> <journal>J. Bombay nat. Hist. Soc.</journal> <volume>42 (1) :</volume> <pages>109-123.</pages> 
+</sequence>
+
+
 </dataset>
