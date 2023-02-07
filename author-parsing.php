@@ -12,7 +12,13 @@ function clean_family($str)
 		$str = "O'" . strtoupper($m[1]) . $m[2];
 	}
 	
-	$str = str_replace(' Von ', ' von ', $str);
+	// particles
+	if (preg_match('/^((da|de|van|von)(\sden)?)\s/i', $str, $m))
+	{
+		$lc = strtolower($m[1]);
+		$str = preg_replace('/^' . $m[1] . '/', $lc, $str);
+	}
+	
 	return $str;
 }
 
@@ -59,7 +65,7 @@ function parse_author_string($str)
 
 	// patterns
 	
-	$FAMILY = '(?<family>((da|de|von|De|Le)\s+)?[\p{Lu}][\'|\’]?\p{L}+((-|\s+von\s+)[\p{Lu}]\p{L}+)?)';
+	$FAMILY = '(?<family>((da|de|van|van den|von|De|Le)\s+)?[\p{Lu}][\'|\’]?\p{L}+((-|\s+von\s+)[\p{Lu}]\p{L}+)?)';
 
 	$GIVEN = '(?<given>(((da|de)\s+)?[\p{Lu}]\.[\s*|-]?)+)';
 	
@@ -456,21 +462,24 @@ if (0)
 	"GRISMER, L. LEE; MONTRI SUMONTHA, MICHAEL COTA, JESSE L. GRISMER, PERRY L. WOOD, JR., OLIVIER S. G. PAUWELS & KIRATI KUNYA",
 	'Poulsen, Axel Dalberg; Bau, Billy; Akoitai, Thomas; Akai, Saxon',
 
-"Zaldívar-Riverón, Alejandro, J. J. Martinez, Sergey A. Belokobylskij, Carlos Pedraza-Lara, Scott R. Shaw, Paul Hanson & Fernando Varela",
+	"Zaldívar-Riverón, Alejandro, J. J. Martinez, Sergey A. Belokobylskij, Carlos Pedraza-Lara, Scott R. Shaw, Paul Hanson & Fernando Varela",
 
-"Yao, Junli, Cornelis V. Achterberg, Michael J. Sharkey & Jia-hua Chen",
+	"Yao, Junli, Cornelis V. Achterberg, Michael J. Sharkey & Jia-hua Chen",
 
 	);
 	
 	$strings=array('Clark, M.R., Rowden, A.A., Schlacher, T.A., Guinotte, J., Dunstan, P.K., Williams, A., O’Hara, T.D., Watling, L., Niklitschek, E. & Tsuchida, S.');
 	
 		
-$strings=array('Vidlička, Ľ., Vrsansky, P. & Shcherbakov, D.E.');
-$strings=array('Vidlicka, Ľ., Vrsansky, P. & Shcherbakov, D.E.');
-$strings=array('Vidlička, Ľ., Vrsansky, P. & Shcherbakov, D.E.');
-//$strings=array('Vidlička, L., Vrsansky, P. & Shcherbakov, D.E.');
+	$strings=array('Vidlička, Ľ., Vrsansky, P. & Shcherbakov, D.E.');
+	$strings=array('Vidlicka, Ľ., Vrsansky, P. & Shcherbakov, D.E.');
+	$strings=array('Vidlička, Ľ., Vrsansky, P. & Shcherbakov, D.E.');
+	//$strings=array('Vidlička, L., Vrsansky, P. & Shcherbakov, D.E.');
 
-$strings = array('Vidlička, Ľ.');
+	$strings = array('Vidlička, Ľ.');
+	
+	$strings = array('van den Berg, C. & Chase, M.W.');
+
 
 	foreach ($strings as $str)
 	{
