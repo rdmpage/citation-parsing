@@ -122,4 +122,40 @@
 <author>Alderwerelt van Rosenburgh, C.R.W.K. van.</author> <date>(1914)</date> <title>New or interesting Malayan ferns 6.</title> <journal>Bulletin du Jardin Botanique de Buitenzorg, Ser. 2,</journal> <volume>16:</volume> <pages>1–60.</pages> 
 </sequence>
 
+<sequence>
+<author>Grunow, A.</author> <date>(1862)</date> <title>Die osterreichischen Diatomaceen nebst Anschluss einiger neuen Arten von anderen Lokalitaten und einer kritischen Uebersicht der bisher bekannten Gattungen und Arten. Erste Folge. Epithemieae, Meridioneae, Diatomeac, Entopyleae, Surirelleae, Amphipleureae.</title> <journal>Verhandlungen Der Kaiserlich-Königlichen Zoologisch-Botanischen Gesellschaft in Wien</journal> <volume>12:</volume> <pages>315–372.</pages> <doi>http://dx.doi.org/10.5962/bhl.title.64361</doi> 
+</sequence>
+
+<sequence>
+<author>Grunow, A.</author> <date>(1868)</date> <title>Algae.</title> <editor>In: Krempelhuber, J., Reichardt, H. W., Mettenius, G. &amp; Milde, J. (Eds.)</editor> <container-title>Reise der Österreichischen Fregatte Novara um die Erde in den Jahren 1857, 1858, 1859 Unter den Befehlen des Commodore B. von Wüllerstorf-Urbair. Botanischer Theil.</container-title> <volume>Vol. 1. Erster Band.</volume> <publisher>K.K. Hofund Staatsdruckerei,</publisher> <location>Vienna,</location> <pages>pp. 1–104.</pages> <doi>http://dx.doi.org/10.5962/bhl.title.5376</doi> 
+</sequence>
+
+<sequence>
+<author>Grunow, A., Grove, E. &amp; Sturt, G.</author> <date>(1887)</date> <title>On a fossil diatomaceous deposit from Oamaru, Otago, New Zealand. (Journal of the Quekett Microscopical Club. Vol. II. Series II. No. 16; Vol. III. Series II. No. 17.).</title> <journal>Botanisches Centralblatt</journal> <volume>31:</volume> <pages>131–133.</pages> <note>[in German]</note> 
+</sequence>
+
+<sequence>
+<author>Kirk, H.B.</author> <date>(1911)</date> <title>Sponges collected at the Kermadec Islands by Mr. W.R.B. Oliver.</title> <journal>Transactions and Proceedings of the New Zealand Institute,</journal> <volume>43,</volume> <pages>574–581,</pages> <note>pl. XXVII.</note> 
+</sequence>
+
+<sequence>
+<author>Lacepède, B.G.E.</author> <date>(1801)</date> <title>Histoire naturelle des poissons.</title> <location>Paris,</location > <volume>3,</volume> <pages>i–lxvi + 1–558.</pages> 
+</sequence>
+
+<sequence>
+<author>Berland, L.</author> <date>(1914)</date> <title>Araneae (1re partie).</title> <container-title>In: Voyage de Ch. Alluaud et R. Jeannel en Afrique oriental (1911-1912): Résultats scientifiques.</container-title> <location>Paris,</location> <volume>3,</volume> <pages>pp. 37–94.</pages> 
+</sequence>
+
+<sequence>
+<author>Lafontaine, J.D.</author> <date>(2004)</date> <title>Noctuoidea, Noctuidae (part), Noctuinae (part—Agrotini).</title> <editor>In: Hodges, R.W. (Ed.),</editor> <container-title>The Moths of America North of Mexico,</container-title> <volume>fasc. 27.1.</volume> <publisher>The Wedge Entomological Research Foundation,</publisher> <location>Washington,</location> <pages>385 pp.</pages> 
+</sequence>
+
+<sequence>
+<author>Schaufuss, L.W.</author> <date>(1887)</date> <title>Beschreibung neuer Pselaphiden aus der Sammlung des Museum Ludwig Salvator. Ein Beitrag zur Fauna Brasiliens, der Kgl. Niederländischen Besitzungen in Indien und Neuhollands. (Fortsetzung).</title> <journal>Tijdschrift voor Entomologie,</journal> <volume>30,</volume> <pages>91–165,</pages> <note>pls. 7–11.</note>
+</sequence>
+
+<sequence>
+<author>HUISMAN, K. J. &amp; J. C. KOSTER,</author> <date>1995.</date> <title>NEW AND INTERESTING MICROLEPIDOPTERA FROM THE NETHERLANDS (LEPIDOPTERA) IN THE YEAR 1992.</title> <journal>ENT. BER., AMST.</journal> <volume>55 (4):</volume> <pages>53-67.</pages> 
+</sequence>
+
 </dataset>
