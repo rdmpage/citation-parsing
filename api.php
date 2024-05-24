@@ -203,8 +203,10 @@ function main()
 	$callback = '';
 	$handled = false;	
 	
+	$post_content = file_get_contents('php://input');
+	
 	// If no query parameters 
-	if (count($_GET) == 0)
+	if (count($_GET) == 0 && $post_content == '')
 	{
 		default_display();
 		exit(0);
@@ -218,7 +220,15 @@ function main()
 	// Submit job
 	if (!$handled)
 	{
-		$citations = (isset($_GET['text']) ? $_GET['text'] : '');	
+		if ($post_content != '')
+		{
+			$citations = $post_content;
+		}
+		else
+		{
+			$citations = (isset($_GET['text']) ? $_GET['text'] : '');	
+		}
+		
 		if ($citations)
 		{
 			$format = 'json';
