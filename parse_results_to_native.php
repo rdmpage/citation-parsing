@@ -117,6 +117,31 @@ foreach($xpath->query('//sequence') as $node)
 		
 		if (!$matched)
 		{		
+		
+			// 35A (8)
+			if (preg_match('/(?<volume>\d+[A-Z])\s*\((?<issue>[^\)]+)\)/', $obj->volume[0], $m))
+			{
+				$matched = true;
+				$obj->volume[0] = $m['volume'];
+				$obj->issue[0] = $m['issue'];
+			}
+		}
+		
+		
+		if (!$matched)
+		{		
+		
+			// (4) 6:
+			if (preg_match('/\((?<series>\d+)\)\s*(?<volume>\d+)[:]?/', $obj->volume[0], $m))
+			{
+				$matched = true;
+				$obj->{'collection-title'}[0] = $m['series'];
+				$obj->volume[0] = $m['volume'];
+			}
+		}
+				
+		if (!$matched)
+		{		
 			if (preg_match('/^(?<volume>\d+)[:|,]$/', $obj->volume[0], $m))
 			{
 				$matched = true;
@@ -275,6 +300,12 @@ foreach($xpath->query('//sequence') as $node)
 
 		$obj->volume[0] = preg_replace('/^\(/', '', $obj->volume[0]);
 		$obj->volume[0] = preg_replace('/\)$/', '', $obj->volume[0]);
+		
+		// 3- 4
+		if (isset($obj->issue))
+		{
+			$obj->issue[0] = preg_replace('/\s+/', '', $obj->issue[0]);
+		}
 
 	}
 	
