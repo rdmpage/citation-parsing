@@ -12,12 +12,19 @@ function clean_family($str)
 		$str = "O'" . strtoupper($m[1]) . $m[2];
 	}
 	
+	// lowercase connectors after hyphens (e.g. Zafar-Ul -> Zafar-ul)
+	$str = preg_replace_callback('/-(Ul|Al|El|Ur|Ud|Us|Un)\b/u', function($m) {
+		return '-' . mb_strtolower($m[1]);
+	}, $str);
+
+	/*
 	// particles
 	if (preg_match('/^((da|de|van|von)(\sden)?)\s/i', $str, $m))
 	{
 		$lc = strtolower($m[1]);
 		$str = preg_replace('/^' . $m[1] . '/', $lc, $str);
 	}
+	*/
 	
 	return $str;
 }
@@ -35,6 +42,13 @@ function clean_given($str)
 		$str .= ".";	
 	}
 	
+	if (preg_match('/^[(\p{Lu})]-[(\p{Lu})]$/u', $str))
+	{
+		$str = str_replace('-', '.-', $str);
+		$str .= ".";	
+	}
+
+
 	$str = preg_replace('/\s\s+/u', ' ', $str);
 	
 	// Need this, but not sure why this would be null
@@ -65,28 +79,30 @@ function parse_author_string($str)
 
 	// patterns
 	
-	$FAMILY = '(?<family>((da|de|van|van den|von|De|Le)\s+)?[\p{Lu}][\'|\’]?\p{L}+((-|\s+von\s+)[\p{Lu}]\p{L}+)?)';
+	$FAMILY = '(?<family>((?<particle>da|de|van|van den|von|De|Le)\s+)?[\p{Lu}][\'|\’]?\p{L}+(?:-\p{Ll}+(?:\s+[\p{Lu}]\p{L}+)?|-[\p{Lu}]\p{L}+|\s+von\s+[\p{Lu}]\p{L}+|\s+[\p{Lu}]\p{Ll}\p{L}*)?)';
 
 	$GIVEN = '(?<given>(((da|de)\s+)?[\p{Lu}]\.[\s*|-]?)+)';
 	
-	$GIVEN_NO_DOTS = '(?<given>[\p{Lu}]+)';
+	$GIVEN_NO_DOTS = '(?<given>[\p{Lu}]+(-[\p{Lu}]+)?)';
 	
 	$FAMILY_ALLCAPS = '(?<family>\p{Lu}{2,})';
 
 	$GIVEN_FULL = '(?<given>([\p{Lu}]\p{L}+(-[\p{Lu}]?\p{L}+)?)((\s[\p{Lu}]\.[\s*|-]?)+)?)';
-	
+
+	$TRAILING_PARTICLE = '(\s*(?<trailing_particle>d\'|da|de|du|le|van(?:\s+den)?|von))?';
+
 	$SEPARATOR = '(?<sep>(,|,?\s*and|\s*&|;|\|))';
 
 	$patterns = array(
-		'FIRST_FAMILY_COMMA_GIVEN' =>'^(?<name>' . $FAMILY . ',\s+' . $GIVEN . ')',
+		'FIRST_FAMILY_COMMA_GIVEN' =>'^(?<name>' . $FAMILY . ',\s+' . $GIVEN . $TRAILING_PARTICLE . ')',
 	
 		'SEPARATOR_GIVEN_FAMILY' => '(' . $SEPARATOR . '\s*(?<name>' . $GIVEN . $FAMILY . '))',
 	
-		'SEPARATOR_FAMILY_GIVEN' => $SEPARATOR . '\s*(?<name>' . $FAMILY . ',\s+' . $GIVEN . ')',
+		'SEPARATOR_FAMILY_GIVEN' => $SEPARATOR . '\s*(?<name>' . $FAMILY . ',\s+' . $GIVEN . $TRAILING_PARTICLE . ')',
 
-		'SEPARATOR_FAMILY_GIVEN_FULL' => $SEPARATOR . '\s*(?<name>' . $FAMILY . ',\s+' . $GIVEN_FULL . ')',
+		'SEPARATOR_FAMILY_GIVEN_FULL' => $SEPARATOR . '\s*(?<name>' . $FAMILY . ',\s+' . $GIVEN_FULL . $TRAILING_PARTICLE . ')',
 	
-		'FIRST_FAMILY_COMMA_GIVEN_FULL' =>'^(?<name>' . $FAMILY . ',\s+' . $GIVEN_FULL . ')',
+		'FIRST_FAMILY_COMMA_GIVEN_FULL' =>'^(?<name>' . $FAMILY . ',\s+' . $GIVEN_FULL . $TRAILING_PARTICLE . ')',
 		'SEPARATOR_GIVEN_FULL_FAMILY' => '(' . $SEPARATOR . '\s*(?<name>' . $GIVEN_FULL . '\s+' . $FAMILY . '))',
 		
 		'FIRST_FAMILY_ALLCAPS' => '^(?<name>' . $FAMILY_ALLCAPS . ',?\s+' . $GIVEN . ')',
@@ -180,6 +196,18 @@ function parse_author_string($str)
 		
 			$a = new stdclass;
 			$a->family = $m['family'];
+
+			if (isset($m['particle']) && $m['particle'] != '')
+			{
+				$a->{'non-dropping-particle'} = $m['particle'];
+				$a->family = preg_replace('/^' . $m['particle'] . '\s+/i', '', $a->family);
+			}
+
+			if (isset($m['trailing_particle']) && $m['trailing_particle'] != '')
+			{
+				$a->{'non-dropping-particle'} = $m['trailing_particle'];
+			}
+
 			$a->family = clean_family($a->family);
 		
 			$a->given = trim($m['given']);
@@ -218,6 +246,18 @@ function parse_author_string($str)
 				
 						$a = new stdclass;
 						$a->family = $v['family'][0];
+
+						if (isset($v['particle']) && $v['particle'][0] != '')
+						{
+							$a->{'non-dropping-particle'} = $v['particle'][0];
+							$a->family = preg_replace('/^' . $v['particle'][0] . '\s+/i', '', $a->family);
+						}
+
+						if (isset($v['trailing_particle']) && $v['trailing_particle'][0] != '')
+						{
+							$a->{'non-dropping-particle'} = $v['trailing_particle'][0];
+						}
+
 						$a->family = clean_family($a->family);
 					
 						$a->given = trim($v['given'][0]);
@@ -455,30 +495,18 @@ if (0)
 // need to fix these
 if (0)
 {
-	
-	// fail
-	$strings=array(
 
-	"GRISMER, L. LEE; MONTRI SUMONTHA, MICHAEL COTA, JESSE L. GRISMER, PERRY L. WOOD, JR., OLIVIER S. G. PAUWELS & KIRATI KUNYA",
-	'Poulsen, Axel Dalberg; Bau, Billy; Akoitai, Thomas; Akai, Saxon',
-
-	"Zaldívar-Riverón, Alejandro, J. J. Martinez, Sergey A. Belokobylskij, Carlos Pedraza-Lara, Scott R. Shaw, Paul Hanson & Fernando Varela",
-
-	"Yao, Junli, Cornelis V. Achterberg, Michael J. Sharkey & Jia-hua Chen",
-
-	);
-	
-	$strings=array('Clark, M.R., Rowden, A.A., Schlacher, T.A., Guinotte, J., Dunstan, P.K., Williams, A., O’Hara, T.D., Watling, L., Niklitschek, E. & Tsuchida, S.');
-	
-		
-	$strings=array('Vidlička, Ľ., Vrsansky, P. & Shcherbakov, D.E.');
-	$strings=array('Vidlicka, Ľ., Vrsansky, P. & Shcherbakov, D.E.');
-	$strings=array('Vidlička, Ľ., Vrsansky, P. & Shcherbakov, D.E.');
-	//$strings=array('Vidlička, L., Vrsansky, P. & Shcherbakov, D.E.');
-
-	$strings = array('Vidlička, Ľ.');
-	
-	$strings = array('van den Berg, C. & Chase, M.W.');
+	$strings = [
+		/*
+		'de Morgan J',
+		'Möllendorff, O. von',
+		'Zafar-ul Islam, M.Z. and Rahmani, A.R.',
+		'Saussure, H. de',
+		'van den Berg, C. & Chase, M.W.',
+		*/
+		'Benthem Jutting, W.S.S. van.',
+		'van Benthem Jutting WSS',
+	];
 
 
 	foreach ($strings as $str)
@@ -487,7 +515,7 @@ if (0)
 		
 		print_r($result);
 		
-		echo json_encode($result->author) . "\n";
+		echo json_encode($result->author, JSON_UNESCAPED_UNICODE) . "\n";
 		
 		
 	}
