@@ -21,3 +21,5 @@ tmp/*.xml
 /vendor/
 src/config.log
 core.model
+
+/clients/
