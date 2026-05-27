@@ -107,17 +107,29 @@ foreach($xpath->query('//sequence') as $node)
 		// hyphen breaks in ABBYY
 		$obj->{'container-title'}[0] = preg_replace('/¬\s+/u', '', $obj->{'container-title'}[0]);		
 
-		$obj->{'container-title'}[0] = preg_replace('/^-\.\s*/u', '', $obj->{'container-title'}[0]);		
+		$obj->{'container-title'}[0] = preg_replace('/^-\.\s*/u', '', $obj->{'container-title'}[0]);
+		
+		$obj->{'container-title'}[0] = preg_replace('/^In:\s+/u', '', $obj->{'container-title'}[0]);		
 	}
 
 	//------------------------------------------------------------------------------------
 	if (isset($obj->volume))
 	{	
+	
 		$matched = false;
 		
 		if (!$matched)
-		{		
+		{				
+			// Volume 3,
+			if (preg_match('/^Volume\s+(?<volume>\d+),?$/', $obj->volume[0], $m))
+			{
+				$matched = true;
+				$obj->volume[0] = $m['volume'];
+			}
+		}		
 		
+		if (!$matched)
+		{				
 			// 35A (8)
 			if (preg_match('/(?<volume>\d+[A-Z])\s*\((?<issue>[^\)]+)\)/', $obj->volume[0], $m))
 			{
@@ -125,8 +137,7 @@ foreach($xpath->query('//sequence') as $node)
 				$obj->volume[0] = $m['volume'];
 				$obj->issue[0] = $m['issue'];
 			}
-		}
-		
+		}		
 		
 		if (!$matched)
 		{		
@@ -279,7 +290,6 @@ foreach($xpath->query('//sequence') as $node)
 			}
 		}
 
-
 		// cleaning		
 		// t. XII,
 		$obj->volume[0] = preg_replace('/t\.\s+/', '', $obj->volume[0]);
@@ -290,7 +300,7 @@ foreach($xpath->query('//sequence') as $node)
 		$obj->volume[0] = preg_replace('/:$/', '', $obj->volume[0]);
 	
 		// Vol. 
-		$obj->volume[0] = preg_replace('/^Vol.\s*/i', '', $obj->volume[0]);
+		$obj->volume[0] = preg_replace('/^Vol\.\s*/i', '', $obj->volume[0]);
 	
 	
 		$obj->volume[0] = preg_replace('/[,|\.]$/', '', $obj->volume[0]);
@@ -342,6 +352,8 @@ foreach($xpath->query('//sequence') as $node)
 		// plates
 		$obj->pages[0] = preg_replace('/,\s+p[i|l]s\s*\d+(-\d+)/u', '', $obj->pages[0]);
 		$obj->pages[0] = preg_replace('/,\s+\d+\s+p[i|l]s\.?/u', '', $obj->pages[0]);
+		
+		$obj->pages[0] = preg_replace('/\s+pp\.?$/i', '', $obj->pages[0]);
 		
 		// empty
 		if ($obj->pages[0] == "")
@@ -407,7 +419,14 @@ foreach($xpath->query('//sequence') as $node)
 			
 			if (preg_match('/\)\.?$/', $doi_string, $m))
 			{
-				$doi = preg_replace('/\)\.?$/', '', $doi);
+				$doi = preg_replace('/\)\.?$/', '', $doi_string);
+				$obj->DOI[0] = $doi;
+			}
+			
+			// doi.org/10.3897/subtbiol.36.58977
+			if (preg_match('/^doi.org\/(?<doi>.*)/', $doi_string, $m))
+			{
+				$doi = strtolower($m['doi']);
 				$obj->DOI[0] = $doi;
 			}
 			
