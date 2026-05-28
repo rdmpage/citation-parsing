@@ -169,6 +169,16 @@ $testdata = '[
 {
 "string": "van Benthem Jutting WSS",
 "parsed": [{"family":"Benthem Jutting","non-dropping-particle":"van","given":"W. S. S."}]
+},
+
+{
+"string":"le CERF F.",
+"parsed": [{"family":"Cerf","non-dropping-particle":"le","given":"F."}]
+},
+
+{
+"string":"von DOLLA TORRE K. W.",
+"parsed": [{"family":"Dolla Torre","non-dropping-particle":"von","given":"K. W."}]
 }
 
 	
