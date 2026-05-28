@@ -79,13 +79,13 @@ function parse_author_string($str)
 
 	// patterns
 	
-	$FAMILY = '(?<family>((?<particle>da|de|van|van den|von|De|Le)\s+)?[\p{Lu}][\'|\’]?\p{L}+(?:-\p{Ll}+(?:\s+[\p{Lu}]\p{L}+)?|-[\p{Lu}]\p{L}+|\s+von\s+[\p{Lu}]\p{L}+|\s+[\p{Lu}]\p{Ll}\p{L}*)?)';
+	$FAMILY = '(?<family>((?<particle>da|de|du|le|van|van den|von|De|Le)\s+)?[\p{Lu}][\'|\’]?\p{L}+(?:-\p{Ll}+(?:\s+[\p{Lu}]\p{L}+)?|-[\p{Lu}]\p{L}+|\s+von\s+[\p{Lu}]\p{L}+|\s+[\p{Lu}]\p{Ll}\p{L}*)?)';
 
 	$GIVEN = '(?<given>(((da|de)\s+)?[\p{Lu}]\.[\s*|-]?)+)';
 	
 	$GIVEN_NO_DOTS = '(?<given>[\p{Lu}]+(-[\p{Lu}]+)?)';
 	
-	$FAMILY_ALLCAPS = '(?<family>\p{Lu}{2,})';
+	$FAMILY_ALLCAPS = '(?<family>((?<particle>da|de|du|le|van|van den|von|De|Le)\s+)?\p{Lu}{2,}(?:\s+\p{Lu}{2,})?)';
 
 	$GIVEN_FULL = '(?<given>([\p{Lu}]\p{L}+(-[\p{Lu}]?\p{L}+)?)((\s[\p{Lu}]\.[\s*|-]?)+)?)';
 
@@ -504,8 +504,11 @@ if (0)
 		'Saussure, H. de',
 		'van den Berg, C. & Chase, M.W.',
 		*/
-		'Benthem Jutting, W.S.S. van.',
-		'van Benthem Jutting WSS',
+		//'Benthem Jutting, W.S.S. van.',
+		//'van Benthem Jutting WSS',
+		
+		'le CERF F.',
+		'von DOLLA TORRE K. W.',
 	];
 
 
