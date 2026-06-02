@@ -332,6 +332,8 @@ foreach($xpath->query('//sequence') as $node)
 		$obj->pages[0] = preg_replace('/págs\s*/u', '', $obj->pages[0]);
 
 		$obj->pages[0] = preg_replace('/\s+p\.?$/u', '', $obj->pages[0]);
+		
+		$obj->pages[0] = preg_replace('/\s+\+\s+[IVXL]+\s+pls?/u', '', $obj->pages[0]);
 		 		
 		// should train this out
 		// , 8 pls
