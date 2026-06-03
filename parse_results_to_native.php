@@ -37,11 +37,19 @@ $csl_citations = array();
 foreach($xpath->query('//sequence') as $node)
 {
 	$obj = new stdclass;
+	$sequence_text = '';	
 
 	foreach ($node->childNodes as $n) { 
 		switch ($n->nodeName)
 		{
 			case '#text':
+				$text = trim($n->nodeValue);
+				
+				// ignore empty whitespace-only nodes
+				if ($text != '')
+				{
+					$sequence_text .= $text . ' ';
+				}			
 				break;
 				
 			default:
@@ -54,9 +62,15 @@ foreach($xpath->query('//sequence') as $node)
 				}
 				
 				$obj->{$tag}[] = $text;
+				
+				// also add tagged text to sequence
+				$sequence_text .= $text . ' ';
+				
 				break;
 		}
 	} 
+	
+	$obj->unstructured = trim($sequence_text);
 	
 	//print_r($obj);
 	
@@ -474,8 +488,13 @@ foreach($xpath->query('//sequence') as $node)
 	// Generate CSL	
 	$csl = new stdclass;
 	
+	if (isset($obj->unstructured))
+	{
+		$csl->unstructured = $obj->unstructured;
+	}	
+	
 	// guess type
-	$csl->type = 'article-journal';
+	$csl->type = 'journal-article';
 	
 	if (isset($obj->publisher))
 	{
