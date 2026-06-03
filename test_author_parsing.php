@@ -179,9 +179,14 @@ $testdata = '[
 {
 "string":"von DOLLA TORRE K. W.",
 "parsed": [{"family":"Dolla Torre","non-dropping-particle":"von","given":"K. W."}]
+},
+
+{
+"string":"Alonso de Pina, G.M.",
+"parsed": [{"family":"Alonso de Pina","given":"G. M."}]
 }
 
-	
+
 ]';
 
 

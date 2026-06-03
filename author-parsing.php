@@ -17,6 +17,11 @@ function clean_family($str)
 		return '-' . mb_strtolower($m[1]);
 	}, $str);
 
+	// lowercase internal particles (e.g. Alonso De Pina -> Alonso de Pina)
+	$str = preg_replace_callback('/\s(De|Da|Do|Du|Del|Della|Van|Von|Le|La)\s/u', function($m) {
+		return ' ' . mb_strtolower($m[1]) . ' ';
+	}, $str);
+
 	/*
 	// particles
 	if (preg_match('/^((da|de|van|von)(\sden)?)\s/i', $str, $m))
@@ -79,7 +84,7 @@ function parse_author_string($str)
 
 	// patterns
 	
-	$FAMILY = '(?<family>((?<particle>da|de|du|le|van|van den|von|De|Le)\s+)?[\p{Lu}][\'|\’]?\p{L}+(?:-\p{Ll}+(?:\s+[\p{Lu}]\p{L}+)?|-[\p{Lu}]\p{L}+|\s+von\s+[\p{Lu}]\p{L}+|\s+[\p{Lu}]\p{Ll}\p{L}*)?)';
+	$FAMILY = '(?<family>((?<particle>da|de|du|le|van|van den|von|De|Le)\s+)?[\p{Lu}][\'|\’]?\p{L}+(?:-\p{Ll}+(?:\s+[\p{Lu}]\p{L}+)?|-[\p{Lu}]\p{L}+|(?:\s+(?:de|da|do|du|del|della|van|van den|von|le|la)\s+[\p{Lu}]\p{L}+)+|\s+[\p{Lu}]\p{Ll}\p{L}*)?)';
 
 	$GIVEN = '(?<given>(((da|de)\s+)?[\p{Lu}]\.[\s*|-]?)+)';
 	
