@@ -31,7 +31,9 @@ while (!feof($file_handle))
 
 	if ($line != '')
 	{
-		$line = strip_tags($line);	
+		// Remove HTML tags (e.g., <i>, </b>, <span class="x">) but not other uses
+		// of < and >, such as SICI DOIs like 10.1002/(SICI)...<19::AID-JOC449>3.0.CO;2-0
+		$line = preg_replace('/<\/?[a-z][a-z0-9]*(\s[^<>]*)?\/?>/i', '', $line);	
 		$line = trim($line);	
 	
 		$xml .=  '<sequence>' . "\n";
